@@ -6,6 +6,7 @@ using Magicolo;
 public class PlayerInputSelect : State {
 	
 	[Disable] public Vector3 selectionStart;
+	[Disable] public bool draw;
 	
 	PlayerInput Layer {
 		get { return ((PlayerInput)layer); }
@@ -14,10 +15,11 @@ public class PlayerInputSelect : State {
 	public override void OnEnter() {
 		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
 		selectionStart = mouseWorldPosition;
+		draw = true;
 	}
 	
 	public override void OnExit() {
-		
+		draw = false;
 	}
 	
 	public override void OnUpdate() {
@@ -25,14 +27,19 @@ public class PlayerInputSelect : State {
 			SwitchState<PlayerInputIdle>(0);
 			return;
 		}
+	}
+	
+	public void OnGUI() {
+		if (!draw) {
+			return;
+		}
 		
-		Vector3 startViewPosition = Camera.main.WorldToViewportPoint(selectionStart);
-		Vector3 mouseViewPosition = Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
-		Vector3[] points = new Vector3[4];
-		points[0] = new Vector3(startViewPosition.x, startViewPosition.y, 0);
-		points[1] = new Vector3(mouseViewPosition.x, startViewPosition.y, 0);
-		points[2] = new Vector3(mouseViewPosition.x, mouseViewPosition.y, 0);
-		points[3] = new Vector3(startViewPosition.x, mouseViewPosition.y, 0);
-		SelectionBoxRenderer.points = points;
+		Vector3 startScreenPosition = Camera.main.WorldToScreenPoint(selectionStart);
+		startScreenPosition.y = Screen.height - startScreenPosition.y;
+		Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
+		mouseScreenPosition.y = Screen.height - mouseScreenPosition.y;
+		
+		Rect rect = new Rect(Mathf.Min(startScreenPosition.x, mouseScreenPosition.x), Mathf.Min(startScreenPosition.y, mouseScreenPosition.y), Mathf.Abs(mouseScreenPosition.x - startScreenPosition.x), Mathf.Abs(mouseScreenPosition.y - startScreenPosition.y));
+		GUI.Box(rect, "");
 	}
 }
