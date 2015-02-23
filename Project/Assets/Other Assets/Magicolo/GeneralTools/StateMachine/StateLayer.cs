@@ -179,6 +179,19 @@ namespace Magicolo {
 			return state;
 		}
 		
+		public IState GetState(int stateIndex) {
+			IState state = null;
+			
+			try {
+				state = states[stateIndex];
+			}
+			catch {
+				Logger.LogError(string.Format("State at index {0} was not found.", stateIndex));
+			}
+			
+			return state;
+		}
+		
 		public T GetLayer<T>() where T : IStateLayer {
 			return machine.GetLayer<T>();
 		}
@@ -189,6 +202,10 @@ namespace Magicolo {
 		
 		public IStateLayer GetLayer(string layerName) {
 			return machine.GetLayer(layerName);
+		}
+		
+		public IStateLayer GetLayer(int layerIndex) {
+			return machine.GetLayer(layerIndex);
 		}
 		
 		IState SwitchState(IState state, int index = 0) {
