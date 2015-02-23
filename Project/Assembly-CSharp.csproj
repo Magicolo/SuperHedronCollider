@@ -46,6 +46,49 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Core\hAudioStack.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Core\hDebug.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Core\hObjectPool.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Core\hObjectPoolItem.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Core\hWebPool.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Peripherals\hInput.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Plugins\hTestFlight.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Components\Hydrogen.Threading.Jobs\hMeshCombiner.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\AudioStack.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\AudioStackItem.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\ObjectPool.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\ObjectPoolCollection.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\ObjectPoolItemBase.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\WebPool.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Core\WebPoolWorker.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\Input.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\InputAxisControl.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\InputControlBase.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\InputDeltaAxisControl.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\InputKeyboardButtonControl.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Peripherals\InputMouseButtonControl.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Plugins\TestFlight.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Serialization\INI.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Serialization\JSON.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Serialization\JSONObject.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Threading.Jobs\MeshCombiner.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Threading\Forker.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Threading\JobBase.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Threading\ThreadPoolJob.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen.Threading\ThreadedJob.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Array.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Components.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Layers.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Material.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Math.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Memory.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Mesh.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\NavMesh.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Regex.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Resources.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Texture.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\Validate.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Plugins\Hydrogen\XML.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\!Examples\PureData\Scripts\PureDataContainerExample.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\!Examples\PureData\Scripts\PureDataSequenceExample.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\!Examples\PureData\Scripts\PureDataSoundExample.cs" />
@@ -173,6 +216,11 @@
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\MessageRelay.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\MonoBehaviourExtended.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\Pool.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolEditorHelper.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolHierarchyManager.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolPool.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolPoolManager.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolPrefab.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\PoolPrefabManager.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Room\Room.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Room\RoomWall.cs" />
@@ -188,7 +236,17 @@
      <Compile Include="Assets\Other Assets\Magicolo\GraphicsTools\Model\Model.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GraphicsTools\Model\ModelPhysicsOptions.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GraphicsTools\Model\ModelRenderOptions.cs" />
+     <Compile Include="Assets\Scripts\Pool\Pooled.cs" />
+     <Compile Include="Assets\Scripts\References.cs" />
      <Compile Include="Assets\Scripts\zTest.cs" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-UnlitAlpha.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\README.txt" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-SpecularEmissive.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-UnlitAlphaTinted.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Unlit.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-Unlit.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Color.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Specular.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -17,12 +17,43 @@ public class Pool : MonoBehaviour {
 		}
 	}
 	
+	#region Components
 	public PoolPrefabManager prefabManager;
+	public PoolPoolManager poolManager;
+	public PoolEditorHelper editorHelper;
+	public PoolHierarchyManager hierarchyManager;
+	#endregion
 	
 	public void Initialize() {
 		if (SingletonCheck()) {
 			return;
 		}
+		
+		InitializeManagers();
+		
+		if (Application.isPlaying) {
+			StartAll();
+		}
+	}
+	
+	public void InitializeManagers() {
+		prefabManager = prefabManager ?? new PoolPrefabManager(Instance);
+		prefabManager.Initialize(Instance);
+		
+		poolManager = poolManager ?? new PoolPoolManager(Instance);
+		poolManager.Initialize(Instance);
+		
+		hierarchyManager = hierarchyManager ?? new PoolHierarchyManager(Instance);
+		hierarchyManager.Initialize(Instance);
+	}
+	
+	public void InitializeHelpers() {
+		editorHelper = editorHelper ?? new PoolEditorHelper(Instance);
+		editorHelper.Initialize(Instance);
+	}
+	
+	public void StartAll() {
+		poolManager.Start();
 	}
 	
 	public bool SingletonCheck() {
@@ -42,4 +73,13 @@ public class Pool : MonoBehaviour {
 	void Awake() {
 		Initialize();
 	}
+	
+	#if UNITY_EDITOR
+	[UnityEditor.Callbacks.DidReloadScripts]
+	static void OnReloadScripts() {
+		if (Instance != null) {
+			Instance.InitializeHelpers();
+		}
+	}
+	#endif
 }

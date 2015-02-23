@@ -46,6 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\HydrogenUtility.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\MenuItems\Assets\TestFlight.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\MenuItems\Edit\HailMaryPlay.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\MenuItems\File\AutomaticBuild.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\MenuItems\Help\LibraryDocumentation.cs" />
+     <Compile Include="Assets\Other Assets\Hydrogen\Editor\hObjectPoolEditor.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\AudioTools\PureData\Editor\PureDataCustomMenu.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\AudioTools\PureData\Editor\PureDataEditor.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\AudioTools\PureData\Editor\PureDataSetupEditor.cs" />
@@ -69,10 +75,20 @@
      <Compile Include="Assets\Other Assets\Magicolo\EditorTools\Editor\SnapSettings.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\EditorTools\Editor\SymbolsWindow.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\EditorTools\Editor\TransformEditor.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\Editor\PoolCustomMenus.cs" />
+     <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\Pool\Editor\PoolEditor.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\StateMachine\Editor\StateMachineEditor.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GeneralTools\StateMachine\Editor\StateMachineGeneratorWindow.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GraphicsTools\Model\Editor\ModelPhysicsOptionsDrawer.cs" />
      <Compile Include="Assets\Other Assets\Magicolo\GraphicsTools\Model\Editor\ModelRenderOptionsDrawer.cs" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-UnlitAlpha.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\README.txt" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-SpecularEmissive.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-UnlitAlphaTinted.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Unlit.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Texture-Unlit.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Color.shader" />
+     <None Include="Assets\Other Assets\Hydrogen\Shaders\Color-Specular.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
