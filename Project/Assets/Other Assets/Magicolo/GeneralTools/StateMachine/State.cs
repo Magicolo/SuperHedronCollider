@@ -68,19 +68,19 @@ namespace Magicolo {
 		public T SwitchState<T>(int index = 0) where T : IState {
 			return layer.SwitchState<T>(index);
 		}
-				
+
 		public IState SwitchState(System.Type stateType, int index = 0) {
 			return layer.SwitchState(stateType.Name, index);
 		}
-		
+
 		public IState SwitchState(string stateName, int index = 0) {
 			return layer.SwitchState(stateName, index);
 		}
-		
+
 		public T GetActiveState<T>(int index = 0) where T : IState {
 			return layer.GetActiveState<T>(index);
 		}
-		
+
 		public IState GetActiveState(int index = 0) {
 			return layer.GetActiveState(index);
 		}
@@ -101,6 +101,10 @@ namespace Magicolo {
 			return layer.GetState(stateName);
 		}
 		
+		public IState GetState(int stateIndex) {
+			return layer.GetState(stateIndex);
+		}
+		
 		public T GetLayer<T>() where T : IStateLayer {
 			return machine.GetLayer<T>();
 		}
@@ -111,6 +115,10 @@ namespace Magicolo {
 		
 		public IStateLayer GetLayer(string layerName) {
 			return machine.GetLayer(layerName);
+		}
+				
+		public IStateLayer GetLayer(int layerIndex) {
+			return machine.GetLayer(layerIndex);
 		}
 	}
 }

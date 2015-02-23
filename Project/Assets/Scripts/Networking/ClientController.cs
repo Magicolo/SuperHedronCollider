@@ -37,12 +37,22 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	public void sendMessage(string message){
-		networkView.RPC("ServerMessageAll",RPCMode.Server,message);
+		networkView.RPC("ClientMessageAll",RPCMode.All,message);
 	}
 	
 	[RPC]
 	void ClientMessageAll(string message, NetworkMessageInfo info){
 		networkController.log(message);
+	}
+	
+	[RPC]
+	void StartGame(NetworkMessageInfo info){
+		//References.
+	}
+	
+	[RPC]
+	void StopGame(NetworkMessageInfo info){
+		
 	}
 	
 	void OnApplicationQuit(){

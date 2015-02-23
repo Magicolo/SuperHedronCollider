@@ -25,6 +25,10 @@ public class ServerController : MonoBehaviour {
 	}
 	
 	void OnServerInitialized() {
+		NetworkViewID newViewID = Network.AllocateViewID();
+		networkController.playerCount++;
+		
+		networkController.log("Server as " + newViewID.ToString());
 		networkController.log("Server initialized and ready");
     }
 	
@@ -48,13 +52,9 @@ public class ServerController : MonoBehaviour {
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
-		networkController.log("There are now " + networkController.playerCount + " players.");
-		if(networkController.networkLinks.Count == 2){
-			foreach (var client in networkController.networkLinks.Values) {
-				
-				//TODO start the game
-				//networkView.RPC("ClientMessageAll",client.networkPlayer,messageSend);
-			}
+		if(networkController.networkLinks.Count == 1){
+			networkView.RPC("ClientMessageAll",RPCMode.All,"Start game");
+			networkView.RPC("StartGame", RPCMode.All);
 		}
     }
 		
@@ -65,15 +65,9 @@ public class ServerController : MonoBehaviour {
 		networkController.log("There are now " + networkController.playerCount + " players.");
 		
 		networkView.RPC("DisconnectPlayer", RPCMode.All, player);
+		networkView.RPC("ClientMessageAll",RPCMode.All,"Stop game");
+		networkView.RPC("StopGame", RPCMode.All);
     }
-	
-	[RPC]
-	void ServerMessageAll(string message, NetworkMessageInfo info){
-		string messageSend = System.DateTime.Now.ToShortTimeString() + " : " + message;
-		foreach (var client in networkController.networkLinks.Values) {
-			networkView.RPC("ClientMessageAll",client.networkPlayer,messageSend);
-		}
-	}
 	
 	void OnApplicationQuit(){
 		Network.Disconnect();

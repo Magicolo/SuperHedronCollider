@@ -151,6 +151,19 @@ namespace Magicolo {
 			return layer;
 		}
 		
+		public IStateLayer GetLayer(int layerIndex) {
+			IStateLayer layer = null;
+			
+			try {
+				layer = layers[layerIndex];
+			}
+			catch {
+				Logger.LogError(string.Format("Layer at index {0} was not found.", layerIndex));
+			}
+			
+			return layer;
+		}
+		
 		public IStateLayer[] GetLayers() {
 			return layers.Clone() as IStateLayer[];
 		}
