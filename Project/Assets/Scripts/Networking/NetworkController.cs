@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine.UI;
@@ -9,14 +10,14 @@ public class NetworkController : MonoBehaviour {
 	[Disable]public string LocalAddress = "127.0.0.1";
 	[Disable]public string ServerAddress = "127.0.0.1";
 	
-	public GameObject playerPrefab;
+	public GameObject networkLinkPrefab;
 	
 	public ServerController serverController;
 	public ClientController clientController;
 	
 	public NetworkPlayer localNetworkPlayer;
 	
-	public Hashtable players = new Hashtable();
+	public Dictionary<string, NetworkLink> networkLinks = new Dictionary<string, NetworkLink>();
 	public int playerCount;
 	
 	public Text outputText;
@@ -41,6 +42,22 @@ public class NetworkController : MonoBehaviour {
 			}
 		}
 		return localIP;
+	}
+
+	public void addPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
+		GameObject newPlayer = Instantiate(networkLinkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		newPlayer.transform.parent = transform;
+		
+		newPlayer.GetComponent<NetworkView>().viewID = newPlayerView;
+		newPlayer.GetComponent<NetworkLink>().networkPlayer = p;
+		
+		networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
+		
+		if(p.ipAddress == LocalAddress){
+			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
+		} else {
+			log("Another player connected: " + newPlayerView.ToString());
+		}
 	}
 	
 	

@@ -7,22 +7,29 @@ using Magicolo;
 
 public class ServerController : MonoBehaviour {
 
-	private bool LANOnly = true;
+	bool LANOnly = true;
+	
+	[Disable] public bool serverStarted;
 	
 	public NetworkController networkController;
 	
 	
 	public void StartServer(int port){
+		if(serverStarted) return;
+		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
+		serverStarted = true;
 		
-		Network.InitializeServer(16,port,useNat);	
+		Network.InitializeServer(16,port,useNat);
 	}
 	
-	void OnServerInitialized() 
-	{
+	void OnServerInitialized() {
+		NetworkViewID newViewID = Network.AllocateViewID();
+		networkController.playerCount++;
+		
+		networkController.log("Server as " + newViewID.ToString());
 		networkController.log("Server initialized and ready");
-		//GameState = (int)state.waitclient;
     }
 	
 		
@@ -33,9 +40,7 @@ public class ServerController : MonoBehaviour {
 		foreach (var link in networkLinks) {
 			NetworkPlayer networkPlayer = link.networkPlayer;
 			NetworkViewID viewId = link.networkView.viewID;
-			if(networkPlayer.ToString() != info.sender.ToString()){
-				networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
-			}
+			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
 		}
 	}
 	
@@ -47,7 +52,10 @@ public class ServerController : MonoBehaviour {
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
-		networkController.log("There are now " + networkController.playerCount + " players.");
+		if(networkController.networkLinks.Count == 1){
+			networkView.RPC("ClientMessageAll",RPCMode.All,"Start game");
+			networkView.RPC("StartGame", RPCMode.All);
+		}
     }
 		
 	void OnPlayerDisconnected(NetworkPlayer player) {
@@ -57,6 +65,12 @@ public class ServerController : MonoBehaviour {
 		networkController.log("There are now " + networkController.playerCount + " players.");
 		
 		networkView.RPC("DisconnectPlayer", RPCMode.All, player);
+		networkView.RPC("ClientMessageAll",RPCMode.All,"Stop game");
+		networkView.RPC("StopGame", RPCMode.All);
     }
+	
+	void OnApplicationQuit(){
+		Network.Disconnect();
+	}
 	
 }

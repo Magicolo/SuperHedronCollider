@@ -290,8 +290,8 @@ namespace Magicolo.GeneralTools {
 				if (statesProperty.arraySize == 0 || statesProperty.TrueForAll<State>(state => state.GetType() != stateType)) {
 					AddToArray(statesProperty);
 					State newState = currentLayer.gameObject.AddComponent(stateType) as State;
-					newState.machine = stateMachine;
 					newState.layer = currentLayer;
+					newState.machine = stateMachine;
 					newState.hideFlags = HideFlags.HideInInspector;
 					statesProperty.GetLastArrayElement().SetValue(newState);
 				}
