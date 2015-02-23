@@ -7,5 +7,5 @@ public class PlayerInput : StateLayer {
 	
 	public int mouseSelectButton = 0;
 	public int mouseActionButton = 1;
-	public List<ISelectable> selected;
+	public List<ISelectable> selected = new List<ISelectable>();
 }
