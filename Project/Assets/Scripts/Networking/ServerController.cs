@@ -7,22 +7,25 @@ using Magicolo;
 
 public class ServerController : MonoBehaviour {
 
-	private bool LANOnly = true;
+	bool LANOnly = true;
+	
+	[Disable] public bool serverStarted;
 	
 	public NetworkController networkController;
 	
 	
 	public void StartServer(int port){
+		if(serverStarted) return;
+		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
+		serverStarted = true;
 		
-		Network.InitializeServer(16,port,useNat);	
+		Network.InitializeServer(16,port,useNat);
 	}
 	
-	void OnServerInitialized() 
-	{
+	void OnServerInitialized() {
 		networkController.log("Server initialized and ready");
-		//GameState = (int)state.waitclient;
     }
 	
 		
@@ -33,9 +36,7 @@ public class ServerController : MonoBehaviour {
 		foreach (var link in networkLinks) {
 			NetworkPlayer networkPlayer = link.networkPlayer;
 			NetworkViewID viewId = link.networkView.viewID;
-			if(networkPlayer.ToString() != info.sender.ToString()){
-				networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
-			}
+			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
 		}
 	}
 	
@@ -48,6 +49,13 @@ public class ServerController : MonoBehaviour {
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
 		networkController.log("There are now " + networkController.playerCount + " players.");
+		if(networkController.networkLinks.Count == 2){
+			foreach (var client in networkController.networkLinks.Values) {
+				
+				//TODO start the game
+				//networkView.RPC("ClientMessageAll",client.networkPlayer,messageSend);
+			}
+		}
     }
 		
 	void OnPlayerDisconnected(NetworkPlayer player) {
@@ -58,5 +66,17 @@ public class ServerController : MonoBehaviour {
 		
 		networkView.RPC("DisconnectPlayer", RPCMode.All, player);
     }
+	
+	[RPC]
+	void ServerMessageAll(string message, NetworkMessageInfo info){
+		string messageSend = System.DateTime.Now.ToShortTimeString() + " : " + message;
+		foreach (var client in networkController.networkLinks.Values) {
+			networkView.RPC("ClientMessageAll",client.networkPlayer,messageSend);
+		}
+	}
+	
+	void OnApplicationQuit(){
+		Network.Disconnect();
+	}
 	
 }

@@ -18,35 +18,12 @@ public class ClientController : MonoBehaviour {
 	
 	void OnFailedToConnect(NetworkConnectionError error) {
         networkController.log("Could not connect to server: " + error);
-		//GameState = (int)state.failconnect;
     }
 
 	
 	[RPC]
-	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p){		
-		GameObject newPlayer = Instantiate(networkController.playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		
-		newPlayer.GetComponent<NetworkView>().viewID = newPlayerView;
-		newPlayer.GetComponent<NetworkLink>().networkPlayer = p;
-		
-		networkController.players.Add(p,newPlayer);
-		
-		if(Network.isClient){
-			if(p.ipAddress == networkController.LocalAddress){
-				networkController.log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
-				
-				//TODO start game or something
-				
-				// also, set the global localPlayerObject as a convenience variable
-				// to easily find the local player GameObject to send position updates
-				
-				// TODO localPlayerObject = newPlayer;
-			} else {
-				
-				networkController.log("Another player connected: " + newPlayerView.ToString());
-			}
-		}
-		
+	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
+		networkController.addPlayer(newPlayerView,p);
 	}
 	
 	
@@ -56,11 +33,19 @@ public class ClientController : MonoBehaviour {
 			networkController.log("Player Disconnected: " + player.ToString());
 		}
 		
-		if(networkController.players.ContainsKey(player)){
-			if((GameObject)networkController.players[player]) {
-				Destroy((GameObject)networkController.players[player]);
-			}
-			networkController.players.Remove(player);
-		}
+		networkController.networkLinks.Remove(player.ToString());
+	}
+	
+	public void sendMessage(string message){
+		networkView.RPC("ServerMessageAll",RPCMode.Server,message);
+	}
+	
+	[RPC]
+	void ClientMessageAll(string message, NetworkMessageInfo info){
+		networkController.log(message);
+	}
+	
+	void OnApplicationQuit(){
+		//Network.Disconnect();
 	}
 }
