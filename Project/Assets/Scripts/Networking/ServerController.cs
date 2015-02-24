@@ -20,6 +20,7 @@ public class ServerController : MonoBehaviour {
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
+		networkController.clientController.playerId = nextUniqueId++;
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
 		serverStarted = true;
@@ -58,6 +59,8 @@ public class ServerController : MonoBehaviour {
 		networkController.playerCount++;
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
+		
+		networkView.RPC("ThisIsYourPlayerId", p, nextUniqueId++);
 		
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
 			

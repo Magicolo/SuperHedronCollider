@@ -56,9 +56,10 @@ public class NetworkController : MonoBehaviour {
 		networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
 		
 		if(p.ipAddress == LocalAddress){
+			localNetworkPlayer = p;
 			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
 		} else {
-			log("Another player connected: " + newPlayerView.ToString());
+			log("Another player connected: " + newPlayerView.ToString() + " - " + p.ipAddress);
 		}
 	}
 	

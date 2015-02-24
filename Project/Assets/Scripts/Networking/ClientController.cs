@@ -8,6 +8,9 @@ public class ClientController : MonoBehaviour {
 	public NetworkController networkController;
 	public NetworkLink localNetworkLink;
 	
+	public int playerId;
+	
+	
 	public void ConnectToServer(string ip, int remotePort){
     	Network.Connect(ip, remotePort);
 	}
@@ -20,7 +23,12 @@ public class ClientController : MonoBehaviour {
         networkController.log("Could not connect to server: " + error);
     }
 
+	[RPC]
+	void ThisIsYourPlayerId(int myNewPlayerId, NetworkMessageInfo info){
+		playerId = myNewPlayerId;
+	}
 	
+		
 	[RPC]
 	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
 		networkController.addPlayer(newPlayerView,p);
@@ -40,14 +48,14 @@ public class ClientController : MonoBehaviour {
 		networkView.RPC("ClientMessageAll",RPCMode.All,message);
 	}
 	
-	public void sendUnitDeplacement(int unitId, Vector3 position, Vector3 velocity){
-		networkView.RPC("UpdateUnit",RPCMode.Others,unitId,position,velocity);
+	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 velocity){
+		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, velocity);
 	}
 	
 	[RPC]
-	void UpdateUnit(int unitId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
-		if(isMe(info)) return;
-		Debug.Log("Yo dog bouge moi ca!" + Network.player.guid);
+	void UpdateUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
+		if(isMe(troopPlayerId)) return;
+		Debug.Log("Yo dog bouge moi ca à " + position);
 		GameObject go =  GameObject.Find("TestTroupe");
 		go.transform.position = position;
 	}
@@ -60,7 +68,6 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void StartGame(NetworkMessageInfo info){
 		GameManager.Start();
-		
 	}
 	
 	[RPC]
@@ -68,9 +75,10 @@ public class ClientController : MonoBehaviour {
 		GameManager.STOP();
 	}
 
-	bool isMe(NetworkMessageInfo info){
-		return info.sender.guid == Network.player.guid;
+	bool isMe(int otherPlayerId){
+		return otherPlayerId == this.playerId;
 	}
+
 	void OnApplicationQuit(){
 		//Network.Disconnect();
 	}
