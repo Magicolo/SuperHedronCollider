@@ -74,7 +74,7 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 
 	public static void Kill(int troopId){
-		
+		// TODO kill this unit
 	}
 	
 	public static void Despawn(TroopBase troop, int playerId) {

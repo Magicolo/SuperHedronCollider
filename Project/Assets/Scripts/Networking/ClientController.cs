@@ -63,30 +63,36 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	
-	public void spawnUnityTest(){
+	public void spawnUnitTest(){
 		
 	}
 	
 	
 	
-	public void spawnUnity(int troopType, Vector3 position, Quaternion rotation){
+	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation){
 		networkView.RPC("ToServerSpawnUnit",RPCMode.Server, playerId, troopType, position, rotation);
 	}
 	
 	[RPC]
-	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation,NetworkMessageInfo info){
+	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
 		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
 	}
 	
 	
-	/*public void killUnit(int troopId){
-		networkView.RPC("ToClientKillUnit",RPCMode.All, troopId);
+	public void killUnit(int troopPlayerId, int troopId){
+		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);
 	}
 	
 	[RPC]
-	void ToClientKillUnit(int troopId, NetworkMessageInfo info){
-		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
-	}*/
+	void ToClientKillUnit(int troopPlayerId, int troopId, NetworkMessageInfo info){
+		TroopManager.Kill(troopId);
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
