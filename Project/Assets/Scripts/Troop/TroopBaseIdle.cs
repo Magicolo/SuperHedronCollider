@@ -18,7 +18,7 @@ public class TroopBaseIdle : State {
 	}
 	
 	public override void OnUpdate() {
-		float distance = Vector3.Distance(transform.position, new Vector3(Layer.target.x, transform.position.y, Layer.target.z));
+		float distance = Vector3.Distance(transform.position, new Vector3(Layer.Target.x, transform.position.y, Layer.Target.z));
 		
 		if (distance > Layer.navMeshAgent.stoppingDistance) {
 			SwitchState<TroopBaseMove>();

@@ -5,7 +5,10 @@ using Magicolo;
 
 public class PlayerInputSelect : State {
 	
+	public float minBoxSize = 1;
 	[Disable] public Vector3 selectionStart;
+	[Disable] public Vector3 selectionEnd;
+	[Disable] public Rect selectionRect;
 	[Disable] public bool draw;
 	
 	PlayerInput Layer {
@@ -13,13 +16,16 @@ public class PlayerInputSelect : State {
 	}
 	
 	public override void OnEnter() {
-		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100));
-		selectionStart = mouseWorldPosition;
+		selectionStart = new Vector3(Input.mousePosition.x, Screen.height - Input.mousePosition.y, Camera.main.transform.position.z);
 		draw = true;
 	}
 	
 	public override void OnExit() {
+		Select();
 		draw = false;
+		selectionStart = Vector3.zero;
+		selectionEnd = Vector3.zero;
+		selectionRect = new Rect();
 	}
 	
 	public override void OnUpdate() {
@@ -34,12 +40,50 @@ public class PlayerInputSelect : State {
 			return;
 		}
 		
-		Vector3 startScreenPosition = Camera.main.WorldToScreenPoint(selectionStart);
-		startScreenPosition.y = Screen.height - startScreenPosition.y;
-		Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
-		mouseScreenPosition.y = Screen.height - mouseScreenPosition.y;
+		selectionEnd = new Vector3(Input.mousePosition.x, Screen.height - Input.mousePosition.y, Camera.main.transform.position.z);
+		selectionRect = new Rect(Mathf.Min(selectionStart.x, selectionEnd.x), Mathf.Min(selectionStart.y, selectionEnd.y), Mathf.Abs(selectionEnd.x - selectionStart.x), Mathf.Abs(selectionEnd.y - selectionStart.y));
 		
-		Rect rect = new Rect(Mathf.Min(startScreenPosition.x, mouseScreenPosition.x), Mathf.Min(startScreenPosition.y, mouseScreenPosition.y), Mathf.Abs(mouseScreenPosition.x - startScreenPosition.x), Mathf.Abs(mouseScreenPosition.y - startScreenPosition.y));
-		GUI.Box(rect, "");
+		if (selectionRect.size.magnitude > minBoxSize) {
+			GUI.Box(selectionRect, "");
+		}
+	}
+
+	void Select() {
+		DeselectAll();
+		
+		TroopBase[] troops = FindObjectsOfType<TroopBase>();
+		
+		if (selectionRect.size.magnitude <= minBoxSize) {
+			Ray selectionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit selectionRayInfo;
+				
+			if (Physics.Raycast(selectionRay, out selectionRayInfo)) {
+				TroopBase troop = selectionRayInfo.collider.GetComponent<TroopBase>();
+				
+				if (troop != null) {
+					troop.Selected = true;
+					Layer.selectedTroops.Add(troop);
+				}
+			}
+		}
+		else {
+			foreach (TroopBase troop in troops) {
+				Vector3 troopScreenPosition = Camera.main.WorldToScreenPoint(troop.transform.position);
+				troopScreenPosition.y = Screen.height - troopScreenPosition.y;
+				
+				if (selectionRect.Contains(troopScreenPosition, true)) {
+					troop.Selected = true;
+					Layer.selectedTroops.Add(troop);
+				}
+			}
+		}
+	}
+	
+	void DeselectAll() {
+		foreach (TroopBase troop in Layer.selectedTroops) {
+			troop.Selected = false;
+		}
+		
+		Layer.selectedTroops.Clear();
 	}
 }

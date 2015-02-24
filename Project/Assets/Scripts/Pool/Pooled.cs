@@ -16,10 +16,6 @@ public class Pooled : Hydrogen.Core.ObjectPoolItemBase {
 	}
 
 	public override void OnDespawned() {
-		if (ParentPool.HasRigidbody) {
-			gameObject.rigidbody.velocity = Vector3.zero;
-		}
-		
 		gameObject.SetActive(false);
 		SendMessage("Despawned", SendMessageOptions.DontRequireReceiver);
 	}

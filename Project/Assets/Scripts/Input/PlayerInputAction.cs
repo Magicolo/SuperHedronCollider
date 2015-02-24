@@ -23,7 +23,7 @@ public class PlayerInputAction : State {
 			return;
 		}
 		
-		foreach (ISelectable selected in Layer.selected) {
+		foreach (ISelectable selected in Layer.selectedTroops) {
 			if (selected as TroopBase != null) {
 				TroopBase troop = selected as TroopBase;
 				Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);

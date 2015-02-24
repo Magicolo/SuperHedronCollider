@@ -1,19 +1,30 @@
 fileFormatVersion: 2
-guid: ee8d57edeb1b460488e4fdc7a7b1bd1c
+guid: bbb59f77148bd4140811b8267bf7a00b
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Grid
-    100002: Grid_001
+    100000: Collisions
+    100002: Goal
     100004: //RootNode
-    400000: Grid
-    400002: Grid_001
+    100006: SpawnerA
+    100008: SpawnerB
+    400000: Collisions
+    400002: Goal
     400004: //RootNode
-    2300000: Grid
-    2300002: Grid_001
-    3300000: Grid
-    3300002: Grid_001
-    4300000: Grid_001
+    400006: SpawnerA
+    400008: SpawnerB
+    2300000: Collisions
+    2300002: Goal
+    2300004: SpawnerA
+    2300006: SpawnerB
+    3300000: Collisions
+    3300002: Goal
+    3300004: SpawnerA
+    3300006: SpawnerB
+    4300000: SpawnerA
+    4300002: SpawnerB
+    4300004: Goal
+    4300006: Collisions
     7400000: Default Take
     9500000: //RootNode
   materials:

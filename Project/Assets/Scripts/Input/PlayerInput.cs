@@ -5,7 +5,17 @@ using Magicolo;
 
 public class PlayerInput : StateLayer {
 	
+	public bool debug;
 	public int mouseSelectButton = 0;
 	public int mouseActionButton = 1;
-	public List<ISelectable> selected = new List<ISelectable>();
+	public int mouseMoveButton = 2;
+	public List<TroopBase> selectedTroops = new List<TroopBase>();
+	
+	public override void OnUpdate() {
+		base.OnUpdate();
+		
+		if (debug && Input.GetKey(KeyCode.Space)) {
+			hObjectPool.Instance.Spawn(References.TroopPrefab);
+		}
+	}
 }

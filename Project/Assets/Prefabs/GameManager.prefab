@@ -11,11 +11,11 @@ GameObject:
   - 114: {fileID: 11427890}
   - 114: {fileID: 11456794}
   - 114: {fileID: 11456804}
-  - 120: {fileID: 12056794}
   - 114: {fileID: 11456802}
   - 114: {fileID: 11456800}
   - 114: {fileID: 11456798}
   - 114: {fileID: 11456796}
+  - 114: {fileID: 11496184}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe973aa67e290a943ab020e2178d0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  troopPrefab: {fileID: 192422, guid: 1f1ad538cdc1c25479deaa1743029365, type: 2}
+  troopPrefab: {fileID: 148286, guid: 1f1ad538cdc1c25479deaa1743029365, type: 2}
 --- !u!114 &11456794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +71,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11456802}
   machine: {fileID: 11456804}
+  minBoxSize: 10
   selectionStart: {x: 0, y: 0, z: 0}
+  selectionEnd: {x: 0, y: 0, z: 0}
+  selectionRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  draw: 0
 --- !u!114 &11456798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,11 +123,15 @@ MonoBehaviour:
   - {fileID: 11456798}
   - {fileID: 11456796}
   - {fileID: 11456800}
+  - {fileID: 11496184}
   currentStates:
   - {fileID: 11456798}
   - {fileID: 11456798}
+  - {fileID: 11496184}
   mouseSelectButton: 0
   mouseActionButton: 1
+  mouseMoveButton: 2
+  selectedTroops: []
 --- !u!114 &11456804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,42 +145,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layers:
   - {fileID: 11456802}
---- !u!120 &12056794
-LineRenderer:
+--- !u!114 &11496184
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127890}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  m_Parameters:
-    startWidth: 5
-    endWidth: 5
-    m_StartColor:
-      serializedVersion: 2
-      rgba: 4278255360
-    m_EndColor:
-      serializedVersion: 2
-      rgba: 4278255360
-  m_UseWorldSpace: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487f8041562d898428dcdd50d3bc8e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 11456802}
+  machine: {fileID: 11456804}
+  moveSpeed: 1
+  moveSmooth: 5
+  zoomSpeed: 5
+  zoomSmooth: 5
+  minZoom: 5
+  maxZoom: 150
+  smoothScrollDelta: 0
+  dragStart: {x: 0, y: 0, z: 0}
+  dragEnd: {x: 0, y: 0, z: 0}
+  dragDelta: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
