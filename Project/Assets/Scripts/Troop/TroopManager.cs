@@ -73,7 +73,7 @@ public class TroopManager : MonoBehaviourExtended {
 		return Spawn<T>(playerId, Vector3.zero, Quaternion.identity);
 	}
 
-	public static void Kill(int troopId){
+	public static void Kill(int playerId, int troopId){
 		// TODO kill this unit
 	}
 	
@@ -86,6 +86,15 @@ public class TroopManager : MonoBehaviourExtended {
 		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
 
+	public static void MoveUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 velocity) {
+		// TODO MOVE ME	
+		throw new System.NotImplementedException();
+	}
+
+	public static void UnitDamage(int troopPlayerId, int troopId, int damage) {
+		//TODO FAIT MOI MAL KEVIN!
+		throw new System.NotImplementedException();
+	}
 	public static TroopBase[] GetTroops(int playerId) {
 		if (troops.ContainsKey(playerId)) {
 			return troops[playerId].ToArray();
