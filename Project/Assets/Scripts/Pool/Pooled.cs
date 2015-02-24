@@ -3,10 +3,6 @@ using System.Collections;
 
 public class Pooled : Hydrogen.Core.ObjectPoolItemBase {
 
-	public void Despawn() {
-		hObjectPool.Instance.Despawn(gameObject);
-	}
-	
 	public override void DespawnSafely() {
 		StartCoroutine(WaitForParticles());
 	}

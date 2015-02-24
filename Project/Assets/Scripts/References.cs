@@ -14,12 +14,5 @@ public class References : MonoBehaviourExtended {
 			return instance;
 		}
 	}
-	
-	public GameObject troopPrefab;
-	public static GameObject TroopPrefab {
-		get {
-			return Instance.troopPrefab;
-		}
-	}
 }
 

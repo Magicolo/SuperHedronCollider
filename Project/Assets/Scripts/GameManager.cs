@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviourExtended {
 	}
 	
 	void Awake(){
-		GameManager.STOP();
+//		GameManager.STOP();
 	}
 }
 

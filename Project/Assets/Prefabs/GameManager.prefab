@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 427890}
   - 114: {fileID: 11427890}
   - 114: {fileID: 11456794}
+  - 114: {fileID: 11406394}
   - 114: {fileID: 11456804}
   - 114: {fileID: 11456802}
   - 114: {fileID: 11456800}
@@ -35,6 +36,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11406394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a854e57da50474bbb5121c81a0368e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hexaTroopPrefab: {fileID: 163964, guid: b6548a82f170a2d4daa4f0d5914e9061, type: 2}
+  isoTroopPrefab: {fileID: 133862, guid: bf2c8fb58f67fcf43b9c1894dfdcad59, type: 2}
+  tetraTroopPrefab: {fileID: 181632, guid: 162369ec6c16d444bbadc2b32390f559, type: 2}
 --- !u!114 &11427890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -46,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe973aa67e290a943ab020e2178d0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  troopPrefab: {fileID: 148286, guid: 1f1ad538cdc1c25479deaa1743029365, type: 2}
 --- !u!114 &11456794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +142,7 @@ MonoBehaviour:
   - {fileID: 11456798}
   - {fileID: 11456798}
   - {fileID: 11496184}
+  debug: 1
   mouseSelectButton: 0
   mouseActionButton: 1
   mouseMoveButton: 2
@@ -158,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11456802}
   machine: {fileID: 11456804}
+  dragMargin: 25
   moveSpeed: 1
   moveSmooth: 5
   zoomSpeed: 5
@@ -168,6 +184,12 @@ MonoBehaviour:
   dragStart: {x: 0, y: 0, z: 0}
   dragEnd: {x: 0, y: 0, z: 0}
   dragDelta: {x: 0, y: 0, z: 0}
+  noDragZone:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 277
+    height: 917
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

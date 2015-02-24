@@ -23,15 +23,12 @@ public class PlayerInputAction : State {
 			return;
 		}
 		
-		foreach (ISelectable selected in Layer.selectedTroops) {
-			if (selected as TroopBase != null) {
-				TroopBase troop = selected as TroopBase;
-				Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit mouseRayInfo;
+		foreach (TroopBase selectedTroop in Layer.selectedTroops) {
+			Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit mouseRayInfo;
 				
-				if (Physics.Raycast(mouseRay, out mouseRayInfo)) {
-					troop.Target = mouseRayInfo.point;
-				}
+			if (Physics.Raycast(mouseRay, out mouseRayInfo)) {
+				selectedTroop.Target = mouseRayInfo.point;
 			}
 		}
 	}

@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum TroopTypes {
-	tetra = 0,
-	hexa = 1,
-	iso = 2
-}
-
 public class Bullet : MonoBehaviour {
-	
-	
 	
 	public Transform target;
 	public TroopTypes type;
@@ -34,8 +26,8 @@ public class Bullet : MonoBehaviour {
 	
 	
 	static bool HasAdvantage (TroopTypes user, TroopTypes target){
-		if (user == TroopTypes.tetra){
-			return target == TroopTypes.tetra;
+		if (user == TroopTypes.Tetra){
+			return target == TroopTypes.Tetra;
 		} else {
 			return user > target;
 		}

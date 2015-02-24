@@ -15,7 +15,7 @@ public class PlayerInput : StateLayer {
 		base.OnUpdate();
 		
 		if (debug && Input.GetKey(KeyCode.Space)) {
-			hObjectPool.Instance.Spawn(References.TroopPrefab);
+			TroopManager.Spawn<TroopHexa>(0);
 		}
 	}
 }

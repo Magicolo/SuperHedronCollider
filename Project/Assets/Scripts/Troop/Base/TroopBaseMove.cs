@@ -21,7 +21,7 @@ public class TroopBaseMove : State {
 		float distance = Vector3.Distance(transform.position, new Vector3(Layer.Target.x, transform.position.y, Layer.Target.z));
 		
 		if (distance < Layer.navMeshAgent.stoppingDistance) {
-			SwitchState<TroopBaseIdle>();
+			SwitchState(Layer.GetType().Name + "Idle");
 		}
 	}
 }
