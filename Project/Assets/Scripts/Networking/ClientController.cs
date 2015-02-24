@@ -85,7 +85,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void ToClientKillUnit(int troopPlayerId, int troopId, NetworkMessageInfo info){
-		TroopManager.Kill(troopId);
+		TroopManager.Despawn(troopPlayerId, troopId);
 	}
 	
 	
