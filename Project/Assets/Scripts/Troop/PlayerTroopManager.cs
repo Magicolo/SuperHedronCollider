@@ -8,11 +8,38 @@ public class PlayerTroopManager {
 
 	public int playerId;
 	
-	static readonly Dictionary<int, TroopBase> idTroopDict = new Dictionary<int, TroopBase>();
+	readonly Dictionary<int, TroopBase> idTroopDict = new Dictionary<int, TroopBase>();
 	Rect zone;
 	
 	public PlayerTroopManager(int playerId) {
 		this.playerId = playerId;
+	}
+
+	public void UpdateZone() {
+		float xMin = float.MaxValue;
+		float xMax = float.MinValue;
+		float yMin = float.MaxValue;
+		float yMax = float.MinValue;
+			
+		foreach (TroopBase troop in GetTroops()) {
+			if (troop.transform.position.x - troop.sightRadius < xMin) {
+				xMin = troop.transform.position.x - troop.sightRadius;
+			}
+		
+			if (troop.transform.position.x + troop.sightRadius > xMax) {
+				xMax = troop.transform.position.x + troop.sightRadius;
+			}
+		
+			if (troop.transform.position.z - troop.sightRadius < yMin) {
+				yMin = troop.transform.position.z - troop.sightRadius;
+			}
+		
+			if (troop.transform.position.z + troop.sightRadius > yMax) {
+				yMax = troop.transform.position.z + troop.sightRadius;
+			}
+		}
+			
+		zone = Rect.MinMaxRect(xMin, yMin, xMax, yMax);
 	}
 
 	public TroopBase GetTroop(int troopId) {
@@ -44,32 +71,29 @@ public class PlayerTroopManager {
 		
 		return zone.Intersects(troopRect);
 	}
-	
-	public void UpdateZone() {
-		float xMin = float.MaxValue;
-		float xMax = float.MinValue;
-		float yMin = float.MaxValue;
-		float yMax = float.MinValue;
-			
-		foreach (TroopBase troop in GetTroops()) {
-			if (troop.transform.position.x - troop.sightRadius < xMin) {
-				xMin = troop.transform.position.x - troop.sightRadius;
-			}
+
+	public void DamageTroop(int troopId, int damage) {
+		TroopBase troop = GetTroop(troopId);
 		
-			if (troop.transform.position.x + troop.sightRadius > xMax) {
-				xMax = troop.transform.position.x + troop.sightRadius;
-			}
-		
-			if (troop.transform.position.z - troop.sightRadius < yMin) {
-				yMin = troop.transform.position.z - troop.sightRadius;
-			}
-		
-			if (troop.transform.position.z + troop.sightRadius > yMax) {
-				yMax = troop.transform.position.z + troop.sightRadius;
-			}
+		if (troop != null) {
+			troop.Damage(damage);
 		}
-			
-		zone = Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+	}
+
+	public void MoveTroop(int troopId, Vector3 target) {
+		TroopBase troop = GetTroop(troopId);
+		
+		if (troop != null) {
+			troop.Move(target);
+		}
+	}
+
+	public void KillTroop(int troopId) {
+		TroopBase troop = GetTroop(troopId);
+		
+		if (troop != null) {
+			troop.Kill();
+		}
 	}
 }
 

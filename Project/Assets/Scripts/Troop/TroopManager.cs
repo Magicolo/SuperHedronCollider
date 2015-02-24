@@ -139,6 +139,24 @@ public class TroopManager : MonoBehaviourExtended {
 		
 		return closestEnemy;
 	}
+
+	public static void DamageTroop(int playerId, int troopId, int damage) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].DamageTroop(troopId, damage);
+		}
+	}
+
+	public static void MoveTroop(int playerId, int troopId, Vector3 target) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].MoveTroop(troopId, target);
+		}
+	}
+
+	public static void KillTroop(int playerId, int troopId) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].KillTroop(troopId);
+		}
+	}
 	
 	public static int ToTypeId<T>() {
 		int typeId;

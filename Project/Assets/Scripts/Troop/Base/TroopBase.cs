@@ -66,18 +66,26 @@ public class TroopBase : StateLayer, ISelectable {
 		TroopManager.Despawn(this);
 	}
 	
-	public bool CheckForEnemies(){
+	public bool CheckForEnemies() {
 		closestInRangeEnemy = TroopManager.GetClosestInRangeEnemy(this);
 		
 		return closestInRangeEnemy != null;
 	}
 	
-	public void ReceiveDamage(float damage) {
+	public void Damage(float damage) {
 		health -= damage;
 		
 		if (health <= 0) {
-			SwitchState(GetType().Name + "Dead");
+			Kill();
 			return;
 		}
+	}
+
+	public void Kill() {
+		SwitchState(GetType().Name + "Dead");
+	}
+	
+	public void Move(Vector3 target) {
+		Target = target;
 	}
 }

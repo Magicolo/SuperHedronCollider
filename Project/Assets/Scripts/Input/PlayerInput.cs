@@ -15,7 +15,7 @@ public class PlayerInput : StateLayer {
 		base.OnUpdate();
 		
 		if (debug && Input.GetKey(KeyCode.Space)) {
-//			TroopManager.Spawn<TroopHexa>(new []{ NetworkController.instance.clientController.playerId, 100 }.GetRandom());
+			TroopManager.Spawn<TroopHexa>(new []{ NetworkController.CurrentPlayerId, 100 }.GetRandom(), Random.Range(0, int.MaxValue));
 		}
 	}
 }

@@ -50,17 +50,7 @@ public class ClientController : MonoBehaviour {
 	
 	
 	
-	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 velocity){
-		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, velocity);
-	}
 	
-	[RPC]
-	void UpdateUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
-		if(isMe(troopPlayerId)) return;
-		Debug.Log("Yo dog bouge moi ca à " + position);
-		GameObject go =  GameObject.Find("TestTroupe");
-		go.transform.position = position;
-	}
 	
 	
 	public void spawnUnitTest(){
@@ -68,7 +58,7 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	
-	
+	#region Unit
 	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation){
 		networkView.RPC("ToServerSpawnUnit",RPCMode.Server, playerId, troopType, position, rotation);
 	}
@@ -78,6 +68,27 @@ public class ClientController : MonoBehaviour {
 		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
 	}
 	
+	public void sendUnitDamage(int troopPlayerId, int troopId, float damage){
+		networkView.RPC("UnitDamage",RPCMode.All, this.playerId, troopId, damage);
+	}
+	
+	[RPC]
+	void UnitDamage(int troopPlayerId, int troopId, int damage, NetworkMessageInfo info){
+		TroopManager.DamageTroop(troopPlayerId, troopId,damage);
+	}
+	
+	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 velocity){
+		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, velocity);
+	}
+	
+	[RPC]
+	void UpdateUnit(int troopPlayerId, int troopId, Vector3 target, NetworkMessageInfo info){
+		if(isMe(troopPlayerId)) return;
+		Debug.Log("Yo dog bouge moi ca à " + target);
+		TroopManager.MoveTroop(troopPlayerId, troopId,target);
+		GameObject go =  GameObject.Find("TestTroupe");
+		go.transform.position = target;
+	}
 	
 	public void killUnit(int troopPlayerId, int troopId){
 		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);
@@ -85,14 +96,42 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void ToClientKillUnit(int troopPlayerId, int troopId, NetworkMessageInfo info){
-		TroopManager.Despawn(troopPlayerId, troopId);
+		TroopManager.KillTroop(troopPlayerId, troopId);
+	}
+	#endregion
+	
+	
+	#region Bullet
+	
+	public void spawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget){
+		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerId, playerIdSource, unitIdSource,playerIdTarget,unitIdTarget);
+	}
+	
+	[RPC]
+	void ToClientSpawnBullet(int bulletId, int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget, NetworkMessageInfo info){
+		BulletManager.Spawn(bulletId, playerIdSource, unitIdSource, playerIdTarget, unitIdTarget);
 	}
 	
 	
+	public void sendBulletDeplacement(int bulletId, Vector3 position, Vector3 velocity){
+		networkView.RPC("UpdateBullet",RPCMode.Others, this.playerId, bulletId, position, velocity);
+	}
 	
+	[RPC]
+	void UpdateBullet(int bulletPlayerId, int bulletId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
+		if(isMe(bulletPlayerId)) return;
+		BulletManager.MoveBullet(bulletPlayerId, bulletId,position,velocity);
+	}
 	
+	public void killBullet(int pId, int bId){
+		networkView.RPC("ToClientKillBullet",RPCMode.All, pId, bId);
+	}
 	
-	
+	[RPC]
+	void ToClientKillBullet(int bulletPlayerId, int bulletId, NetworkMessageInfo info){
+		BulletManager.RemoveBullet(bulletPlayerId, bulletId);
+	}
+	#endregion
 	
 	
 	
