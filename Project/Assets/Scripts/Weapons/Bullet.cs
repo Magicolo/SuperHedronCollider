@@ -12,6 +12,10 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider collision) {
+		if (source.playerId != NetworkController.instance.clientController.playerId) {
+			return;
+		}
+		
 		TroopBase troop = collision.GetComponent<TroopBase>();
 		
 		if (troop != null && troop.playerId != source.playerId) {

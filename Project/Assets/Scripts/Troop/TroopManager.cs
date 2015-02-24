@@ -41,7 +41,7 @@ public class TroopManager : MonoBehaviourExtended {
 	static readonly Dictionary<int, List<TroopBase>> troops = new Dictionary<int, List<TroopBase>>();
 	static readonly Dictionary<int, Rect> zones = new Dictionary<int, Rect>();
 	
-	public static void Spawn(int playerId, int troopTypeId, int troopId, Vector3 position, Quaternion rotation){
+	public static void Spawn(int playerId, int troopId, int troopTypeId, Vector3 position, Quaternion rotation) {
 		//TODO todo
 	}
 	
@@ -78,15 +78,12 @@ public class TroopManager : MonoBehaviourExtended {
 		return Spawn<T>(playerId, Vector3.zero, Quaternion.identity);
 	}
 
-	public static void Kill(int troopId){
+	public static void Kill(int troopId) {
 		// TODO kill this unit
 	}
 	
-	public static void Despawn(TroopBase troop, int playerId) {
-		if (!troops.ContainsKey(playerId)) {
-			troops[playerId] = new List<TroopBase>();
-		}
-		troops[playerId].Remove(troop);
+	public static void Despawn(TroopBase troop) {
+		troops[troop.playerId].Remove(troop);
 		
 		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
@@ -142,6 +139,38 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 		
 		return closestEnemy;
+	}
+	
+	public static int ToTypeId<T>() {
+		int typeId;
+		
+		if (typeof(T) == typeof(TroopHexa)) {
+			typeId = 0;
+		}
+		else if (typeof(T) == typeof(TroopIso)) {
+			typeId = 1;
+		}
+		else {
+			typeId = 2;
+		}
+		
+		return typeId;
+	}
+	
+	public static GameObject TypeIdToPrefab(int typeId) {
+		GameObject prefab;
+		
+		if (typeId == 0) {
+			prefab = HexaTroopPrefab;
+		}
+		else if (typeId == 1) {
+			prefab = IsoTroopPrefab;
+		}
+		else {
+			prefab = TetraTroopPrefab;
+		}
+		
+		return prefab;
 	}
 	
 	void Update() {
