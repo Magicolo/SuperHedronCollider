@@ -77,15 +77,15 @@ public class ClientController : MonoBehaviour {
 		TroopManager.DamageTroop(troopPlayerId, troopId,damage);
 	}
 	
-	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 velocity){
-		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, velocity);
+	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 target){
+		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, target);
 	}
 	
 	[RPC]
-	void UpdateUnit(int troopPlayerId, int troopId, Vector3 target, NetworkMessageInfo info){
+	void UpdateUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 target, NetworkMessageInfo info){
 		if(isMe(troopPlayerId)) return;
 		Debug.Log("Yo dog bouge moi ca à " + target);
-		TroopManager.MoveTroop(troopPlayerId, troopId,target);
+		TroopManager.MoveTroop(troopPlayerId, troopId, position, target);
 		GameObject go =  GameObject.Find("TestTroupe");
 		go.transform.position = target;
 	}
@@ -113,14 +113,14 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	
-	public void sendBulletDeplacement(int bulletId, Vector3 position, Vector3 velocity){
-		networkView.RPC("UpdateBullet",RPCMode.Others, this.playerId, bulletId, position, velocity);
+	public void sendBulletDeplacement(int bulletId, Vector3 position){
+		networkView.RPC("UpdateBullet",RPCMode.Others, this.playerId, bulletId, position);
 	}
 	
 	[RPC]
-	void UpdateBullet(int bulletPlayerId, int bulletId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
+	void UpdateBullet(int bulletPlayerId, int bulletId, Vector3 position, NetworkMessageInfo info){
 		if(isMe(bulletPlayerId)) return;
-		BulletManager.MoveBullet(bulletPlayerId, bulletId,position,velocity);
+		BulletManager.MoveBullet(bulletPlayerId, bulletId,position);
 	}
 	
 	public void killBullet(int pId, int bId){
@@ -129,7 +129,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void ToClientKillBullet(int bulletPlayerId, int bulletId, NetworkMessageInfo info){
-		BulletManager.RemoveBullet(bulletPlayerId, bulletId);
+		BulletManager.KillBullet(bulletPlayerId, bulletId);
 	}
 	#endregion
 	

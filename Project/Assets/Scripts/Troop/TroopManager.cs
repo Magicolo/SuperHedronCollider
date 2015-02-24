@@ -39,17 +39,17 @@ public class TroopManager : MonoBehaviourExtended {
 	static readonly Dictionary<int, PlayerTroopManager> playerIdTroopDict = new Dictionary<int, PlayerTroopManager>();
 	
 	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position, Quaternion rotation) {
-		TroopBase spawned = hObjectPool.Instance.Spawn(TypeIdToPrefab(troopTypeId), position, rotation).GetComponent<TroopBase>();
+		TroopBase troop = hObjectPool.Instance.Spawn(TypeIdToPrefab(troopTypeId), position, rotation).GetComponent<TroopBase>();
 		
 		if (!playerIdTroopDict.ContainsKey(playerId)) {
 			playerIdTroopDict[playerId] = new PlayerTroopManager(playerId);
 		}
 		
-		spawned.playerId = playerId;
-		spawned.id = troopId;
-		playerIdTroopDict[playerId].AddTroop(spawned);
+		troop.playerId = playerId;
+		troop.id = troopId;
+		playerIdTroopDict[playerId].AddTroop(troop);
 		
-		return spawned;
+		return troop;
 	}
 	
 	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position) {
@@ -73,13 +73,19 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 	
 	public static void Despawn(TroopBase troop) {
-		playerIdTroopDict[troop.playerId].RemoveTroop(troop);
+		if (playerIdTroopDict.ContainsKey(troop.playerId)) {
+			playerIdTroopDict[troop.playerId].RemoveTroop(troop);
 		
-		hObjectPool.Instance.Despawn(troop.gameObject);
+			hObjectPool.Instance.Despawn(troop.gameObject);
+		}
 	}
 
 	public static void Despawn(int playerId, int troopId) {
-		Despawn(GetTroop(playerId, troopId));
+		TroopBase troop = GetTroop(playerId, troopId);
+		
+		if (troop != null) {
+			Despawn(troop);
+		}
 	}
 
 	public static TroopBase GetTroop(int playerId, int troopId) {
@@ -146,9 +152,9 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static void MoveTroop(int playerId, int troopId, Vector3 target) {
+	public static void MoveTroop(int playerId, int troopId, Vector3 position, Vector3 target) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
-			playerIdTroopDict[playerId].MoveTroop(troopId, target);
+			playerIdTroopDict[playerId].MoveTroop(troopId, position, target);
 		}
 	}
 
@@ -188,6 +194,22 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 		
 		return prefab;
+	}
+	
+	public static bool HasAdvantage(TroopBase source, TroopBase target) {
+		bool hasAdvantage;
+		
+		if (source is TroopHexa) {
+			hasAdvantage = target is TroopIso;
+		}
+		else if (source is TroopIso) {
+			hasAdvantage = target is TroopTetra;
+		}
+		else {
+			hasAdvantage = target is TroopHexa;
+		}
+		
+		return hasAdvantage;
 	}
 	
 	void Update() {

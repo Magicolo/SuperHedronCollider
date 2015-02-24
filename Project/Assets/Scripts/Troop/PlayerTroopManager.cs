@@ -80,11 +80,11 @@ public class PlayerTroopManager {
 		}
 	}
 
-	public void MoveTroop(int troopId, Vector3 target) {
+	public void MoveTroop(int troopId, Vector3 position, Vector3 target) {
 		TroopBase troop = GetTroop(troopId);
 		
 		if (troop != null) {
-			troop.Move(target);
+			troop.Move(position, target);
 		}
 	}
 

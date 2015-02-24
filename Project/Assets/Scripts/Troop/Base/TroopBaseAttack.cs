@@ -44,6 +44,6 @@ public class TroopBaseAttack : State {
 	}
 	
 	void Shoot() {
-		
+		BulletManager.Spawn(Random.Range(0, int.MaxValue), Layer, Layer.closestInRangeEnemy);
 	}
 }

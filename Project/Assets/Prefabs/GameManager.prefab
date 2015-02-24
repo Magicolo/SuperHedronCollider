@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11427890}
   - 114: {fileID: 11456794}
   - 114: {fileID: 11406394}
+  - 114: {fileID: 11499814}
   - 114: {fileID: 11456804}
   - 114: {fileID: 11456802}
   - 114: {fileID: 11456800}
@@ -190,6 +191,18 @@ MonoBehaviour:
     y: 0
     width: 277
     height: 917
+--- !u!114 &11499814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13aed967a8492b4594b39ebf1563fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

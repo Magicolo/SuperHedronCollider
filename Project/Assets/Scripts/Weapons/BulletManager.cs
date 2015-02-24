@@ -22,45 +22,62 @@ public class BulletManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static void Spawn(int bulletId, int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget) {
-		//TODO shoot moi ca Kevin
+	static readonly Dictionary<int, PlayerBulletManager> playerIdBulletDict = new Dictionary<int, PlayerBulletManager>();
+	
+	public static Bullet Spawn(int bulletId, TroopBase source, TroopBase target) {
+		Bullet bullet = hObjectPool.Instance.Spawn(BulletPrefab, source.transform.position, Quaternion.identity).GetComponent<Bullet>();
+		
+		if (!playerIdBulletDict.ContainsKey(source.playerId)) {
+			playerIdBulletDict[source.playerId] = new PlayerBulletManager(source.playerId);
+		}
+		
+		bullet.lifeCounter = source.bulletLifeTime;
+		bullet.source = source;
+		bullet.target = target;
+		bullet.id = bulletId;
+		playerIdBulletDict[source.playerId].AddBullet(bullet);
+			
+		return bullet;
 	}
 	
-	public static Bullet Spawn(TroopBase source, TroopBase target) {
-		Bullet spawned = hObjectPool.Instance.Spawn(BulletPrefab, source.transform.position, source.transform.rotation).GetComponent<Bullet>();
-		
-		spawned.source = source;
-		spawned.target = target;
-		
-		return spawned;
+	public static Bullet Spawn(int bulletId, int playerIdSource, int troopIdSource, int playerIdTarget, int troopIdTarget) {
+		return Spawn(bulletId, TroopManager.GetTroop(playerIdSource, troopIdSource), TroopManager.GetTroop(playerIdTarget, troopIdTarget));
 	}
 	
 	public static void Despawn(Bullet bullet) {
-		hObjectPool.Instance.Despawn(bullet.gameObject);
+		if (playerIdBulletDict.ContainsKey(bullet.source.playerId)) {
+			playerIdBulletDict[bullet.source.playerId].RemoveBullet(bullet);
+		
+			hObjectPool.Instance.Despawn(bullet.gameObject);
+		}
 	}
 	
-	public static bool HasAdvantage(TroopBase source, TroopBase target) {
-		bool hasAdvantage;
+	public static void Despawn(int playerId, int bulletId) {
+		Bullet bullet = GetBullet(playerId, bulletId);
 		
-		if (source is TroopHexa) {
-			hasAdvantage = target is TroopIso;
+		if (bullet != null) {
+			Despawn(bullet);
 		}
-		else if (source is TroopIso) {
-			hasAdvantage = target is TroopTetra;
-		}
-		else {
-			hasAdvantage = target is TroopHexa;
-		}
-		
-		return hasAdvantage;
 	}
 
-	public static void MoveBullet(int bulletPlayerId, int bulletId, Vector3 position, Vector3 velocity) {
-		// TODO kevin touche moi par la
+	public static Bullet GetBullet(int playerId, int bulletId) {
+		if (playerIdBulletDict.ContainsKey(playerId)) {
+			return playerIdBulletDict[playerId].GetBullet(bulletId);
+		}
+		
+		return null;
+	}
+	
+	public static void MoveBullet(int playerId, int bulletId, Vector3 position) {
+		if (playerIdBulletDict.ContainsKey(playerId)) {
+			playerIdBulletDict[playerId].MoveBullet(bulletId, position);
+		}
 	}
 
-	public static void RemoveBullet(int bulletPlayerId, int bulletId) {
-		//TODO Retire moi de ta vie kevin! c'est FINI!
+	public static void KillBullet(int playerId, int bulletId) {
+		if (playerIdBulletDict.ContainsKey(playerId)) {
+			playerIdBulletDict[playerId].KillBullet(bulletId);
+		}
 	}
 }
 

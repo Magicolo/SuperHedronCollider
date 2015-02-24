@@ -22,7 +22,16 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 
-	[SerializeField, PropertyField]
+	public float sightRadius = 5;
+	public float attackSpeed = 2;
+	public float bulletLifeTime = 4;
+	public float bulletSpeed = 2;
+	public float damage = 5;
+	public float maxHealth = 16;
+	
+	[Disable] public float health;
+	
+	[SerializeField, PropertyField(typeof(DisableAttribute))]
 	Vector3 target;
 	public Vector3 Target {
 		get {
@@ -34,16 +43,9 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 	
-	public float sightRadius = 5;
-	public float attackSpeed = 2;
-	public float bulletSpeed = 2;
-	public float damage = 5;
-	public float maxHealth = 16;
-	
-	[Disable] public float health;
 	[Disable] public TroopBase closestInRangeEnemy;
-	[Disable] public int id;
 	[Disable] public int playerId;
+	[Disable] public int id;
 	
 	NavMeshAgent _navMeshAgent;
 	public NavMeshAgent navMeshAgent { get { return _navMeshAgent ? _navMeshAgent : (_navMeshAgent = GetComponent<NavMeshAgent>()); } }
@@ -85,7 +87,8 @@ public class TroopBase : StateLayer, ISelectable {
 		SwitchState(GetType().Name + "Dead");
 	}
 	
-	public void Move(Vector3 target) {
+	public void Move(Vector3 position, Vector3 target) {
+		transform.position = position;
 		Target = target;
 	}
 }

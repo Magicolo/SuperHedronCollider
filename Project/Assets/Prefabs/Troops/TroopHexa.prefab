@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11463972}
   machine: {fileID: 11463974}
+  attackCounter: 0
 --- !u!114 &11463972
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -155,6 +156,15 @@ MonoBehaviour:
   debug: 1
   selected: 0
   target: {x: 0, y: 0, z: 0}
+  sightRadius: 10
+  attackSpeed: 2
+  bulletSpeed: 5
+  damage: 1
+  maxHealth: 10
+  health: 0
+  closestInRangeEnemy: {fileID: 0}
+  playerId: 0
+  id: 0
 --- !u!114 &11463974
 MonoBehaviour:
   m_ObjectHideFlags: 1
