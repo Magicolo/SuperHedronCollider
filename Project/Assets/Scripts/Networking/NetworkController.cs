@@ -10,6 +10,7 @@ public class NetworkController : MonoBehaviour {
 	[Disable]public string LocalAddress = "127.0.0.1";
 	[Disable]public string ServerAddress = "127.0.0.1";
 	
+	public static NetworkController instance;
 	public GameObject networkLinkPrefab;
 	
 	public ServerController serverController;
@@ -23,6 +24,7 @@ public class NetworkController : MonoBehaviour {
 	public Text outputText;
 	
 	void Awake(){
+		NetworkController.instance = this;
 		outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
 	}
 	
