@@ -40,6 +40,18 @@ public class ClientController : MonoBehaviour {
 		networkView.RPC("ClientMessageAll",RPCMode.All,message);
 	}
 	
+	public void sendUnitDeplacement(int unitId, Vector3 position, Vector3 velocity){
+		networkView.RPC("UpdateUnit",RPCMode.Others,unitId,position,velocity);
+	}
+	
+	[RPC]
+	void UpdateUnit(int unitId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
+		if(isMe(info)) return;
+		Debug.Log("Yo dog bouge moi ca!" + Network.player.guid);
+		GameObject go =  GameObject.Find("TestTroupe");
+		go.transform.position = position;
+	}
+	
 	[RPC]
 	void ClientMessageAll(string message, NetworkMessageInfo info){
 		networkController.log(message);
@@ -47,14 +59,18 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void StartGame(NetworkMessageInfo info){
-		//References.
+		GameManager.Start();
+		
 	}
 	
 	[RPC]
 	void StopGame(NetworkMessageInfo info){
-		
+		GameManager.STOP();
 	}
-	
+
+	bool isMe(NetworkMessageInfo info){
+		return info.sender.guid == Network.player.guid;
+	}
 	void OnApplicationQuit(){
 		//Network.Disconnect();
 	}

@@ -14,6 +14,9 @@ public class ServerController : MonoBehaviour {
 	public NetworkController networkController;
 	
 	
+	public int nextUniqueId;
+	
+	
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
@@ -43,6 +46,13 @@ public class ServerController : MonoBehaviour {
 			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
 		}
 	}
+	
+	/*[RPC]
+	void SendNextUniqueId(NetworkMessageInfo info){
+		networkView.RPC("", info.sender, viewId, networkPlayer);
+	}*/
+	
+	
 	
 	void OnPlayerConnected(NetworkPlayer p) {
 		networkController.playerCount++;

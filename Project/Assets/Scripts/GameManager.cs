@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviourExtended {
 		Time.timeScale = 1;
 	}
 	
-	public static void Stop() {
+	public static void STOP() {
 		Time.timeScale = 0;
+	}
+	
+	void Awake(){
+		GameManager.STOP();
 	}
 }
 
