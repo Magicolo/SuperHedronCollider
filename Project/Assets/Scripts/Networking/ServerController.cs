@@ -15,6 +15,7 @@ public class ServerController : MonoBehaviour {
 	
 	
 	public int nextUniqueId;
+	public int nextUnitId;
 	
 	
 	public void StartServer(int port){
@@ -53,6 +54,10 @@ public class ServerController : MonoBehaviour {
 		networkView.RPC("", info.sender, viewId, networkPlayer);
 	}*/
 	
+	[RPC]
+	void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation,NetworkMessageInfo info){
+		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, nextUnitId++,troopType, position, rotation);
+	}
 	
 	
 	void OnPlayerConnected(NetworkPlayer p) {

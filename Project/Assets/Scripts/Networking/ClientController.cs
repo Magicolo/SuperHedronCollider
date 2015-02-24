@@ -48,6 +48,8 @@ public class ClientController : MonoBehaviour {
 		networkView.RPC("ClientMessageAll",RPCMode.All,message);
 	}
 	
+	
+	
 	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 velocity){
 		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, velocity);
 	}
@@ -59,6 +61,41 @@ public class ClientController : MonoBehaviour {
 		GameObject go =  GameObject.Find("TestTroupe");
 		go.transform.position = position;
 	}
+	
+	
+	public void spawnUnitTest(){
+		
+	}
+	
+	
+	
+	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation){
+		networkView.RPC("ToServerSpawnUnit",RPCMode.Server, playerId, troopType, position, rotation);
+	}
+	
+	[RPC]
+	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
+		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
+	}
+	
+	
+	public void killUnit(int troopPlayerId, int troopId){
+		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);
+	}
+	
+	[RPC]
+	void ToClientKillUnit(int troopPlayerId, int troopId, NetworkMessageInfo info){
+		TroopManager.Kill(troopId);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	[RPC]
 	void ClientMessageAll(string message, NetworkMessageInfo info){

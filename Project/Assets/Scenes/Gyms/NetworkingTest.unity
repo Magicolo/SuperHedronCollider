@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalAddress: 127.0.0.1
   ServerAddress: 127.0.0.1
-  networkLinkPrefab: {fileID: 116472, guid: d431739496a3c4145b1e2d1750386788, type: 2}
+  networkLinkPrefab: {fileID: 0}
   serverController: {fileID: 1125982614}
   clientController: {fileID: 1125982613}
   playerCount: 0
@@ -1860,6 +1860,7 @@ MonoBehaviour:
   serverStarted: 0
   networkController: {fileID: 1125982612}
   nextUniqueId: 0
+  nextUnitId: 0
 --- !u!4 &1125982615
 Transform:
   m_ObjectHideFlags: 0

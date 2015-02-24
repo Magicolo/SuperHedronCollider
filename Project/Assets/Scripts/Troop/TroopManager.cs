@@ -41,6 +41,10 @@ public class TroopManager : MonoBehaviourExtended {
 	static readonly Dictionary<int, List<TroopBase>> troops = new Dictionary<int, List<TroopBase>>();
 	static readonly Dictionary<int, Rect> zones = new Dictionary<int, Rect>();
 	
+	public static void Spawn(int playerId, int troopTypeId, int troopId, Vector3 position, Quaternion rotation){
+		//TODO todo
+	}
+	
 	public static T Spawn<T>(int playerId, Vector3 position, Quaternion rotation) where T : TroopBase {
 		GameObject toSpawn;
 		
@@ -74,8 +78,15 @@ public class TroopManager : MonoBehaviourExtended {
 		return Spawn<T>(playerId, Vector3.zero, Quaternion.identity);
 	}
 
-	public static void Despawn(TroopBase troop) {
-		troops[troop.playerId].Remove(troop);
+	public static void Kill(int troopId){
+		// TODO kill this unit
+	}
+	
+	public static void Despawn(TroopBase troop, int playerId) {
+		if (!troops.ContainsKey(playerId)) {
+			troops[playerId] = new List<TroopBase>();
+		}
+		troops[playerId].Remove(troop);
 		
 		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
