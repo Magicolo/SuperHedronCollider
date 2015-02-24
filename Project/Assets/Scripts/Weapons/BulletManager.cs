@@ -21,7 +21,11 @@ public class BulletManager : MonoBehaviourExtended {
 			return Instance.bulletPrefab;
 		}
 	}
-    
+
+	public static void Spawn(int bulletId, int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget) {
+		//TODO shoot moi ca Kevin
+	}
+	
 	public static Bullet Spawn(TroopBase source, TroopBase target) {
 		Bullet spawned = hObjectPool.Instance.Spawn(BulletPrefab, source.transform.position, source.transform.rotation).GetComponent<Bullet>();
 		
@@ -49,6 +53,14 @@ public class BulletManager : MonoBehaviourExtended {
 		}
 		
 		return hasAdvantage;
+	}
+
+	public static void MoveBullet(int bulletPlayerId, int bulletId, Vector3 position, Vector3 velocity) {
+		// TODO kevin touche moi par la
+	}
+
+	public static void RemoveBullet(int bulletPlayerId, int bulletId) {
+		//TODO Retire moi de ta vie kevin! c'est FINI!
 	}
 }
 

@@ -103,14 +103,13 @@ public class ClientController : MonoBehaviour {
 	
 	#region Bullet
 	
-	public void spawnBullet(Vector3 position, Quaternion rotation){
-		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerId, position, rotation);
+	public void spawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget){
+		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerId, playerIdSource, unitIdSource,playerIdTarget,unitIdTarget);
 	}
 	
 	[RPC]
-	void ToClientSpawnBullet(int bulletPlayerId, int bulletId, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
-		// TODO  YO KEVIN!! decommente ca !
-		//BulletManager.Spawn(bulletPlayerId, bulletId, position, rotation);
+	void ToClientSpawnBullet(int bulletId, int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget, NetworkMessageInfo info){
+		BulletManager.Spawn(bulletId, playerIdSource, unitIdSource, playerIdTarget, unitIdTarget);
 	}
 	
 	
@@ -121,8 +120,7 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void UpdateBullet(int bulletPlayerId, int bulletId, Vector3 position, Vector3 velocity, NetworkMessageInfo info){
 		if(isMe(bulletPlayerId)) return;
-		// TODO  YO KEVIN!! decommente ca !
-		//TroopManager.MoveBullet(bulletPlayerId, bulletId,position,velocity);
+		BulletManager.MoveBullet(bulletPlayerId, bulletId,position,velocity);
 	}
 	
 	public void killBullet(int pId, int bId){
@@ -131,8 +129,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void ToClientKillBullet(int bulletPlayerId, int bulletId, NetworkMessageInfo info){
-		// TODO  YO KEVIN!! decommente ca !
-		//BulletManager.Kill(bulletPlayerId, bulletId);
+		BulletManager.RemoveBullet(bulletPlayerId, bulletId);
 	}
 	#endregion
 	
