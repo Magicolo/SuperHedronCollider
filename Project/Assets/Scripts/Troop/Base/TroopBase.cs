@@ -34,6 +34,17 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 	
+	public float sightRadius = 5;
+	public float attackSpeed = 2;
+	public float bulletSpeed = 2;
+	public float damage = 5;
+	public float maxHealth = 16;
+	
+	[Disable] public float health;
+	[Disable] public TroopBase closestInRangeEnemy;
+	[Disable] public int id;
+	[Disable] public int playerId;
+	
 	NavMeshAgent _navMeshAgent;
 	public NavMeshAgent navMeshAgent { get { return _navMeshAgent ? _navMeshAgent : (_navMeshAgent = GetComponent<NavMeshAgent>()); } }
 
@@ -44,5 +55,29 @@ public class TroopBase : StateLayer, ISelectable {
 		
 		priorityCounter += 1;
 		navMeshAgent.avoidancePriority = priorityCounter;
+	}
+
+	public void OnSpawned() {
+		SwitchState(GetType().Name + "Idle");
+		health = maxHealth;
+	}
+	
+	public void Despawn() {
+		TroopManager.Despawn(this);
+	}
+	
+	public bool CheckForEnemies(){
+		closestInRangeEnemy = TroopManager.GetClosestInRangeEnemy(this);
+		
+		return closestInRangeEnemy != null;
+	}
+	
+	public void ReceiveDamage(float damage) {
+		health -= damage;
+		
+		if (health <= 0) {
+			SwitchState(GetType().Name + "Dead");
+			return;
+		}
 	}
 }

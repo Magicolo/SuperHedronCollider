@@ -51,7 +51,7 @@ public class PlayerInputSelect : State {
 	void Select() {
 		DeselectAll();
 		
-		TroopBase[] troops = FindObjectsOfType<TroopBase>();
+		TroopBase[] troops = TroopManager.GetTroops(NetworkController.instance.clientController.playerId);
 		
 		if (selectionRect.size.magnitude <= minBoxSize) {
 			Ray selectionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,7 +60,7 @@ public class PlayerInputSelect : State {
 			if (Physics.Raycast(selectionRay, out selectionRayInfo)) {
 				TroopBase troop = selectionRayInfo.collider.GetComponent<TroopBase>();
 				
-				if (troop != null) {
+				if (troop != null && troops.Contains(troop)) {
 					troop.Selected = true;
 					Layer.selectedTroops.Add(troop);
 				}
