@@ -10,10 +10,8 @@ public class zTest : MonoBehaviour {
 	}
 	
 	void OnEnable() {
-		Logger.Log("OnEnable");
 	}
 	
 	void OnDisable() {
-		Logger.Log("OnDisable");
 	}
 }

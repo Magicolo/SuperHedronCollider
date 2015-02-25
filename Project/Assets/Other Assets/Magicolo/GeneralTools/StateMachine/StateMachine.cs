@@ -11,6 +11,7 @@ namespace Magicolo {
 		Dictionary<string, IStateLayer> nameLayerDict;
 		
 		void Awake() {
+			StateMachineManager.AddMachine(this);
 			BuildLayerDict();
 			
 			foreach (StateLayer layer in layers) {
