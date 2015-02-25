@@ -177,10 +177,10 @@ MonoBehaviour:
   dragMargin: 25
   moveSpeed: 1
   moveSmooth: 5
-  zoomSpeed: 5
+  zoomSpeed: 10
   zoomSmooth: 5
   minZoom: 5
-  maxZoom: 150
+  maxZoom: 500
   smoothScrollDelta: 0
   dragStart: {x: 0, y: 0, z: 0}
   dragEnd: {x: 0, y: 0, z: 0}
