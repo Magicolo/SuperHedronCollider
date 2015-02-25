@@ -5,9 +5,9 @@ using Magicolo;
 
 public class TroopBaseMove : State {
 	
-    TroopBase Layer {
-    	get { return ((TroopBase)layer); }
-    }
+	TroopBase Layer {
+		get { return ((TroopBase)layer); }
+	}
 	
 	public override void OnEnter() {
 		
@@ -22,6 +22,7 @@ public class TroopBaseMove : State {
 		
 		if (distance < Layer.navMeshAgent.stoppingDistance) {
 			SwitchState(Layer.GetType().Name + "Idle");
+			return;
 		}
 	}
 }

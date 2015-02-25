@@ -22,7 +22,17 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 
-	[SerializeField, PropertyField]
+	public float sightRadius = 5;
+	public float attackSpeed = 1;
+	public float bulletLifeTime = 4;
+	public int bulletBurst = 3;
+	public float bulletSpeed = 2;
+	public float damage = 5;
+	public float maxHealth = 16;
+	
+	[Disable] public float health;
+	
+	[SerializeField, PropertyField(typeof(DisableAttribute))]
 	Vector3 target;
 	public Vector3 Target {
 		get {
@@ -34,9 +44,16 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 	
+	[Disable] public TroopBase closestInRangeEnemy;
+	[Disable] public int playerId;
+	[Disable] public int id;
+	
 	NavMeshAgent _navMeshAgent;
 	public NavMeshAgent navMeshAgent { get { return _navMeshAgent ? _navMeshAgent : (_navMeshAgent = GetComponent<NavMeshAgent>()); } }
 
+	Light _childLight;
+	public Light childLight { get { return _childLight ? _childLight : (_childLight = GetComponentInChildren<Light>()); } }
+	
 	public static int priorityCounter;
 	
 	public override void OnAwake() {
@@ -44,5 +61,47 @@ public class TroopBase : StateLayer, ISelectable {
 		
 		priorityCounter += 1;
 		navMeshAgent.avoidancePriority = priorityCounter;
+	}
+
+	public void Spawned() {
+		Target = transform.position;
+		health = maxHealth;
+	}
+	
+	public void Despawned() {
+		Selected = false;
+		SwitchState(GetType().Name + "Idle");
+	}
+	
+	public void Despawn() {
+		TroopManager.Despawn(this);
+	}
+	
+	public bool CheckForEnemies() {
+		closestInRangeEnemy = TroopManager.GetClosestInRangeEnemy(this);
+		
+		return closestInRangeEnemy != null;
+	}
+
+	public void SetLight(bool state) {
+		childLight.enabled = state;
+	}
+	
+	public void Damage(float damage) {
+		health -= damage;
+		
+		if (health <= 0) {
+			Kill();
+			return;
+		}
+	}
+
+	public void Kill() {
+		SwitchState(GetType().Name + "Dead");
+	}
+	
+	public void Move(Vector3 position, Vector3 target) {
+		transform.position = position;
+		Target = target;
 	}
 }

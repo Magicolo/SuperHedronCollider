@@ -22,6 +22,12 @@ public class TroopBaseIdle : State {
 		
 		if (distance > Layer.navMeshAgent.stoppingDistance) {
 			SwitchState(Layer.GetType().Name + "Move");
+			return;
+		}
+		
+		if (Layer.CheckForEnemies()) {
+			SwitchState(Layer.GetType().Name + "Attack");
+			return;
 		}
 	}
 }

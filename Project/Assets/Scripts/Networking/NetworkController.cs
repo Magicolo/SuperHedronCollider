@@ -11,6 +11,11 @@ public class NetworkController : MonoBehaviour {
 	[Disable]public string ServerAddress = "127.0.0.1";
 	
 	public static NetworkController instance;
+	public static int CurrentPlayerId {
+		get {
+			return instance.clientController.playerId;
+		}
+	}
 	public GameObject networkLinkPrefab;
 	
 	public ServerController serverController;
@@ -23,30 +28,30 @@ public class NetworkController : MonoBehaviour {
 	
 	public Text outputText;
 	
-	void Awake(){
+	void Awake() {
 		NetworkController.instance = this;
 		outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
 	}
 	
-	void Start () {
+	void Start() {
 		LocalAddress = GetLocalIPAddress();
 		ServerAddress = LocalAddress;
 		log("Local IP Address: " + LocalAddress);
 	}
 	
-	public string GetLocalIPAddress(){
+	public string GetLocalIPAddress() {
 		IPHostEntry host;
 		string localIP = "";
 		host = Dns.GetHostEntry(Dns.GetHostName());
-		foreach (IPAddress ip in host.AddressList){
-			if (ip.AddressFamily == AddressFamily.InterNetwork){
+		foreach (IPAddress ip in host.AddressList) {
+			if (ip.AddressFamily == AddressFamily.InterNetwork) {
 				localIP = ip.ToString();
 			}
 		}
 		return localIP;
 	}
 
-	public void addPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
+	public void addPlayer(NetworkViewID newPlayerView, NetworkPlayer p) {
 		GameObject newPlayer = Instantiate(networkLinkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		newPlayer.transform.parent = transform;
 		
@@ -55,27 +60,29 @@ public class NetworkController : MonoBehaviour {
 		
 		networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
 		
-		if(p.ipAddress == LocalAddress){
+		if (p.ipAddress == LocalAddress) {
+			localNetworkPlayer = p;
 			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
-		} else {
-			log("Another player connected: " + newPlayerView.ToString());
+		}
+		else {
+			log("Another player connected: " + newPlayerView.ToString() + " - " + p.ipAddress);
 		}
 	}
 	
 	
-	public void Disconnect(){
+	public void Disconnect() {
 		Network.Disconnect();
 	}
 	
-	public void StartServer(int port){
+	public void StartServer(int port) {
 		serverController.StartServer(port);
 	}
 	
-	public void ConnectToServer(){
-    	Network.Connect("127.0.0.1", 25565);
+	public void ConnectToServer() {
+		Network.Connect("127.0.0.1", 25565);
 	}
 	
-	public void log(string message){
+	public void log(string message) {
 		outputText.text += message + "\n";
 	}
 	

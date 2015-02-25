@@ -15,11 +15,14 @@ public class ServerController : MonoBehaviour {
 	
 	
 	public int nextUniqueId;
+	public int nextUnitId;
+	public int nextBulletId;
 	
 	
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
+		networkController.clientController.playerId = nextUniqueId++;
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
 		serverStarted = true;
@@ -52,12 +55,24 @@ public class ServerController : MonoBehaviour {
 		networkView.RPC("", info.sender, viewId, networkPlayer);
 	}*/
 	
+	[RPC]
+	void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation,NetworkMessageInfo info){
+		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, nextUnitId++,troopType, position, rotation);
+	}
+	
+	[RPC]
+	void ToServerSpawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget, NetworkMessageInfo info){
+		networkView.RPC("ToClientSpawnBullet", RPCMode.All, nextBulletId++,playerIdSource, unitIdSource, playerIdTarget,unitIdTarget);
+		nextBulletId %= int.MaxValue;
+	}
 	
 	
 	void OnPlayerConnected(NetworkPlayer p) {
 		networkController.playerCount++;
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
+		
+		networkView.RPC("ThisIsYourPlayerId", p, nextUniqueId++);
 		
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
 			

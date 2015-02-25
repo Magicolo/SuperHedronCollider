@@ -11,9 +11,12 @@ public class TestTroupe : MonoBehaviour {
 	}
 	
 	void Update () {
-		Vector3 velocity = new Vector3(speed * Time.deltaTime,0,0);
-		transform.Translate(velocity);
+		if(speed > 0){
+			Vector3 velocity = new Vector3(speed * Time.deltaTime,0,0);
+			transform.Translate(velocity);
+			NetworkController.instance.clientController.sendUnitDeplacement(0,this.transform.position, velocity);
+		}
+		
 		Camera.main.transform.position = new Vector3(this.transform.position.x,0f,10f);
-		NetworkController.instance.clientController.sendUnitDeplacement(0,this.transform.position, velocity);
 	}
 }

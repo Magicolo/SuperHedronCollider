@@ -51,7 +51,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11433870}
   machine: {fileID: 11433874}
+  attackCounter: 0
 --- !u!114 &11433870
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -154,7 +155,18 @@ MonoBehaviour:
   - {fileID: 11433864}
   debug: 1
   selected: 0
+  sightRadius: 10
+  attackSpeed: .5
+  bulletLifeTime: 4
+  bulletBurst: 3
+  bulletSpeed: 5
+  damage: 1
+  maxHealth: 5
+  health: 0
   target: {x: 0, y: 0, z: 0}
+  closestInRangeEnemy: {fileID: 0}
+  playerId: 0
+  id: 0
 --- !u!114 &11433872
 MonoBehaviour:
   m_ObjectHideFlags: 1

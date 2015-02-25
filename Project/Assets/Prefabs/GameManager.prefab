@@ -11,6 +11,8 @@ GameObject:
   - 114: {fileID: 11427890}
   - 114: {fileID: 11456794}
   - 114: {fileID: 11406394}
+  - 114: {fileID: 11499814}
+  - 114: {fileID: 11475826}
   - 114: {fileID: 11456804}
   - 114: {fileID: 11456802}
   - 114: {fileID: 11456800}
@@ -85,6 +87,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11456802}
   machine: {fileID: 11456804}
+  boxMargin: 1
+  cornersOnly: 0
+  boxColor: {r: 0, g: 1, b: .544827461, a: .501960814}
   minBoxSize: 10
   selectionStart: {x: 0, y: 0, z: 0}
   selectionEnd: {x: 0, y: 0, z: 0}
@@ -160,6 +165,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layers:
   - {fileID: 11456802}
+--- !u!114 &11475826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b953d64d113fc4992b3bf325e67e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CullExtras: 0
+  CullInterval: 3
+  HandleParticles: 1
+  ObjectPools:
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 163964, guid: b6548a82f170a2d4daa4f0d5914e9061, type: 2}
+    PreloadAmount: 10
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 133862, guid: bf2c8fb58f67fcf43b9c1894dfdcad59, type: 2}
+    PreloadAmount: 10
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 181632, guid: 162369ec6c16d444bbadc2b32390f559, type: 2}
+    PreloadAmount: 10
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
+    PreloadAmount: 100
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  PreloadAmount: 10
+  SlowMessage: 0
+  SpawnMore: 1
+  TrackObjects: 0
+  Persistent: 1
 --- !u!114 &11496184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,10 +237,10 @@ MonoBehaviour:
   dragMargin: 25
   moveSpeed: 1
   moveSmooth: 5
-  zoomSpeed: 5
+  zoomSpeed: 10
   zoomSmooth: 5
   minZoom: 5
-  maxZoom: 150
+  maxZoom: 500
   smoothScrollDelta: 0
   dragStart: {x: 0, y: 0, z: 0}
   dragEnd: {x: 0, y: 0, z: 0}
@@ -190,6 +251,18 @@ MonoBehaviour:
     y: 0
     width: 277
     height: 917
+--- !u!114 &11499814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13aed967a8492b4594b39ebf1563fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

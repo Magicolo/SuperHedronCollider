@@ -36,61 +36,226 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 	
-	static readonly Dictionary<int, List<TroopBase>> troops = new Dictionary<int, List<TroopBase>>();
+	static readonly Dictionary<int, PlayerTroopManager> playerIdTroopDict = new Dictionary<int, PlayerTroopManager>();
 	
-	public static T Spawn<T>(int playerId, Vector3 position, Quaternion rotation) where T : TroopBase {
-		GameObject toSpawn;
+	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position, Quaternion rotation) {
+		TroopBase troop = hObjectPool.Instance.Spawn(TypeIdToPrefab(troopTypeId), position, rotation).GetComponent<TroopBase>();
 		
-		if (typeof(T) == typeof(TroopHexa)) {
-			toSpawn = HexaTroopPrefab;
-		}
-		else if (typeof(T) == typeof(TroopIso)) {
-			toSpawn = IsoTroopPrefab;
-		}
-		else {
-			toSpawn = TetraTroopPrefab;
+		if (!playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId] = new PlayerTroopManager(playerId);
 		}
 		
-		T spawned = hObjectPool.Instance.Spawn(toSpawn, position, rotation).GetComponent<T>();
+		troop.SetLight(playerId == NetworkController.CurrentPlayerId);
+		troop.playerId = playerId;
+		troop.id = troopId;
+		playerIdTroopDict[playerId].AddTroop(troop);
 		
-		if (!troops.ContainsKey(playerId)) {
-			troops[playerId] = new List<TroopBase>();
-		}
-		troops[playerId].Add(spawned);
-		
-		return spawned;
+		return troop;
 	}
 	
-	public static T Spawn<T>(int playerId, Vector3 position) where T : TroopBase {
-		return Spawn<T>(playerId, position, Quaternion.identity);
+	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position) {
+		return Spawn(playerId, troopId, troopTypeId, position, Quaternion.identity);
 	}
 	
-	public static T Spawn<T>(int playerId) where T : TroopBase {
-		return Spawn<T>(playerId, Vector3.zero, Quaternion.identity);
+	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId) {
+		return Spawn(playerId, troopId, troopTypeId, Vector3.zero, Quaternion.identity);
+	}
+	
+	public static T Spawn<T>(int playerId, int troopId, Vector3 position, Quaternion rotation) where T : TroopBase {
+		return (T)Spawn(playerId, troopId, ToTypeId<T>(), position, rotation);
+	}
+	
+	public static T Spawn<T>(int playerId, int troopId, Vector3 position) where T : TroopBase {
+		return Spawn<T>(playerId, troopId, position, Quaternion.identity);
+	}
+	
+	public static T Spawn<T>(int playerId, int troopId) where T : TroopBase {
+		return Spawn<T>(playerId, troopId, Vector3.zero, Quaternion.identity);
+	}
+	
+	public static void Despawn(TroopBase troop) {
+		if (playerIdTroopDict.ContainsKey(troop.playerId)) {
+			playerIdTroopDict[troop.playerId].RemoveTroop(troop);
+		
+			hObjectPool.Instance.Despawn(troop.gameObject);
+		}
 	}
 
-	public static void Despawn(TroopBase troop, int playerId) {
-		if (!troops.ContainsKey(playerId)) {
-			troops[playerId] = new List<TroopBase>();
-		}
-		troops[playerId].Remove(troop);
+	public static void Despawn(int playerId, int troopId) {
+		TroopBase troop = GetTroop(playerId, troopId);
 		
-		hObjectPool.Instance.Despawn(troop.gameObject);
+		if (troop != null) {
+			Despawn(troop);
+		}
 	}
 
+	public static TroopBase GetTroop(int playerId, int troopId) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			return playerIdTroopDict[playerId].GetTroop(troopId);
+		}
+		
+		return null;
+	}
+	
 	public static TroopBase[] GetTroops(int playerId) {
-		if (troops.ContainsKey(playerId)) {
-			return troops[playerId].ToArray();
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			return playerIdTroopDict[playerId].GetTroops();
 		}
 		
 		return new TroopBase[0];
 	}
 	
 	public static int GetTroopCount(int playerId) {
-		if (troops.ContainsKey(playerId)) {
-			return troops[playerId].Count;
+		return GetTroops(playerId).Length;
+	}
+	
+	public static int[] ContainingZones(TroopBase troop, bool includeOwn) {
+		List<int> zoneIds = new List<int>();
+		
+		foreach (int playerId in playerIdTroopDict.Keys) {
+			if ((includeOwn || playerId != troop.playerId) && ZoneContains(playerId, troop)) {
+				zoneIds.Add(playerId);
+			}
 		}
 		
-		return 0;
+		return zoneIds.ToArray();
+	}
+	
+	public static int[] ContainingZones(TroopBase troop) {
+		return ContainingZones(troop, false);
+	}
+	
+	public static bool ZoneContains(int playerId, TroopBase troop) {
+		if (!playerIdTroopDict.ContainsKey(playerId)) {
+			return false;
+		}
+		
+		return playerIdTroopDict[playerId].ZoneContains(troop);
+	}
+	
+	public static TroopBase[] GetInRangeAllies(TroopBase troop) {
+		return GetInRangeTroops(troop, troop.playerId);
+	}
+
+	public static TroopBase GetClosestInRangeAlly(TroopBase troop) {
+		return GetClosestInRangeTroop(troop, troop.playerId);
+	}
+
+	public static TroopBase[] GetInRangeEnemies(TroopBase troop) {
+		return GetInRangeTroops(troop, ContainingZones(troop));
+	}
+
+	public static TroopBase GetClosestInRangeEnemy(TroopBase troop) {
+		return GetClosestInRangeTroop(troop, ContainingZones(troop));
+	}
+
+	public static TroopBase[] GetInRangeTroops(TroopBase troop, params int[] playerIds) {
+		List<TroopBase> inRangeTroops = new List<TroopBase>();
+		
+		foreach (int playerId in playerIds) {
+			foreach (TroopBase otherTroop in GetTroops(playerId)) {
+				float distance = Vector3.Distance(otherTroop.transform.position, troop.transform.position);
+				
+				if (distance <= troop.sightRadius) {
+					inRangeTroops.Add(otherTroop);
+				}
+			}
+		}
+		
+		return inRangeTroops.ToArray();
+	}
+
+	public static TroopBase GetClosestInRangeTroop(TroopBase troop, params int[] playerIds) {
+		TroopBase closestTroop = null;
+		float closestDistance = float.MaxValue;
+		
+		foreach (int playerId in playerIds) {
+			foreach (TroopBase otherTroop in GetTroops(playerId)) {
+				float distance = Vector3.Distance(troop.transform.position, otherTroop.transform.position);
+				
+				if (distance <= troop.sightRadius && distance < closestDistance) {
+					closestTroop = otherTroop;
+					closestDistance = distance;
+				}
+			}
+		}
+		
+		return closestTroop;
+	}
+
+	public static void DamageTroop(int playerId, int troopId, int damage) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].DamageTroop(troopId, damage);
+		}
+	}
+
+	public static void MoveTroop(int playerId, int troopId, Vector3 position, Vector3 target) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].MoveTroop(troopId, position, target);
+		}
+	}
+
+	public static void KillTroop(int playerId, int troopId) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].KillTroop(troopId);
+		}
+	}
+	
+	public static int ToTypeId<T>() {
+		int typeId;
+		
+		if (typeof(T) == typeof(TroopHexa)) {
+			typeId = 0;
+		}
+		else if (typeof(T) == typeof(TroopIso)) {
+			typeId = 1;
+		}
+		else {
+			typeId = 2;
+		}
+		
+		return typeId;
+	}
+	
+	public static GameObject TypeIdToPrefab(int typeId) {
+		GameObject prefab;
+		
+		if (typeId == 0) {
+			prefab = HexaTroopPrefab;
+		}
+		else if (typeId == 1) {
+			prefab = IsoTroopPrefab;
+		}
+		else {
+			prefab = TetraTroopPrefab;
+		}
+		
+		return prefab;
+	}
+	
+	public static bool HasAdvantage(TroopBase source, TroopBase target) {
+		bool hasAdvantage;
+		
+		if (source is TroopHexa) {
+			hasAdvantage = target is TroopIso;
+		}
+		else if (source is TroopIso) {
+			hasAdvantage = target is TroopTetra;
+		}
+		else {
+			hasAdvantage = target is TroopHexa;
+		}
+		
+		return hasAdvantage;
+	}
+	
+	void Update() {
+		UpdateZones();
+	}
+	
+	void UpdateZones() {
+		foreach (PlayerTroopManager playerTroops in playerIdTroopDict.GetValueArray()) {
+			playerTroops.UpdateZone();
+		}
 	}
 }
