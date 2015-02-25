@@ -251,8 +251,6 @@ public class TroopManager : MonoBehaviourExtended {
 	
 	void Update() {
 		UpdateZones();
-		
-		Logger.Log(GetTroopCount(NetworkController.CurrentPlayerId));
 	}
 	
 	void UpdateZones() {

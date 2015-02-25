@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2363964}
   - 114: {fileID: 11463976}
   - 114: {fileID: 11463974}
-  - 136: {fileID: 13663964}
+  - 135: {fileID: 13563742}
   - 54: {fileID: 5463964}
   - 195: {fileID: 19563964}
   - 114: {fileID: 11463972}
@@ -20,7 +20,7 @@ GameObject:
   - 114: {fileID: 11463968}
   - 114: {fileID: 11463966}
   - 114: {fileID: 11463964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TroopHexa
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 473956}
   - 108: {fileID: 10873956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,6 +219,7 @@ MonoBehaviour:
   - {fileID: 11463966}
   debug: 1
   selected: 0
+  radius: 1.25
   sightRadius: 10
   attackSpeed: .5
   bulletLifeTime: 4
@@ -255,8 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549d9ba9bd0544545837f66c22100334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &13663964
-CapsuleCollider:
+--- !u!135 &13563742
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -264,9 +265,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 1
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &19563964
 NavMeshAgent:
@@ -275,7 +275,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163964}
   m_Enabled: 1
-  m_Radius: .75
+  m_Radius: 9.99999975e-06
   m_Speed: 10
   m_Acceleration: 50
   avoidancePriority: 50
