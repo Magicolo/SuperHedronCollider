@@ -23,12 +23,18 @@ public class PlayerInputAction : State {
 			return;
 		}
 		
-		foreach (TroopBase selectedTroop in Layer.selectedTroops) {
-			Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit mouseRayInfo;
+		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit mouseRayInfo;
+			
+		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo)) {
+			float troopRadius = Layer.selectedTroops[0].navMeshAgent.radius;
+			
+			for (int i = 0; i < Layer.selectedTroops.Count; i++) {
+				TroopBase selectedTroop = Layer.selectedTroops[i];
 				
-			if (selectedTroop.gameObject.activeSelf && selectedTroop.Selected && Physics.Raycast(mouseRay, out mouseRayInfo)) {
-				selectedTroop.Target = mouseRayInfo.point;
+				if (selectedTroop.gameObject.activeInHierarchy && selectedTroop.Selected) {
+					selectedTroop.Target = mouseRayInfo.point;
+				}
 			}
 		}
 	}
