@@ -16,6 +16,7 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	void OnConnectedToServer(){
+		networkController.isConnected = true;
 		networkView.RPC("SendAllPlayers", RPCMode.Server);
 	}
 	
@@ -69,12 +70,12 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	public void sendUnitDamage(int troopPlayerId, int troopId, float damage){
-		networkView.RPC("UnitDamage",RPCMode.All, this.playerId, troopId, damage);
+		networkView.RPC("UnitDamage",RPCMode.All, troopPlayerId, troopId, damage);
 	}
 	
 	[RPC]
-	void UnitDamage(int troopPlayerId, int troopId, int damage, NetworkMessageInfo info){
-		TroopManager.DamageTroop(troopPlayerId, troopId,damage);
+	void UnitDamage(int troopPlayerId, int troopId, float damage, NetworkMessageInfo info){
+		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	
 	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 target){
@@ -104,7 +105,7 @@ public class ClientController : MonoBehaviour {
 	#region Bullet
 	
 	public void spawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget){
-		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerId, playerIdSource, unitIdSource,playerIdTarget,unitIdTarget);
+		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerIdSource, unitIdSource, playerIdTarget, unitIdTarget);
 	}
 	
 	[RPC]
@@ -144,6 +145,7 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void StartGame(NetworkMessageInfo info){
 		GameManager.Start();
+		ServerStartSuff.StartMoiUnGameDeTest();
 	}
 	
 	[RPC]

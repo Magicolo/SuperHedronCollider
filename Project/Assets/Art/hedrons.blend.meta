@@ -10,6 +10,8 @@ ModelImporter:
     100008: IsoBullet
     100010: Tetra
     100012: TetraBullet
+    100014: Icosa
+    100016: IcosaBullet
     400000: //RootNode
     400002: Hexa
     400004: HexaBullet
@@ -17,24 +19,32 @@ ModelImporter:
     400008: IsoBullet
     400010: Tetra
     400012: TetraBullet
+    400014: Icosa
+    400016: IcosaBullet
     2300000: Hexa
     2300002: HexaBullet
     2300004: Iso
     2300006: IsoBullet
     2300008: Tetra
     2300010: TetraBullet
+    2300012: Icosa
+    2300014: IcosaBullet
     3300000: Hexa
     3300002: HexaBullet
     3300004: Iso
     3300006: IsoBullet
     3300008: Tetra
     3300010: TetraBullet
+    3300012: Icosa
+    3300014: IcosaBullet
     4300000: IsoBullet
     4300002: TetraBullet
     4300004: HexaBullet
     4300006: Iso
     4300008: Tetra
     4300010: Hexa
+    4300012: IcosaBullet
+    4300014: Icosa
     7400000: Default Take
     9500000: //RootNode
   materials:

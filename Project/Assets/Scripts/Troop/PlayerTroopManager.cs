@@ -96,7 +96,7 @@ public class PlayerTroopManager {
 		return useSightRadius ? sightZone.Intersects(troop.GetSightRect()) : troopZone.Intersects(troop.GetRect());
 	}
 
-	public void DamageTroop(int troopId, int damage) {
+	public void DamageTroop(int troopId, float damage) {
 		TroopBase troop = GetTroop(troopId);
 		
 		if (troop != null) {

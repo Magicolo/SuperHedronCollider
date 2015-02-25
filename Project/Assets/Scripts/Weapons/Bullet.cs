@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour {
 		
 		if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
 			Kill();
+			return;
 		}
 		
 		transform.LookAt(target.transform);
@@ -28,13 +29,27 @@ public class Bullet : MonoBehaviour {
 		TroopBase troop = collision.GetComponent<TroopBase>();
 		
 		if (troop != null && troop.playerId != source.playerId) {
-			troop.Damage(source.damage);
+			dammageTroop(troop, source.damage);
+			
 			Despawn();
 		}
 	}
-	
+
+	void dammageTroop(TroopBase troop, float damage){
+		if(!NetworkController.instance.isConnected){
+			troop.Damage(source.damage);
+		}else{
+			NetworkController.instance.clientController.sendUnitDamage(troop.playerId, troop.id, damage);
+		}
+	}
 	public void Despawn() {
-		BulletManager.Despawn(this);
+		if(!NetworkController.instance.isConnected){
+			BulletManager.Despawn(this);
+		}else{
+			// FIXME ceci ne ferai AUCUN bug si le troop est deactivé et reacivé pour un autre troop pendant que la balle se promene
+			NetworkController.instance.clientController.killBullet(source.playerId, id);
+		}
+		
 	}
 
 	public void Move(Vector3 position) {

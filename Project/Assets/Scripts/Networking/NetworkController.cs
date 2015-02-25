@@ -10,6 +10,8 @@ public class NetworkController : MonoBehaviour {
 	[Disable]public string LocalAddress = "127.0.0.1";
 	[Disable]public string ServerAddress = "127.0.0.1";
 	
+	[Disable] public bool isConnected = false;
+	
 	public static NetworkController instance;
 	public static int CurrentPlayerId {
 		get {
@@ -31,6 +33,20 @@ public class NetworkController : MonoBehaviour {
 	void Awake() {
 		NetworkController.instance = this;
 		outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
+	}
+	
+	void Update(){
+		//Full cheat connect
+		if(!isConnected){
+			if(Input.GetKeyDown(KeyCode.F2)){
+				StartServer(25565);
+			}
+			if(Input.GetKeyDown(KeyCode.F3)){
+				ConnectToServer();
+			}
+		}
+		
+	
 	}
 	
 	void Start() {

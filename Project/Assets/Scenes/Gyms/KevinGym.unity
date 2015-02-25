@@ -622,6 +622,7 @@ GameObject:
   - 114: {fileID: 682877789}
   - 114: {fileID: 682877788}
   - 148: {fileID: 682877787}
+  - 114: {fileID: 682877792}
   m_Layer: 0
   m_Name: NetworkSystem
   m_TagString: Untagged
@@ -688,6 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalAddress: 127.0.0.1
   ServerAddress: 127.0.0.1
+  isConnected: 0
   networkLinkPrefab: {fileID: 116472, guid: d431739496a3c4145b1e2d1750386788, type: 2}
   serverController: {fileID: 682877789}
   clientController: {fileID: 682877788}
@@ -705,6 +707,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &682877792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 682877786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8f2723e47a4264aa5133e6f16cbbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleOutput: {fileID: 807339975}
 --- !u!1 &704397370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1584619325
 Light:
   m_ObjectHideFlags: 0
