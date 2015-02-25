@@ -89,6 +89,14 @@ public class TroopBase : StateLayer, ISelectable {
 		childLight.enabled = state;
 	}
 	
+	public Rect GetRect() {
+		return Rect.MinMaxRect(transform.position.x - transform.lossyScale.x / 2, transform.position.z - transform.lossyScale.z / 2, transform.position.x + transform.lossyScale.x / 2, transform.position.z + transform.lossyScale.z / 2);
+	}
+	
+	public Rect GetSightRect() {
+		return Rect.MinMaxRect(transform.position.x - sightRadius, transform.position.z - sightRadius, transform.position.x + sightRadius, transform.position.z + sightRadius);
+	}
+	
 	public void Damage(float damage) {
 		health -= damage;
 		

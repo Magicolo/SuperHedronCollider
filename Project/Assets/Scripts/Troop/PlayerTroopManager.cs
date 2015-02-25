@@ -9,39 +9,65 @@ public class PlayerTroopManager {
 	public int playerId;
 	
 	readonly Dictionary<int, TroopBase> idTroopDict = new Dictionary<int, TroopBase>();
-	Rect zone;
+	Rect troopZone;
+	Rect sightZone;
 	
 	public PlayerTroopManager(int playerId) {
 		this.playerId = playerId;
 	}
 
-	public void UpdateZone() {
-		float xMin = float.MaxValue;
-		float xMax = float.MinValue;
-		float yMin = float.MaxValue;
-		float yMax = float.MinValue;
+	public void UpdateZones() {
+		float xMinTroop = float.MaxValue;
+		float xMaxTroop = float.MinValue;
+		float yMinTroop = float.MaxValue;
+		float yMaxTroop = float.MinValue;
+		
+		float xMinSight = float.MaxValue;
+		float xMaxSight = float.MinValue;
+		float yMinSight = float.MaxValue;
+		float yMaxSight = float.MinValue;
 			
 		foreach (TroopBase troop in GetTroops()) {
-			if (troop.transform.position.x - troop.sightRadius < xMin) {
-				xMin = troop.transform.position.x - troop.sightRadius;
+			Rect troopRect = troop.GetRect();
+			Rect sightRect = troop.GetSightRect();
+			
+			if (troopRect.xMin < xMinTroop) {
+				xMinTroop = troopRect.xMin;
 			}
 		
-			if (troop.transform.position.x + troop.sightRadius > xMax) {
-				xMax = troop.transform.position.x + troop.sightRadius;
+			if (troopRect.xMax > xMaxTroop) {
+				xMaxTroop = troopRect.xMax;
 			}
 		
-			if (troop.transform.position.z - troop.sightRadius < yMin) {
-				yMin = troop.transform.position.z - troop.sightRadius;
+			if (troopRect.yMin < yMinTroop) {
+				yMinTroop = troopRect.yMin;
 			}
 		
-			if (troop.transform.position.z + troop.sightRadius > yMax) {
-				yMax = troop.transform.position.z + troop.sightRadius;
+			if (troopRect.yMax > yMaxTroop) {
+				yMaxTroop = troopRect.yMax;
+			}
+			
+			if (sightRect.xMin < xMinSight) {
+				xMinSight = sightRect.xMin;
+			}
+		
+			if (sightRect.xMax > xMaxSight) {
+				xMaxSight = sightRect.xMax;
+			}
+		
+			if (sightRect.yMin < yMinSight) {
+				yMinSight = sightRect.yMin;
+			}
+		
+			if (sightRect.yMax > yMaxSight) {
+				yMaxSight = sightRect.yMax;
 			}
 		}
 			
-		zone = Rect.MinMaxRect(xMin, yMin, xMax, yMax);
+		troopZone = Rect.MinMaxRect(xMinTroop, yMinTroop, xMaxTroop, yMaxTroop);
+		sightZone = Rect.MinMaxRect(xMinSight, yMinSight, xMaxSight, yMaxSight);
 	}
-
+	
 	public TroopBase GetTroop(int troopId) {
 		if (idTroopDict.ContainsKey(troopId)) {
 			return idTroopDict[troopId];
@@ -66,10 +92,8 @@ public class PlayerTroopManager {
 		RemoveTroop(troop.id);
 	}
 
-	public bool ZoneContains(TroopBase troop) {
-		Rect troopRect = Rect.MinMaxRect(troop.transform.position.x - troop.sightRadius, troop.transform.position.z - troop.sightRadius, troop.transform.position.x + troop.sightRadius, troop.transform.position.z + troop.sightRadius);
-		
-		return zone.Intersects(troopRect);
+	public bool ZoneContains(TroopBase troop, bool useSightRadius = true) {
+		return useSightRadius ? sightZone.Intersects(troop.GetSightRect()) : troopZone.Intersects(troop.GetRect());
 	}
 
 	public void DamageTroop(int troopId, int damage) {

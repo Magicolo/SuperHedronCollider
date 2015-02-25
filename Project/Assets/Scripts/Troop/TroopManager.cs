@@ -37,6 +37,7 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 	
 	static readonly Dictionary<int, PlayerTroopManager> playerIdTroopDict = new Dictionary<int, PlayerTroopManager>();
+	static readonly Dictionary<int, TroopGroupManager> playerIdGroupDict = new Dictionary<int, TroopGroupManager>();
 	
 	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position, Quaternion rotation) {
 		TroopBase troop = hObjectPool.Instance.Spawn(TypeIdToPrefab(troopTypeId), position, rotation).GetComponent<TroopBase>();
@@ -109,11 +110,11 @@ public class TroopManager : MonoBehaviourExtended {
 		return GetTroops(playerId).Length;
 	}
 	
-	public static int[] ContainingZones(TroopBase troop, bool includeOwn) {
+	public static int[] ContainingTroopZones(TroopBase troop, bool includeOwn) {
 		List<int> zoneIds = new List<int>();
 		
 		foreach (int playerId in playerIdTroopDict.Keys) {
-			if ((includeOwn || playerId != troop.playerId) && ZoneContains(playerId, troop)) {
+			if ((includeOwn || playerId != troop.playerId) && TroopZoneContains(playerId, troop)) {
 				zoneIds.Add(playerId);
 			}
 		}
@@ -121,11 +122,11 @@ public class TroopManager : MonoBehaviourExtended {
 		return zoneIds.ToArray();
 	}
 	
-	public static int[] ContainingZones(TroopBase troop) {
-		return ContainingZones(troop, false);
+	public static int[] ContainingTroopZones(TroopBase troop) {
+		return ContainingTroopZones(troop, false);
 	}
 	
-	public static bool ZoneContains(int playerId, TroopBase troop) {
+	public static bool TroopZoneContains(int playerId, TroopBase troop) {
 		if (!playerIdTroopDict.ContainsKey(playerId)) {
 			return false;
 		}
@@ -142,11 +143,11 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 
 	public static TroopBase[] GetInRangeEnemies(TroopBase troop) {
-		return GetInRangeTroops(troop, ContainingZones(troop));
+		return GetInRangeTroops(troop, ContainingTroopZones(troop));
 	}
 
 	public static TroopBase GetClosestInRangeEnemy(TroopBase troop) {
-		return GetClosestInRangeTroop(troop, ContainingZones(troop));
+		return GetClosestInRangeTroop(troop, ContainingTroopZones(troop));
 	}
 
 	public static TroopBase[] GetInRangeTroops(TroopBase troop, params int[] playerIds) {
@@ -201,6 +202,82 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 	
+	public static int CreateGroup(int playerId, params TroopBase[] troops) {
+		if (!playerIdGroupDict.ContainsKey(playerId)) {
+			playerIdGroupDict[playerId] = new TroopGroupManager(playerId);
+		}
+		
+		return playerIdGroupDict[playerId].CreateGroup(troops);
+	}
+		
+	public static void SwitchTroopsToGroup(int playerId, int groupId, params TroopBase[] troops) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			playerIdGroupDict[playerId].SwitchTroopsToGroup(groupId, troops);
+		}
+	}
+	
+	public static void AddTroopToGroup(int playerId, int groupId, TroopBase troop) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			playerIdGroupDict[playerId].AddTroopToGroup(groupId, troop);
+		}
+	}
+	
+	public static void RemoveTroopFromGroup(int playerId, int groupId, int troopId) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			playerIdGroupDict[playerId].RemoveTroopFromGroup(groupId, troopId);
+		}
+	}
+	
+	public static void RemoveTroopFromGroup(int playerId, int groupId, TroopBase troop) {
+		RemoveTroopFromGroup(playerId, groupId, troop.id);
+	}
+
+	public static void RemoveTroopFromGroup(TroopBase troop) {
+		RemoveTroopFromGroup(troop.playerId, troop.groupId, troop);
+	}
+	
+	public static TroopBase[] GetTroopsFromGroup(int playerId, int groupId) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			return playerIdGroupDict[playerId].GetTroopsFromGroup(groupId);
+		}
+		
+		return new TroopBase[0];
+	}
+
+	public static int[] ContainingGroupZones(int playerId, Vector3 point) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			return playerIdGroupDict[playerId].ContainingGroupZones(point);
+		}
+		
+		return new int[0];
+	}
+	
+	public static bool GroupContains(int playerId, int groupId, int troopId) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			return playerIdGroupDict[playerId].GroupContains(groupId, troopId);
+		}
+		
+		return false;
+	}
+	
+	public static bool GroupContains(int playerId, int groupId, TroopBase troop) {
+		return GroupContains(playerId, groupId, troop.id);
+	}
+	
+	public static bool GroupZoneContains(int playerId, int groupId, TroopBase troop) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			return playerIdGroupDict[playerId].GroupZoneContains(groupId, troop);
+		}
+		
+		return false;
+	}
+	
+	public static void MoveGroup(int playerId, int groupId, Vector3 target) {
+		if (playerIdGroupDict.ContainsKey(playerId)) {
+			playerIdGroupDict[playerId].MoveGroup(groupId, target);
+		}
+	}
+	
 	public static int ToTypeId<T>() {
 		int typeId;
 		
@@ -250,12 +327,13 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 	
 	void Update() {
-		UpdateZones();
-	}
-	
-	void UpdateZones() {
-		foreach (PlayerTroopManager playerTroops in playerIdTroopDict.GetValueArray()) {
-			playerTroops.UpdateZone();
+		foreach (PlayerTroopManager troops in playerIdTroopDict.GetValueArray()) {
+			troops.UpdateZones();
+		}
+		
+		foreach (TroopGroupManager groups in playerIdGroupDict.GetValueArray()) {
+			groups.UpdateZones();
+			groups.UpdateLights();
 		}
 	}
 }
