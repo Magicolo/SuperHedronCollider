@@ -20,7 +20,7 @@ GameObject:
   - 114: {fileID: 11433866}
   - 114: {fileID: 11433864}
   - 114: {fileID: 11433862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TroopIso
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -155,6 +155,7 @@ MonoBehaviour:
   - {fileID: 11433864}
   debug: 1
   selected: 0
+  radius: 1.5
   sightRadius: 10
   attackSpeed: .5
   bulletLifeTime: 4

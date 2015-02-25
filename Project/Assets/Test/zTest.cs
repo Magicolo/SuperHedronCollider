@@ -8,7 +8,7 @@ public class zTest : MonoBehaviour {
 	
 	[Button("Test", "Test", NoPrefixLabel = true)] public bool test;
 	void Test() {
-		renderer.sharedMaterial.renderQueue = renderQueue;
+		Logger.Log(3 / 2);
 	}
 	
 	void OnEnable() {

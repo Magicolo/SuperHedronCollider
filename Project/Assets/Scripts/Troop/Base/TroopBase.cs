@@ -22,6 +22,7 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 	}
 
+	public float radius = 1.25F;
 	public float sightRadius = 5;
 	public float attackSpeed = 1;
 	public float bulletLifeTime = 4;

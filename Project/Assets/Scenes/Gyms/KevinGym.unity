@@ -1665,7 +1665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1584619325
 Light:
   m_ObjectHideFlags: 0
@@ -1676,7 +1676,7 @@ Light:
   serializedVersion: 3
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .5
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1707,8 +1707,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1584619324}
-  m_LocalRotation: {x: .539509833, y: -.214684322, z: .144561231, w: .801212788}
-  m_LocalPosition: {x: -61.7000008, y: 94.4000015, z: 44.2000008}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1694710997
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11496184, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 338056833}
@@ -1811,7 +1811,7 @@ MonoBehaviour:
     height: 917
 --- !u!114 &1694710998
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11456796, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 338056833}
@@ -1838,7 +1838,7 @@ MonoBehaviour:
   draw: 0
 --- !u!114 &1694710999
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11456798, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 338056833}
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   machine: {fileID: 1694711002}
 --- !u!114 &1694711000
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11456800, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 338056833}
@@ -1866,7 +1866,7 @@ MonoBehaviour:
   machine: {fileID: 1694711002}
 --- !u!114 &1694711001
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11456802, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 338056833}
