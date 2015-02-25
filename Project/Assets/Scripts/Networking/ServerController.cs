@@ -31,6 +31,7 @@ public class ServerController : MonoBehaviour {
 	}
 	
 	void OnServerInitialized() {
+		networkController.isConnected = true;
 		NetworkViewID newViewID = Network.AllocateViewID();
 		networkController.playerCount++;
 		

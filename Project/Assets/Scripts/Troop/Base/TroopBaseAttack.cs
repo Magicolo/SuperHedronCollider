@@ -57,6 +57,12 @@ public class TroopBaseAttack : State {
 	}
 	
 	void Shoot() {
-		BulletManager.Spawn(Random.Range(0, int.MaxValue), Layer, Layer.closestInRangeEnemy);
+		if(!NetworkController.instance.isConnected){
+			BulletManager.Spawn(Random.Range(0, int.MaxValue), Layer, Layer.closestInRangeEnemy);
+		}else{
+			TroopBase other = Layer.closestInRangeEnemy;
+			NetworkController.instance.clientController.spawnBullet(Layer.playerId,Layer.id, other.playerId, other.id);
+		}
+		
 	}
 }

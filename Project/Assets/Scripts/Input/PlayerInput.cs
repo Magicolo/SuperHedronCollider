@@ -15,7 +15,16 @@ public class PlayerInput : StateLayer {
 		base.OnUpdate();
 		
 		if (debug && Input.GetKey(KeyCode.Space)) {
-			TroopManager.Spawn<TroopHexa>(new []{ NetworkController.CurrentPlayerId, 100 }.GetRandom(), Random.Range(0, int.MaxValue));
+			if(!NetworkController.instance.isConnected){
+				TroopManager.Spawn<TroopHexa>(new []{ NetworkController.CurrentPlayerId, 100 }.GetRandom(), Random.Range(0, int.MaxValue));
+			}else{
+				if(NetworkController.instance.clientController.playerId == 1){
+					NetworkController.instance.clientController.spawnUnit(0, new Vector3(-250,0,0), Quaternion.identity);
+				}else{
+					NetworkController.instance.clientController.spawnUnit(0, new Vector3(250,0,0) , Quaternion.identity);
+				}
+			}
+			
 		}
 	}
 }

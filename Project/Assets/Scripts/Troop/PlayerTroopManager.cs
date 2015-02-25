@@ -72,7 +72,7 @@ public class PlayerTroopManager {
 		return zone.Intersects(troopRect);
 	}
 
-	public void DamageTroop(int troopId, int damage) {
+	public void DamageTroop(int troopId, float damage) {
 		TroopBase troop = GetTroop(troopId);
 		
 		if (troop != null) {

@@ -93,7 +93,14 @@ public class TroopBase : StateLayer, ISelectable {
 		health -= damage;
 		
 		if (health <= 0) {
-			Kill();
+			if(!NetworkController.instance.isConnected){
+				Kill();
+			}else{
+				if (playerId == NetworkController.instance.clientController.playerId){
+					NetworkController.instance.clientController.killUnit(playerId, id);
+				}
+			}
+			
 			return;
 		}
 	}

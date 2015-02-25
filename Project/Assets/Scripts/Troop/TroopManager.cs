@@ -183,7 +183,7 @@ public class TroopManager : MonoBehaviourExtended {
 		return closestTroop;
 	}
 
-	public static void DamageTroop(int playerId, int troopId, int damage) {
+	public static void DamageTroop(int playerId, int troopId, float damage) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
 			playerIdTroopDict[playerId].DamageTroop(troopId, damage);
 		}
