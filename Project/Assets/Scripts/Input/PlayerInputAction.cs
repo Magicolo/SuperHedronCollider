@@ -27,7 +27,7 @@ public class PlayerInputAction : State {
 			Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit mouseRayInfo;
 				
-			if (selectedTroop.gameObject.activeSelf && Physics.Raycast(mouseRay, out mouseRayInfo)) {
+			if (selectedTroop.gameObject.activeSelf && selectedTroop.Selected && Physics.Raycast(mouseRay, out mouseRayInfo)) {
 				selectedTroop.Target = mouseRayInfo.point;
 			}
 		}

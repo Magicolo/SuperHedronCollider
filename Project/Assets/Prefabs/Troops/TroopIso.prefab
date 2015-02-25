@@ -155,13 +155,15 @@ MonoBehaviour:
   - {fileID: 11433864}
   debug: 1
   selected: 0
-  target: {x: 0, y: 0, z: 0}
   sightRadius: 10
-  attackSpeed: 2
+  attackSpeed: .5
+  bulletLifeTime: 4
+  bulletBurst: 3
   bulletSpeed: 5
   damage: 1
-  maxHealth: 10
+  maxHealth: 5
   health: 0
+  target: {x: 0, y: 0, z: 0}
   closestInRangeEnemy: {fileID: 0}
   playerId: 0
   id: 0

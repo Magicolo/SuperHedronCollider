@@ -1,43 +1,40 @@
 fileFormatVersion: 2
-guid: ee8d57edeb1b460488e4fdc7a7b1bd1c
+guid: 79c065ac6eb83a64f90a57b21045b5f3
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Grid
-    100002: Grid_001
-    100004: //RootNode
-    100006: Collisions
-    100008: Goal
-    100010: SpawnerA
-    100012: SpawnerB
-    400000: Grid
-    400002: Grid_001
-    400004: //RootNode
-    400006: Collisions
-    400008: Goal
-    400010: SpawnerA
-    400012: SpawnerB
-    2300000: Grid
-    2300002: Grid_001
-    2300004: Collisions
-    2300006: Goal
-    2300008: SpawnerA
-    2300010: SpawnerB
-    3300000: Grid
-    3300002: Grid_001
-    3300004: Collisions
-    3300006: Goal
-    3300008: SpawnerA
-    3300010: SpawnerB
-    4300000: Grid_001
-    4300002: SpawnerA
-    4300004: SpawnerB
-    4300006: Goal
-    4300008: Collisions
-    6400000: Collisions
-    6400002: Goal
-    6400004: SpawnerA
-    6400006: SpawnerB
+    100000: //RootNode
+    100002: Hexa
+    100004: HexaBullet
+    100006: Iso
+    100008: IsoBullet
+    100010: Tetra
+    100012: TetraBullet
+    400000: //RootNode
+    400002: Hexa
+    400004: HexaBullet
+    400006: Iso
+    400008: IsoBullet
+    400010: Tetra
+    400012: TetraBullet
+    2300000: Hexa
+    2300002: HexaBullet
+    2300004: Iso
+    2300006: IsoBullet
+    2300008: Tetra
+    2300010: TetraBullet
+    3300000: Hexa
+    3300002: HexaBullet
+    3300004: Iso
+    3300006: IsoBullet
+    3300008: Tetra
+    3300010: TetraBullet
+    4300000: IsoBullet
+    4300002: TetraBullet
+    4300004: HexaBullet
+    4300006: Iso
+    4300008: Tetra
+    4300010: Hexa
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -61,7 +58,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

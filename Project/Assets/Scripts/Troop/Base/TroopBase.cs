@@ -23,8 +23,9 @@ public class TroopBase : StateLayer, ISelectable {
 	}
 
 	public float sightRadius = 5;
-	public float attackSpeed = 2;
+	public float attackSpeed = 1;
 	public float bulletLifeTime = 4;
+	public int bulletBurst = 3;
 	public float bulletSpeed = 2;
 	public float damage = 5;
 	public float maxHealth = 16;
@@ -50,6 +51,9 @@ public class TroopBase : StateLayer, ISelectable {
 	NavMeshAgent _navMeshAgent;
 	public NavMeshAgent navMeshAgent { get { return _navMeshAgent ? _navMeshAgent : (_navMeshAgent = GetComponent<NavMeshAgent>()); } }
 
+	Light _childLight;
+	public Light childLight { get { return _childLight ? _childLight : (_childLight = GetComponentInChildren<Light>()); } }
+	
 	public static int priorityCounter;
 	
 	public override void OnAwake() {
@@ -59,9 +63,14 @@ public class TroopBase : StateLayer, ISelectable {
 		navMeshAgent.avoidancePriority = priorityCounter;
 	}
 
-	public void OnSpawned() {
-		SwitchState(GetType().Name + "Idle");
+	public void Spawned() {
+		Target = transform.position;
 		health = maxHealth;
+	}
+	
+	public void Despawned() {
+		Selected = false;
+		SwitchState(GetType().Name + "Idle");
 	}
 	
 	public void Despawn() {
@@ -72,6 +81,10 @@ public class TroopBase : StateLayer, ISelectable {
 		closestInRangeEnemy = TroopManager.GetClosestInRangeEnemy(this);
 		
 		return closestInRangeEnemy != null;
+	}
+
+	public void SetLight(bool state) {
+		childLight.enabled = state;
 	}
 	
 	public void Damage(float damage) {
