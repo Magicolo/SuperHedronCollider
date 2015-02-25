@@ -47,6 +47,7 @@ public class TroopBase : StateLayer, ISelectable {
 	
 	[Disable] public TroopBase closestInRangeEnemy;
 	[Disable] public int playerId;
+	[Disable] public int groupId;
 	[Disable] public int id;
 	
 	NavMeshAgent _navMeshAgent;
