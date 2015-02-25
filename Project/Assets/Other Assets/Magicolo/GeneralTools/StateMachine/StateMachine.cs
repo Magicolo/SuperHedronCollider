@@ -19,13 +19,13 @@ namespace Magicolo {
 			}
 		}
 	
-//		void OnEnable() {
-//			StateMachineManager.AddMachine(this);
-//		}
-//		
-//		void OnDisable() {
-//			StateMachineManager.RemoveMachine(this);
-//		}
+		//		void OnEnable() {
+		//			StateMachineManager.AddMachine(this);
+		//		}
+		//
+		//		void OnDisable() {
+		//			StateMachineManager.RemoveMachine(this);
+		//		}
 		
 		void Start() {
 			foreach (StateLayer layer in layers) {
@@ -66,77 +66,77 @@ namespace Magicolo {
 			}
 		}
 
-		public void OnCollisionEnter(Collision collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionEnter(collision);
-			}
-		}
-	
-		public void OnCollisionStay(Collision collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionStay(collision);
-			}
-		}
-
-		public void OnCollisionExit(Collision collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionExit(collision);
-			}
-		}
-	
-		public void OnCollisionEnter2D(Collision2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionEnter2D(collision);
-			}
-		}
-	
-		public void OnCollisionStay2D(Collision2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionStay2D(collision);
-			}
-		}
-
-		public void OnCollisionExit2D(Collision2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].CollisionExit2D(collision);
-			}
-		}
-	
-		public void OnTriggerEnter(Collider collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerEnter(collision);
-			}
-		}
-	
-		public void OnTriggerStay(Collider collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerStay(collision);
-			}
-		}
-
-		public void OnTriggerExit(Collider collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerExit(collision);
-			}
-		}
-	
-		public void OnTriggerEnter2D(Collider2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerEnter2D(collision);
-			}
-		}
-	
-		public void OnTriggerStay2D(Collider2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerStay2D(collision);
-			}
-		}
-
-		public void OnTriggerExit2D(Collider2D collision) {
-			for (int i = 0; i < layers.Length; i++) {
-				layers[i].TriggerExit2D(collision);
-			}
-		}
+//		public void OnCollisionEnter(Collision collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionEnter(collision);
+//			}
+//		}
+//	
+//		public void OnCollisionStay(Collision collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionStay(collision);
+//			}
+//		}
+//
+//		public void OnCollisionExit(Collision collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionExit(collision);
+//			}
+//		}
+//	
+//		public void OnCollisionEnter2D(Collision2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionEnter2D(collision);
+//			}
+//		}
+//	
+//		public void OnCollisionStay2D(Collision2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionStay2D(collision);
+//			}
+//		}
+//
+//		public void OnCollisionExit2D(Collision2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].CollisionExit2D(collision);
+//			}
+//		}
+//	
+//		public void OnTriggerEnter(Collider collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerEnter(collision);
+//			}
+//		}
+//	
+//		public void OnTriggerStay(Collider collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerStay(collision);
+//			}
+//		}
+//
+//		public void OnTriggerExit(Collider collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerExit(collision);
+//			}
+//		}
+//	
+//		public void OnTriggerEnter2D(Collider2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerEnter2D(collision);
+//			}
+//		}
+//	
+//		public void OnTriggerStay2D(Collider2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerStay2D(collision);
+//			}
+//		}
+//
+//		public void OnTriggerExit2D(Collider2D collision) {
+//			for (int i = 0; i < layers.Length; i++) {
+//				layers[i].TriggerExit2D(collision);
+//			}
+//		}
 
 		public T GetLayer<T>() where T : IStateLayer {
 			return (T)GetLayer(typeof(T).Name);

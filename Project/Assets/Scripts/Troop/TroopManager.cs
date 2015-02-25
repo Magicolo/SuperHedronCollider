@@ -109,16 +109,20 @@ public class TroopManager : MonoBehaviourExtended {
 		return GetTroops(playerId).Length;
 	}
 	
-	public static int[] ContainingZones(TroopBase troop) {
+	public static int[] ContainingZones(TroopBase troop, bool includeOwn) {
 		List<int> zoneIds = new List<int>();
 		
 		foreach (int playerId in playerIdTroopDict.Keys) {
-			if (playerId != troop.playerId && ZoneContains(playerId, troop)) {
+			if ((includeOwn || playerId != troop.playerId) && ZoneContains(playerId, troop)) {
 				zoneIds.Add(playerId);
 			}
 		}
 		
 		return zoneIds.ToArray();
+	}
+	
+	public static int[] ContainingZones(TroopBase troop) {
+		return ContainingZones(troop, false);
 	}
 	
 	public static bool ZoneContains(int playerId, TroopBase troop) {
@@ -129,22 +133,54 @@ public class TroopManager : MonoBehaviourExtended {
 		return playerIdTroopDict[playerId].ZoneContains(troop);
 	}
 	
+	public static TroopBase[] GetInRangeAllies(TroopBase troop) {
+		return GetInRangeTroops(troop, troop.playerId);
+	}
+
+	public static TroopBase GetClosestInRangeAlly(TroopBase troop) {
+		return GetClosestInRangeTroop(troop, troop.playerId);
+	}
+
+	public static TroopBase[] GetInRangeEnemies(TroopBase troop) {
+		return GetInRangeTroops(troop, ContainingZones(troop));
+	}
+
 	public static TroopBase GetClosestInRangeEnemy(TroopBase troop) {
-		TroopBase closestEnemy = null;
+		return GetClosestInRangeTroop(troop, ContainingZones(troop));
+	}
+
+	public static TroopBase[] GetInRangeTroops(TroopBase troop, params int[] playerIds) {
+		List<TroopBase> inRangeTroops = new List<TroopBase>();
+		
+		foreach (int playerId in playerIds) {
+			foreach (TroopBase otherTroop in GetTroops(playerId)) {
+				float distance = Vector3.Distance(otherTroop.transform.position, troop.transform.position);
+				
+				if (distance <= troop.sightRadius) {
+					inRangeTroops.Add(otherTroop);
+				}
+			}
+		}
+		
+		return inRangeTroops.ToArray();
+	}
+
+	public static TroopBase GetClosestInRangeTroop(TroopBase troop, params int[] playerIds) {
+		TroopBase closestTroop = null;
 		float closestDistance = float.MaxValue;
 		
-		foreach (int playerId in ContainingZones(troop)) {
-			foreach (TroopBase enemyTroop in GetTroops(playerId)) {
-				float distance = Vector3.Distance(enemyTroop.transform.position, troop.transform.position);
+		foreach (int playerId in playerIds) {
+			foreach (TroopBase otherTroop in GetTroops(playerId)) {
+				float distance = Vector3.Distance(troop.transform.position, otherTroop.transform.position);
 				
 				if (distance <= troop.sightRadius && distance < closestDistance) {
-					closestEnemy = enemyTroop;
+					closestTroop = otherTroop;
 					closestDistance = distance;
 				}
 			}
 		}
 		
-		return closestEnemy;
+		return closestTroop;
 	}
 
 	public static void DamageTroop(int playerId, int troopId, int damage) {
@@ -215,6 +251,8 @@ public class TroopManager : MonoBehaviourExtended {
 	
 	void Update() {
 		UpdateZones();
+		
+		Logger.Log(GetTroopCount(NetworkController.CurrentPlayerId));
 	}
 	
 	void UpdateZones() {

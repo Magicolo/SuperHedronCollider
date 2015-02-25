@@ -8,23 +8,60 @@ ModelImporter:
     100004: //RootNode
     100006: SpawnerA
     100008: SpawnerB
+    100010: Goal1
+    100012: Goal2
+    100014: SpawnerA1
+    100016: SpawnerA2
+    100018: SpawnerB1
+    100020: SpawnerB2
     400000: Collisions
     400002: Goal
     400004: //RootNode
     400006: SpawnerA
     400008: SpawnerB
+    400010: Goal1
+    400012: Goal2
+    400014: SpawnerA1
+    400016: SpawnerA2
+    400018: SpawnerB1
+    400020: SpawnerB2
     2300000: Collisions
     2300002: Goal
     2300004: SpawnerA
     2300006: SpawnerB
+    2300008: Goal1
+    2300010: Goal2
+    2300012: SpawnerA1
+    2300014: SpawnerA2
+    2300016: SpawnerB1
+    2300018: SpawnerB2
     3300000: Collisions
     3300002: Goal
     3300004: SpawnerA
     3300006: SpawnerB
+    3300008: Goal1
+    3300010: Goal2
+    3300012: SpawnerA1
+    3300014: SpawnerA2
+    3300016: SpawnerB1
+    3300018: SpawnerB2
     4300000: SpawnerA
     4300002: SpawnerB
     4300004: Goal
     4300006: Collisions
+    4300008: SpawnerB2
+    4300010: SpawnerA2
+    4300012: Goal2
+    4300014: SpawnerA1
+    4300016: SpawnerB1
+    4300018: Goal1
+    6400000: Collisions
+    6400002: Goal1
+    6400004: Goal2
+    6400006: SpawnerA1
+    6400008: SpawnerA2
+    6400010: SpawnerB1
+    6400012: SpawnerB2
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -48,7 +85,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -62,9 +99,9 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

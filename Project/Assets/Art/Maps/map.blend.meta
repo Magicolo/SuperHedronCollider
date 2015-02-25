@@ -10,6 +10,12 @@ ModelImporter:
     100008: Goal
     100010: SpawnerA
     100012: SpawnerB
+    100014: Goal1
+    100016: Goal2
+    100018: SpawnerA1
+    100020: SpawnerA2
+    100022: SpawnerB1
+    100024: SpawnerB2
     400000: Grid
     400002: Grid_001
     400004: //RootNode
@@ -17,27 +23,57 @@ ModelImporter:
     400008: Goal
     400010: SpawnerA
     400012: SpawnerB
+    400014: Goal1
+    400016: Goal2
+    400018: SpawnerA1
+    400020: SpawnerA2
+    400022: SpawnerB1
+    400024: SpawnerB2
     2300000: Grid
     2300002: Grid_001
     2300004: Collisions
     2300006: Goal
     2300008: SpawnerA
     2300010: SpawnerB
+    2300012: Goal1
+    2300014: Goal2
+    2300016: SpawnerA1
+    2300018: SpawnerA2
+    2300020: SpawnerB1
+    2300022: SpawnerB2
     3300000: Grid
     3300002: Grid_001
     3300004: Collisions
     3300006: Goal
     3300008: SpawnerA
     3300010: SpawnerB
+    3300012: Goal1
+    3300014: Goal2
+    3300016: SpawnerA1
+    3300018: SpawnerA2
+    3300020: SpawnerB1
+    3300022: SpawnerB2
     4300000: Grid_001
     4300002: SpawnerA
     4300004: SpawnerB
     4300006: Goal
     4300008: Collisions
+    4300010: SpawnerB2
+    4300012: SpawnerA2
+    4300014: Goal2
+    4300016: SpawnerA1
+    4300018: SpawnerB1
+    4300020: Goal1
     6400000: Collisions
     6400002: Goal
     6400004: SpawnerA
     6400006: SpawnerB
+    6400008: Goal1
+    6400010: Goal2
+    6400012: SpawnerA1
+    6400014: SpawnerA2
+    6400016: SpawnerB1
+    6400018: SpawnerB2
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -75,9 +111,9 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -91,6 +127,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   additionalBone: 0
   userData: 
