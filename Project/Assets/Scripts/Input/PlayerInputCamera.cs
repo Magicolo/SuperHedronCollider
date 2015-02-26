@@ -5,6 +5,8 @@ using Magicolo;
 
 public class PlayerInputCamera : State {
 	
+	bool focusStatus;
+	
 	[SerializeField, PropertyField]
 	float dragMargin = 50;
 	public float DragMargin {
@@ -49,10 +51,17 @@ public class PlayerInputCamera : State {
 	}
 	
 	public override void OnUpdate() {
-		Move();
-		Zoom();
+		if(focusStatus){
+			Move();
+			Zoom();
+		}
+		
 	}
 
+	void OnApplicationFocus(bool newFocusStatus) {
+        this.focusStatus = newFocusStatus;
+    }
+	
 	void Move() {
 		Vector3 keyMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * (Input.GetKey(Layer.fastMoveKey1) || Input.GetKey(Layer.fastMoveKey2) ? 6 : 3);
 		
