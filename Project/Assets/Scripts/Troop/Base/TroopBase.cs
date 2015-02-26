@@ -24,6 +24,8 @@ public class TroopBase : StateLayer, ISelectable {
 
 	public float radius = 1.25F;
 	public float sightRadius = 5;
+	public float lightIntensity = 1;
+	public float lightRange = 25;
 	public float attackSpeed = 1;
 	public float bulletLifeTime = 4;
 	public int bulletBurst = 3;
@@ -85,10 +87,6 @@ public class TroopBase : StateLayer, ISelectable {
 		return closestInRangeEnemy != null;
 	}
 
-	public void SetLight(bool state) {
-		childLight.enabled = state;
-	}
-	
 	public Rect GetRect() {
 		return Rect.MinMaxRect(transform.position.x - transform.lossyScale.x / 2, transform.position.z - transform.lossyScale.z / 2, transform.position.x + transform.lossyScale.x / 2, transform.position.z + transform.lossyScale.z / 2);
 	}
@@ -101,10 +99,11 @@ public class TroopBase : StateLayer, ISelectable {
 		health -= damage;
 		
 		if (health <= 0) {
-			if(!NetworkController.instance.isConnected){
+			if (!NetworkController.instance.isConnected) {
 				Kill();
-			}else{
-				if (playerId == NetworkController.instance.clientController.playerId){
+			}
+			else {
+				if (playerId == NetworkController.instance.clientController.playerId) {
 					NetworkController.instance.clientController.killUnit(playerId, id);
 				}
 			}

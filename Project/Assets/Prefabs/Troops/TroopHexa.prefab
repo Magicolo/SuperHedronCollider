@@ -221,6 +221,8 @@ MonoBehaviour:
   selected: 0
   radius: 1.25
   sightRadius: 10
+  lightIntensity: 1
+  lightRange: 25
   attackSpeed: .5
   bulletLifeTime: 4
   bulletBurst: 3
@@ -231,6 +233,7 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   closestInRangeEnemy: {fileID: 0}
   playerId: 0
+  groupId: 0
   id: 0
 --- !u!114 &11463974
 MonoBehaviour:
@@ -280,7 +283,7 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 100
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
