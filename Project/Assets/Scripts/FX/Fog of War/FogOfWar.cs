@@ -4,16 +4,6 @@ using Magicolo;
 
 public class FogOfWar : MonoBehaviour {
 
-	static FogOfWar instance;
-	static FogOfWar Instance {
-		get {
-			if (instance == null) {
-				instance = FindObjectOfType<FogOfWar>();
-			}
-			return instance;
-		}
-	}
-	
 	[SerializeField, PropertyField(typeof(MinAttribute), 1)]
 	int precision;
 	public int Precision {
@@ -43,15 +33,17 @@ public class FogOfWar : MonoBehaviour {
 	Material _material;
 	public Material material { get { return _material ? _material : (_material = renderer.sharedMaterial); } }
 	
-	float UnitsToPixels {
+	public FogAgent[] fogAgents;
+	
+	public float UnitsToPixels {
 		get {
-			return (float)precision / 10;
+			return (float)Precision / 10;
 		}
 	}
 	
-	float PixelsToUnits {
+	public float PixelsToUnits {
 		get {
-			return (float)10 / precision;
+			return (float)10 / Precision;
 		}
 	}
 	
@@ -69,25 +61,30 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	void UpdateFow() {
+		UpdateAlphaMap();
+		UpdateTexture();
+	}
+	
+	void UpdateAlphaMap() {
 		alphaMap = new float[width, height];
 		
 		foreach (TroopBase troop in TroopManager.GetTroops(NetworkController.CurrentPlayerId)) {
-			Vector2 texturePosition = new Vector2(troop.transform.position.x * UnitsToPixels + (float)width / 2, troop.transform.position.z * UnitsToPixels + (float)height / 2);
+			RemoveFog(troop.transform.position, troop.sightRadius);
+		}
 		
-			float pixelSightRadius = troop.sightRadius * UnitsToPixels;
-			int xMin = (int)Mathf.Clamp(texturePosition.x - pixelSightRadius * 2, 0, width).Round();
-			int xMax = (int)Mathf.Clamp(texturePosition.x + pixelSightRadius * 2, 0, width).Round();
-			int yMin = (int)Mathf.Clamp(texturePosition.y - pixelSightRadius * 2, 0, height).Round();
-			int yMax = (int)Mathf.Clamp(texturePosition.y + pixelSightRadius * 2, 0, height).Round();
-			
-			for (int x = xMin; x < xMax; x++) {
-				for (int y = yMin; y < yMax; y++) {
-					float distance = Vector2.Distance(new Vector2(x, y), texturePosition);
-					alphaMap[x, y] += 1 - Mathf.Clamp01((distance - pixelSightRadius) / pixelSightRadius);
+		foreach (FogAgent fogAgent in fogAgents) {
+			if (fogAgent.sightRadius > 0 && fogAgent.transform != null) {
+				if (fogAgent.clearsFog) {
+					RemoveFog(fogAgent.transform.position, fogAgent.sightRadius);
+				}
+				else {
+					AddFog(fogAgent.transform.position, fogAgent.sightRadius);
 				}
 			}
 		}
-		
+	}
+
+	void UpdateTexture() {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				texture.SetPixel(x, y, new Color(0, 0, 0, 1 - alphaMap[x, y]));
@@ -112,7 +109,52 @@ public class FogOfWar : MonoBehaviour {
 		}
 	}
 
-	public static bool IsFogged(Vector3 point) {
-		return false;
+	void AddFog(Vector3 position, float sightRadius) {
+		Vector2 texturePosition = WorldToPixel(position);
+		
+		float pixelSightRadius = sightRadius * UnitsToPixels;
+		int xMin = (int)Mathf.Clamp(texturePosition.x - pixelSightRadius * 2, 0, width).Round();
+		int xMax = (int)Mathf.Clamp(texturePosition.x + pixelSightRadius * 2, 0, width).Round();
+		int yMin = (int)Mathf.Clamp(texturePosition.y - pixelSightRadius * 2, 0, height).Round();
+		int yMax = (int)Mathf.Clamp(texturePosition.y + pixelSightRadius * 2, 0, height).Round();
+			
+		for (int x = xMin; x < xMax; x++) {
+			for (int y = yMin; y < yMax; y++) {
+				float distance = Vector2.Distance(new Vector2(x, y), texturePosition);
+				alphaMap[x, y] += Mathf.Clamp01((distance - pixelSightRadius) / pixelSightRadius);
+			}
+		}
+	}
+	
+	void RemoveFog(Vector3 position, float sightRadius) {
+		Vector2 texturePosition = WorldToPixel(position);
+		
+		float pixelSightRadius = sightRadius * UnitsToPixels;
+		int xMin = (int)Mathf.Clamp(texturePosition.x - pixelSightRadius * 2, 0, width).Round();
+		int xMax = (int)Mathf.Clamp(texturePosition.x + pixelSightRadius * 2, 0, width).Round();
+		int yMin = (int)Mathf.Clamp(texturePosition.y - pixelSightRadius * 2, 0, height).Round();
+		int yMax = (int)Mathf.Clamp(texturePosition.y + pixelSightRadius * 2, 0, height).Round();
+			
+		for (int x = xMin; x < xMax; x++) {
+			for (int y = yMin; y < yMax; y++) {
+				float distance = Vector2.Distance(new Vector2(x, y), texturePosition);
+				alphaMap[x, y] += 1 - Mathf.Clamp01((distance - pixelSightRadius) / pixelSightRadius);
+			}
+		}
+	}
+	
+	Vector2 WorldToPixel(Vector3 worldPoint) {
+		return new Vector2(worldPoint.x * UnitsToPixels + (float)width / 2, worldPoint.z * UnitsToPixels + (float)height / 2);
+	}
+	
+	public bool IsFogged(Vector3 point, float alphaThreshold) {
+		Vector2 pixel = WorldToPixel(point);
+		float alpha = alphaMap[(int)pixel.x.Round(), (int)pixel.y.Round()];
+		
+		return alpha <= alphaThreshold;
+	}
+	
+	public bool IsFogged(Vector3 point) {
+		return IsFogged(point, 0);
 	}
 }
