@@ -5,6 +5,8 @@ using Magicolo;
 
 public class PlayerInputCamera : State {
 	
+	bool focusStatus;
+	
 	[SerializeField, PropertyField]
 	float dragMargin = 50;
 	public float DragMargin {
@@ -47,10 +49,17 @@ public class PlayerInputCamera : State {
 	}
 	
 	public override void OnUpdate() {
-		Move();
-		Zoom();
+		if(focusStatus){
+			Move();
+			Zoom();
+		}
+		
 	}
 
+	void OnApplicationFocus(bool newFocusStatus) {
+        this.focusStatus = newFocusStatus;
+    }
+	
 	void Move() {
 		if (Input.GetMouseButtonDown(Layer.mouseMoveButton)) {
 			dragStart = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y);
