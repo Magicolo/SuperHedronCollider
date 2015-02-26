@@ -62,12 +62,18 @@ public class ClientController : MonoBehaviour {
 	#region Unit
 	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation) {
 		if (NetworkController.instance.isConnected) {
-			networkView.RPC("ToServerSpawnUnit", RPCMode.Server, playerId, troopType, position, rotation);
+			if(Network.isServer){
+				networkController.serverController.ToServerSpawnUnit(playerId, troopType, position, rotation);
+			}else{
+				networkView.RPC("ToServerSpawnUnit", RPCMode.Server, playerId, troopType, position, rotation);
+			}
+			
 		}
 	}
 	
 	[RPC]
 	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
+		networkController.log("Spawn unit " + troopId + " for " + troopPlayerId + " at " + position);
 		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
 	}
 	
