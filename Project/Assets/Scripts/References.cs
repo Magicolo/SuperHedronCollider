@@ -14,5 +14,12 @@ public class References : MonoBehaviourExtended {
 			return instance;
 		}
 	}
+	
+	public FogOfWar fow;
+	public static FogOfWar Fow {
+		get {
+			return Instance.fow;
+		}
+	}
 }
 

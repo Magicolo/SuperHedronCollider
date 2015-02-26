@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe973aa67e290a943ab020e2178d0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fow: {fileID: 0}
 --- !u!114 &11456794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,7 +250,7 @@ MonoBehaviour:
   moveSmooth: 5
   zoomSpeed: 8
   zoomSmooth: 5
-  minZoom: 21
+  minZoom: 10
   maxZoom: 500
   maxMoveX: 100
   maxMoveY: 25

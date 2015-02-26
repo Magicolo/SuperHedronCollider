@@ -1,81 +1,105 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Magicolo;
 
 public class FogOfWar : MonoBehaviour {
 
-	public int precision = 1;
+	[SerializeField, PropertyField(typeof(MinAttribute), 1)]
+	int precision;
+	public int Precision {
+		get {
+			return precision;
+		}
+		set {
+			precision = value;
+				
+			CreateTexture();
+		}
+	}
 	
-	public Camera sourceCamera;
+	[SerializeField, PropertyField]
+	FilterMode filterMode = FilterMode.Bilinear;
+	public FilterMode FilterMode {
+		get {
+			return filterMode;
+		}
+		set {
+			filterMode = value;
+			
+			CreateTexture();
+		}
+	}
+		
+	public int frameRate = 10;
 	
-	Texture2D foWTexture;
+	Material _material;
+	public Material material { get { return _material ? _material : (_material = renderer.sharedMaterial); } }
+	
+	float UnitsToPixels {
+		get {
+			return (float)precision / 10;
+		}
+	}
+	
+	float PixelsToUnits {
+		get {
+			return (float)10 / precision;
+		}
+	}
+	
 	int width;
 	int height;
+	Texture2D texture;
 	
-	
-		
-	void Awake(){
-		
+	void Awake() {
+		CreateTexture();
 	}
 	
-	void Start () {
-		width = (int)gameObject.transform.localScale.x;
-		height = (int)gameObject.transform.localScale.z;
-		foWTexture = new Texture2D(width * precision, height * precision, TextureFormat.Alpha8, false);
-		
-		Material material = GetComponent<MeshRenderer>().materials[0];
-		material.mainTexture = foWTexture;
+	void Update() {
+		UpdateFow();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		float[,] alphas = new float[width,height];
+	void UpdateFow() {
+		float[,] alphaMap = new float[width, height];
 		
-		foreach (var troop in TroopManager.GetTroops(NetworkController.CurrentPlayerId)) {
-			Vector3 dir = (troop.transform.position - sourceCamera.transform.position).normalized;
-			Ray johnRay = new Ray(sourceCamera.transform.position, dir);
-			Debug.DrawRay(sourceCamera.transform.position, dir * 1000, new Color(1,0.7f,0.2f, 1f));
-			RaycastHit toucheJohn;
-			if (Physics.Raycast(johnRay, out toucheJohn)){
-				Vector3 pointDeTouche = toucheJohn.point;
-				Point2D textureHit = worldToTexturePosition(pointDeTouche);
-				//troop.sightRadius
-				Debug.Log(pointDeTouche + " KWAME " + textureHit);
-				int range = 8;
-				int xMin = Mathf.Clamp(textureHit.x - range ,0,width);
-				int xMax = Mathf.Clamp(textureHit.x + range ,0,width);
-				int yMin = Mathf.Clamp(textureHit.y - range ,0,height);
-				int yMax = Mathf.Clamp(textureHit.y + range ,0,height);
-				Vector2 pdt3 = new Vector2(textureHit.x, textureHit.y);
-				for (int x = xMin; x < xMax; x++) {
-					for (int y = yMin; y < yMax; y++) {
-						float distance = Vector2.Distance(new Vector2(x,y),pdt3);
-						alphas[x,y] = 1 - distance/range;;
-					}
+		foreach (TroopBase troop in TroopManager.GetTroops(NetworkController.CurrentPlayerId)) {
+			Vector2 texturePosition = new Vector2(troop.transform.position.x * UnitsToPixels + (float)width / 2, troop.transform.position.z * UnitsToPixels + (float)height / 2);
+		
+			float pixelSightRadius = troop.sightRadius * UnitsToPixels;
+			int xMin = (int)Mathf.Clamp(texturePosition.x - pixelSightRadius * 2, 0, width).Round();
+			int xMax = (int)Mathf.Clamp(texturePosition.x + pixelSightRadius * 2, 0, width).Round();
+			int yMin = (int)Mathf.Clamp(texturePosition.y - pixelSightRadius * 2, 0, height).Round();
+			int yMax = (int)Mathf.Clamp(texturePosition.y + pixelSightRadius * 2, 0, height).Round();
+			
+			for (int x = xMin; x < xMax; x++) {
+				for (int y = yMin; y < yMax; y++) {
+					float distance = Vector2.Distance(new Vector2(x, y), texturePosition);
+					alphaMap[x, y] += 1 - Mathf.Clamp01((distance - pixelSightRadius) / pixelSightRadius);
 				}
-				
 			}
 		}
 		
-		Color[] pixels = foWTexture.GetPixels();
-		int index = 0;
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				float alpha = alphas[x,y];
-				pixels[index] = new Color(0,0,0, 1- alpha);
-				index++;
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				texture.SetPixel(x, y, new Color(0, 0, 0, 1 - alphaMap[x, y]));
 			}
 		}
-		foWTexture.SetPixels(pixels);
-		foWTexture.Apply();
+		
+		texture.Apply();
 	}
-
-	Point2D worldToTexturePosition(Vector3 pointDeTouche){
-		/*float floatyX = pointDeTouche.x + transform.localScale.x/2;
-		float floatyZ = pointDeTouche.z + transform.localScale.z/2;*/
-		float floatyX = pointDeTouche.x + 300;
-		float floatyZ = pointDeTouche.z + 75;
-		
-		return new Point2D((int)(floatyX/precision),(int)(floatyZ/precision));
-		
+	
+	void OnDestroy() {
+		texture.Remove();
+		material.mainTexture = Texture2D.blackTexture;
+	}
+	
+	void CreateTexture() {
+		if (Application.isPlaying) {
+			width = (int)(transform.lossyScale.x * precision).Round();
+			height = (int)(transform.lossyScale.z * precision).Round();
+			texture = new Texture2D(width, height, TextureFormat.Alpha8, false);
+			texture.filterMode = FilterMode;
+			material.mainTexture = texture;
+		}
 	}
 }

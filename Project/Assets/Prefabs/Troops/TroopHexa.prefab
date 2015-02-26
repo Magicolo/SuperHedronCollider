@@ -221,7 +221,7 @@ MonoBehaviour:
   selected: 0
   radius: 1.25
   sightRadius: 10
-  lightIntensity: 1
+  lightIntensity: 2
   lightRange: 25
   attackSpeed: .5
   bulletLifeTime: 4
