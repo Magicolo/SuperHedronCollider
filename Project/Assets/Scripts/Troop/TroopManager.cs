@@ -46,7 +46,7 @@ public class TroopManager : MonoBehaviourExtended {
 			playerIdTroopDict[playerId] = new PlayerTroopManager(playerId);
 		}
 		
-		troop.childLight.enabled = playerId == NetworkController.CurrentPlayerId;
+		troop.childLight.enabled = false;
 		troop.gameObject.layer = playerId == NetworkController.CurrentPlayerId ? 9 : 10;
 		troop.playerId = playerId;
 		troop.id = troopId;

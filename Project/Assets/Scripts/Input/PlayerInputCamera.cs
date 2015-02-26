@@ -74,7 +74,7 @@ public class PlayerInputCamera : State {
 			dragStart = dragEnd;
 		}
 		else if (Layer.mouseMarginDrag && !new Rect(dragMargin, dragMargin, Screen.width - dragMargin * 2, Screen.height - dragMargin * 2).Contains(Input.mousePosition)) {
-			Vector3 direction = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, Input.mousePosition.z)) / 100;
+			Vector3 direction = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, Input.mousePosition.z)) / 250;
 			dragDelta = Vector3.Lerp(dragDelta, new Vector3(direction.x, 0, direction.y), Time.deltaTime * moveSmooth);
 		}
 		else {

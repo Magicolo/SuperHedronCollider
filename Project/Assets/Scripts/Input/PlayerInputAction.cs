@@ -26,7 +26,7 @@ public class PlayerInputAction : State {
 		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit mouseRayInfo;
 			
-		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo) && mouseRayInfo.point.y <= 3) {
+		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo) && mouseRayInfo.point.y <= 3 && !References.Fow.IsFogged(mouseRayInfo.point)) {
 			int groupId;
 			int[] groupIds = TroopManager.ContainingGroupZones(NetworkController.CurrentPlayerId, mouseRayInfo.point);
 			
