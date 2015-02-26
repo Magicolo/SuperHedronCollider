@@ -14,9 +14,9 @@ public class ServerController : MonoBehaviour {
 	public NetworkController networkController;
 	
 	
-	public int nextUniqueId;
-	public int nextUnitId;
-	public int nextBulletId;
+	public static int nextUniqueId;
+	public static int nextUnitId;
+	public static int nextBulletId;
 	
 	
 	public void StartServer(int port){
@@ -57,8 +57,13 @@ public class ServerController : MonoBehaviour {
 	}*/
 	
 	[RPC]
-	void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation,NetworkMessageInfo info){
-		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, nextUnitId++,troopType, position, rotation);
+	public void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation){
+		if(Network.isServer){
+			int unitId = nextUnitId++;
+			networkController.log(this.gameObject.GetInstanceID() + " - " + unitId + " : " + Network.isServer);
+			networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, unitId,troopType, position, rotation);
+		}
+		
 	}
 	
 	[RPC]

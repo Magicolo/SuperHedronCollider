@@ -28,6 +28,7 @@ public class NetworkController : MonoBehaviour {
 	public Dictionary<string, NetworkLink> networkLinks = new Dictionary<string, NetworkLink>();
 	public int playerCount;
 	
+	private int nbMessage;
 	public Text outputText;
 	
 	void Awake() {
@@ -99,6 +100,11 @@ public class NetworkController : MonoBehaviour {
 	}
 	
 	public void log(string message) {
+		nbMessage++;
+		if(nbMessage > 20){
+			nbMessage--;
+			outputText.text = outputText.text.Substring(2 + outputText.text.IndexOf("\n", System.StringComparison.Ordinal));
+		}
 		outputText.text += message + "\n";
 	}
 	
