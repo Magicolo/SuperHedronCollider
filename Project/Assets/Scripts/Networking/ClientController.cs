@@ -78,18 +78,36 @@ public class ClientController : MonoBehaviour {
 		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	
-	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 target){
-		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, target);
+	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled){
+		networkView.RPC("UnitLightingData",RPCMode.All, troopPlayerId, troopId, intensity, range, enabled);
 	}
 	
 	[RPC]
-	void UpdateUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 target, NetworkMessageInfo info){
-		if(isMe(troopPlayerId)) return;
-		Debug.Log("Yo dog bouge moi ca à " + target);
-		TroopManager.MoveTroop(troopPlayerId, troopId, position, target);
-		GameObject go =  GameObject.Find("TestTroupe");
-		go.transform.position = target;
+	void UnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled, NetworkMessageInfo info){
+		TroopManager.ChangeUnitLightingData(troopPlayerId, troopId, intensity,range,lightingEnabled);
+	}	
+	
+	public void sendUnitTarget(int troopId, Vector3 target){
+		networkView.RPC("UpdateUnitTarget",RPCMode.Others, this.playerId, troopId,  target);
 	}
+	
+	public void sendUnitPosition(int troopId, Vector3 position){
+		networkView.RPC("UpdateUnitPosition",RPCMode.Others, this.playerId, troopId, position);
+	}
+	
+	[RPC]
+	void UpdateUnitTarget(int troopPlayerId, int troopId, Vector3 target, NetworkMessageInfo info){
+		if(isMe(troopPlayerId)) return;
+		TroopManager.changeTroopTarget(troopPlayerId, troopId, target);
+	}
+	
+	[RPC]
+	void UpdateUnitPosition(int troopPlayerId, int troopId, Vector3 position, NetworkMessageInfo info){
+		if(isMe(troopPlayerId)) return;
+		TroopManager.MoveTroop(troopPlayerId, troopId, position);
+	}
+	
+	
 	
 	public void killUnit(int troopPlayerId, int troopId){
 		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);

@@ -190,12 +190,21 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static void MoveTroop(int playerId, int troopId, Vector3 position, Vector3 target) {
+	public static void changeTroopTarget(int playerId, int troopId, Vector3 target) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
-			playerIdTroopDict[playerId].MoveTroop(troopId, position, target);
+			playerIdTroopDict[playerId].changeTroopTarget(troopId, target);
+		}
+	} 
+	
+	public static void MoveTroop(int playerId, int troopId, Vector3 position) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].MoveTroop(troopId, position);
 		}
 	}
 
+	public static void ChangeUnityLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled){
+		//TODO CHANGE CA KEVIN
+	}
 	public static void KillTroop(int playerId, int troopId) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
 			playerIdTroopDict[playerId].KillTroop(troopId);

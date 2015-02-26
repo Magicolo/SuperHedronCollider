@@ -116,9 +116,11 @@ public class TroopBase : StateLayer, ISelectable {
 	public void Kill() {
 		SwitchState(GetType().Name + "Dead");
 	}
-	
-	public void Move(Vector3 position, Vector3 target) {
-		transform.position = position;
+
+	public void ChangeTarget(Vector3 target){
 		Target = target;
+	}
+	public void Move(Vector3 position) {
+		transform.position = position;
 	}
 }

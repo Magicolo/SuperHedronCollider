@@ -42,7 +42,7 @@ public class PlayerInputAction : State {
 		
 			if (NetworkController.instance.isConnected) {
 				foreach (TroopBase troop in Layer.selectedTroops) {
-					NetworkController.instance.clientController.sendUnitDeplacement(troop.id, troop.transform.position, troop.Target);
+					NetworkController.instance.clientController.sendUnitTarget(troop.id, troop.Target);
 				}
 			}
 		}

@@ -50,7 +50,7 @@ public class PlayerBulletManager {
 		Bullet bullet = GetBullet(bulletId);
 		
 		if (bullet != null) {
-			bullet.Kill();
+			BulletManager.Despawn(bullet);
 		}
 	}
 
