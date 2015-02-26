@@ -150,7 +150,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void StopGame(NetworkMessageInfo info){
-		GameManager.STOP();
+		GameManager.Stop();
 	}
 
 	bool isMe(int otherPlayerId){
