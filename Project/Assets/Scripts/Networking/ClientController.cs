@@ -27,6 +27,7 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void ThisIsYourPlayerId(int myNewPlayerId, NetworkMessageInfo info){
 		playerId = myNewPlayerId;
+		networkController.currentMap.setUpFor(playerId);
 	}
 	
 		
@@ -73,7 +74,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
-		networkController.log("Spawn unit " + troopId + " for " + troopPlayerId + " at " + position);
+		//networkController.log("Spawn unit " + troopId + " for " + troopPlayerId + " at " + position);
 		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
 	}
 	
@@ -90,13 +91,14 @@ public class ClientController : MonoBehaviour {
 	
 	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled) {
 		if (NetworkController.instance.isConnected) {
-			networkView.RPC("UnitLightingData", RPCMode.Others, troopPlayerId, troopId, intensity, range, enabled);
+			networkView.RPC("UnitLightingData", RPCMode.All, troopPlayerId, troopId, intensity, range, enabled);
 		}
 	}
 	
 	[RPC]
 	void UnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled, NetworkMessageInfo info){
 		if(!isMe(troopPlayerId)){
+			//networkController.log("unit FadeTroopLight " + troopId + " for " + troopPlayerId + " intensity:" + intensity + " , range:" + range + " , enabled:" + lightingEnabled);
 			TroopManager.FadeTroopLight(troopPlayerId, troopId, intensity,range,lightingEnabled);
 		}
 		
@@ -104,13 +106,13 @@ public class ClientController : MonoBehaviour {
 	
 	public void sendUnitTarget(int troopId, Vector3 target) {
 		if (NetworkController.instance.isConnected) {
-			networkView.RPC("UpdateUnitTarget", RPCMode.Others, this.playerId, troopId, target);
+			networkView.RPC("UpdateUnitTarget", RPCMode.All, this.playerId, troopId, target);
 		}
 	}
 	
 	public void sendUnitPosition(int troopId, Vector3 position) {
 		if (NetworkController.instance.isConnected) {
-			networkView.RPC("UpdateUnitPosition", RPCMode.Others, this.playerId, troopId, position);
+			networkView.RPC("UpdateUnitPosition", RPCMode.All, this.playerId, troopId, position);
 		}
 	}
 	
@@ -154,7 +156,7 @@ public class ClientController : MonoBehaviour {
 	
 	
 	public void sendBulletDeplacement(int bulletId, Vector3 position){
-		networkView.RPC("UpdateBullet",RPCMode.Others, this.playerId, bulletId, position);
+		networkView.RPC("UpdateBullet",RPCMode.All, this.playerId, bulletId, position);
 	}
 	
 	[RPC]
