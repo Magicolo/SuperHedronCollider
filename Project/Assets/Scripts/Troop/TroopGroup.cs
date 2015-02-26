@@ -102,11 +102,15 @@ public class TroopGroup {
 			
 			centerIntensityTarget += Mathf.Clamp(1 - distanceToCenter / troop.sightRadius, 0, 1) * troop.lightIntensity * lightGrowFactor;
 			centerRangeTarget += Mathf.Clamp(1 - distanceToCenter / troop.sightRadius, 0, 1) * troop.lightRange * lightGrowFactor;
+			
+			NetworkController.instance.clientController.sendUnitLightingData(troop.playerId, troop.id, troop.childLight.intensity, troop.childLight.range, troop.childLight.enabled);
 		}
 		
 		centerTroop.childLight.intensity = Mathf.Lerp(centerTroop.childLight.intensity, centerIntensityTarget.Pow(0.75), Time.deltaTime * lightFadeSpeed * 5);
 		centerTroop.childLight.range = Mathf.Lerp(centerTroop.childLight.range, centerRangeTarget.Pow(0.75), Time.deltaTime * lightFadeSpeed * 5);
 		centerTroop.childLight.enabled = centerTroop.childLight.intensity > 0 && centerTroop.childLight.range > 0;
+			
+		NetworkController.instance.clientController.sendUnitLightingData(centerTroop.playerId, centerTroop.id, centerTroop.childLight.intensity, centerTroop.childLight.range, centerTroop.childLight.enabled);
 	}
 	
 	public void AddTroop(TroopBase troop) {
