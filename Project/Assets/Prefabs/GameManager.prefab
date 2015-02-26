@@ -390,7 +390,7 @@ MonoBehaviour:
   - {fileID: 11413590}
   - {fileID: 11413588}
   debug: 1
-  mouseMarginDrag: 0
+  mouseMarginDrag: 1
   mouseSelectButton: 0
   mouseActionButton: 1
   mouseMoveButton: 2
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a959366c53c3f44ebede086e16a9a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSequence: 0
+  playDrum: 0
 --- !u!114 &11427890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -583,9 +583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverStarted: 0
   networkController: {fileID: 11447744}
-  nextUniqueId: 0
-  nextUnitId: 0
-  nextBulletId: 0
 --- !u!114 &11447744
 MonoBehaviour:
   m_ObjectHideFlags: 1
