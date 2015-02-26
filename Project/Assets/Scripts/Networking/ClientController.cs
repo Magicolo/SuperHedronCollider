@@ -79,12 +79,15 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled){
-		networkView.RPC("UnitLightingData",RPCMode.All, troopPlayerId, troopId, intensity, range, enabled);
+		networkView.RPC("UnitLightingData",RPCMode.Others, troopPlayerId, troopId, intensity, range, enabled);
 	}
 	
 	[RPC]
 	void UnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled, NetworkMessageInfo info){
-		TroopManager.FadeTroopLight(troopPlayerId, troopId, intensity,range,lightingEnabled);
+		if(!isMe(troopPlayerId)){
+			TroopManager.FadeTroopLight(troopPlayerId, troopId, intensity,range,lightingEnabled);
+		}
+		
 	}	
 	
 	public void sendUnitTarget(int troopId, Vector3 target){
