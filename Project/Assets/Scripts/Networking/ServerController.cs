@@ -51,7 +51,7 @@ public class ServerController : MonoBehaviour {
 		foreach (var link in networkLinks) {
 			NetworkPlayer networkPlayer = link.networkPlayer;
 			NetworkViewID viewId = link.networkView.viewID;
-			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
+			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer, link.playerId);
 		}
 	}
 	
@@ -79,9 +79,10 @@ public class ServerController : MonoBehaviour {
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
 		
-		networkView.RPC("ThisIsYourPlayerId", p, nextPlayerId++);
+		int playerId = nextPlayerId++;
+		networkView.RPC("ThisIsYourPlayerId", p, playerId);
 		
-		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
+		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p, playerId);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
 		if(networkController.networkLinks.Count == 1){

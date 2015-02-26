@@ -32,8 +32,9 @@ public class ClientController : MonoBehaviour {
 	
 		
 	[RPC]
-	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
-		networkController.addPlayer(newPlayerView,p);
+	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p, int playerId){
+		networkController.addPlayer(newPlayerView,p,playerId);
+		
 	}
 	
 	
