@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Magicolo;
 
-public class TroopIsoDead : TroopBaseDead {
+public class TroopIcosaMove : State {
 	
-    TroopIso Layer {
-    	get { return ((TroopIso)layer); }
+    TroopIcosa Layer {
+    	get { return ((TroopIcosa)layer); }
     }
 
 	

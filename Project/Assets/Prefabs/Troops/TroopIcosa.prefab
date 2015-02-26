@@ -20,8 +20,13 @@ GameObject:
   - 114: {fileID: 11433866}
   - 114: {fileID: 11433864}
   - 114: {fileID: 11433862}
+  - 114: {fileID: 11434058}
+  - 114: {fileID: 11434056}
+  - 114: {fileID: 11434054}
+  - 114: {fileID: 11434052}
+  - 114: {fileID: 11434050}
   m_Layer: 9
-  m_Name: TroopIso
+  m_Name: TroopIcosa
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,6 +97,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703edf332d898a545b9912649a4b2182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _animation: {fileID: 0}
+  _audio: {fileID: 0}
+  _camera: {fileID: 0}
+  _collider: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _constantForce: {fileID: 0}
+  _guiElement: {fileID: 0}
+  _guiText: {fileID: 0}
+  _guiTexture: {fileID: 0}
+  _hingeJoint: {fileID: 0}
+  _light: {fileID: 0}
+  _networkView: {fileID: 0}
+  _particleEmitter: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _renderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _transform: {fileID: 0}
   layer: {fileID: 11433870}
   machine: {fileID: 11433874}
 --- !u!114 &11433864
@@ -105,6 +129,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958ca4e71b33af14398d9dde729bd24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _animation: {fileID: 0}
+  _audio: {fileID: 0}
+  _camera: {fileID: 0}
+  _collider: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _constantForce: {fileID: 0}
+  _guiElement: {fileID: 0}
+  _guiText: {fileID: 0}
+  _guiTexture: {fileID: 0}
+  _hingeJoint: {fileID: 0}
+  _light: {fileID: 0}
+  _networkView: {fileID: 0}
+  _particleEmitter: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _renderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _transform: {fileID: 0}
   layer: {fileID: 11433870}
   machine: {fileID: 11433874}
 --- !u!114 &11433866
@@ -118,6 +161,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574d6e10b80668b4f99f8c40de62aebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _animation: {fileID: 0}
+  _audio: {fileID: 0}
+  _camera: {fileID: 0}
+  _collider: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _constantForce: {fileID: 0}
+  _guiElement: {fileID: 0}
+  _guiText: {fileID: 0}
+  _guiTexture: {fileID: 0}
+  _hingeJoint: {fileID: 0}
+  _light: {fileID: 0}
+  _networkView: {fileID: 0}
+  _particleEmitter: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _renderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _transform: {fileID: 0}
   layer: {fileID: 11433870}
   machine: {fileID: 11433874}
 --- !u!114 &11433868
@@ -131,6 +193,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c535d9bdded6d940b5a38718fa62114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _animation: {fileID: 0}
+  _audio: {fileID: 0}
+  _camera: {fileID: 0}
+  _collider: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _constantForce: {fileID: 0}
+  _guiElement: {fileID: 0}
+  _guiText: {fileID: 0}
+  _guiTexture: {fileID: 0}
+  _hingeJoint: {fileID: 0}
+  _light: {fileID: 0}
+  _networkView: {fileID: 0}
+  _particleEmitter: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _renderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _transform: {fileID: 0}
   layer: {fileID: 11433870}
   machine: {fileID: 11433874}
   attackCounter: 0
@@ -145,6 +226,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faabce7d29f5e7447a8d51dd5c976f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
+  _animation: {fileID: 0}
+  _audio: {fileID: 0}
+  _camera: {fileID: 0}
+  _collider: {fileID: 0}
+  _collider2D: {fileID: 0}
+  _constantForce: {fileID: 0}
+  _guiElement: {fileID: 0}
+  _guiText: {fileID: 0}
+  _guiTexture: {fileID: 0}
+  _hingeJoint: {fileID: 0}
+  _light: {fileID: 0}
+  _networkView: {fileID: 0}
+  _particleEmitter: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _renderer: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _rigidbody2D: {fileID: 0}
+  _transform: {fileID: 0}
   machine: {fileID: 11433874}
   states:
   - {fileID: 11433868}
@@ -153,10 +253,11 @@ MonoBehaviour:
   - {fileID: 11433862}
   currentStates:
   - {fileID: 11433864}
-  debug: 1
   selected: 0
   radius: 1.5
   sightRadius: 10
+  lightIntensity: 1
+  lightRange: 25
   attackSpeed: .5
   bulletLifeTime: 4
   bulletBurst: 3
@@ -167,7 +268,10 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   closestInRangeEnemy: {fileID: 0}
   playerId: 0
+  groupId: 0
   id: 0
+  _navMeshAgent: {fileID: 0}
+  _childLight: {fileID: 0}
 --- !u!114 &11433872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,7 +295,96 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layers:
-  - {fileID: 11433870}
+  - {fileID: 11434058}
+--- !u!114 &11434050
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c5e1e2d8e4b7e4cb854823181e9a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 11434058}
+  machine: {fileID: 11433874}
+--- !u!114 &11434052
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d713fd1aba735b940ab47d0bba589a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 11434058}
+  machine: {fileID: 11433874}
+--- !u!114 &11434054
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c22fe09c2e0d3f4e9987568623e601d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 11434058}
+  machine: {fileID: 11433874}
+--- !u!114 &11434056
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eab819c049b415409e8027eeb21d1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: {fileID: 11434058}
+  machine: {fileID: 11433874}
+  attackCounter: 0
+--- !u!114 &11434058
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f56924c5d650a4bae12f3c55d95620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 11433874}
+  states:
+  - {fileID: 11434056}
+  - {fileID: 11434054}
+  - {fileID: 11434052}
+  - {fileID: 11434050}
+  currentStates:
+  - {fileID: 11434052}
+  selected: 0
+  radius: 1.25
+  sightRadius: 5
+  lightIntensity: 1
+  lightRange: 25
+  attackSpeed: 1
+  bulletLifeTime: 4
+  bulletBurst: 3
+  bulletSpeed: 2
+  damage: 5
+  maxHealth: 16
+  health: 0
+  target: {x: 0, y: 0, z: 0}
+  closestInRangeEnemy: {fileID: 0}
+  playerId: 0
+  groupId: 0
+  id: 0
 --- !u!136 &13633862
 CapsuleCollider:
   m_ObjectHideFlags: 1

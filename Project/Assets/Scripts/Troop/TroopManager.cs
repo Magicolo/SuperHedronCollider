@@ -81,9 +81,10 @@ public class TroopManager : MonoBehaviourExtended {
 	public static void Despawn(TroopBase troop) {
 		if (playerIdTroopDict.ContainsKey(troop.playerId)) {
 			playerIdTroopDict[troop.playerId].RemoveTroop(troop);
-		
-			hObjectPool.Instance.Despawn(troop.gameObject);
 		}
+		
+		RemoveTroopFromGroup(troop);
+		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
 
 	public static void Despawn(int playerId, int troopId) {
@@ -300,7 +301,7 @@ public class TroopManager : MonoBehaviourExtended {
 		if (typeof(T) == typeof(TroopHexa)) {
 			typeId = 0;
 		}
-		else if (typeof(T) == typeof(TroopIso)) {
+		else if (typeof(T) == typeof(TroopIcosa)) {
 			typeId = 1;
 		}
 		else {
@@ -330,9 +331,9 @@ public class TroopManager : MonoBehaviourExtended {
 		bool hasAdvantage;
 		
 		if (source is TroopHexa) {
-			hasAdvantage = target is TroopIso;
+			hasAdvantage = target is TroopIcosa;
 		}
-		else if (source is TroopIso) {
+		else if (source is TroopIcosa) {
 			hasAdvantage = target is TroopTetra;
 		}
 		else {

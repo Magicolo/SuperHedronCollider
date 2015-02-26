@@ -93,8 +93,8 @@ public class TroopGroup {
 		for (int i = 1; i < troops.Length; i++) {
 			TroopBase troop = troops[i];
 			float distanceToCenter = Vector3.Distance(troop.transform.position, centerTroop.transform.position);
-			float intensityTarget = -1;
-			float rangeTarget = -1;
+			const float intensityTarget = -1;
+			const float rangeTarget = -1;
 				
 			troop.childLight.intensity = Mathf.Lerp(troop.childLight.intensity, intensityTarget, Time.deltaTime * lightFadeSpeed);
 			troop.childLight.range = Mathf.Lerp(troop.childLight.range, rangeTarget, Time.deltaTime * lightFadeSpeed);

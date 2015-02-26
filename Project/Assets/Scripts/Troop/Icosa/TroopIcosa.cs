@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Magicolo;
 
-public class TroopIso : TroopBase {
+public class TroopIcosa : TroopBase {
 	
 	
 }
