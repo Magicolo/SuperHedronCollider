@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 11456798}
   - {fileID: 11496184}
   debug: 1
+  mouseMarginDrag: 0
   mouseSelectButton: 0
   mouseActionButton: 1
   mouseMoveButton: 2

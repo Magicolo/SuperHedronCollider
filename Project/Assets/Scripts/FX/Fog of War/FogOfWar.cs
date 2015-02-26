@@ -4,6 +4,16 @@ using Magicolo;
 
 public class FogOfWar : MonoBehaviour {
 
+	static FogOfWar instance;
+	static FogOfWar Instance {
+		get {
+			if (instance == null) {
+				instance = FindObjectOfType<FogOfWar>();
+			}
+			return instance;
+		}
+	}
+	
 	[SerializeField, PropertyField(typeof(MinAttribute), 1)]
 	int precision;
 	public int Precision {
@@ -30,8 +40,6 @@ public class FogOfWar : MonoBehaviour {
 		}
 	}
 		
-	public int frameRate = 10;
-	
 	Material _material;
 	public Material material { get { return _material ? _material : (_material = renderer.sharedMaterial); } }
 	
@@ -50,6 +58,7 @@ public class FogOfWar : MonoBehaviour {
 	int width;
 	int height;
 	Texture2D texture;
+	float[,] alphaMap;
 	
 	void Awake() {
 		CreateTexture();
@@ -60,7 +69,7 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	void UpdateFow() {
-		float[,] alphaMap = new float[width, height];
+		alphaMap = new float[width, height];
 		
 		foreach (TroopBase troop in TroopManager.GetTroops(NetworkController.CurrentPlayerId)) {
 			Vector2 texturePosition = new Vector2(troop.transform.position.x * UnitsToPixels + (float)width / 2, troop.transform.position.z * UnitsToPixels + (float)height / 2);
@@ -101,5 +110,9 @@ public class FogOfWar : MonoBehaviour {
 			texture.filterMode = FilterMode;
 			material.mainTexture = texture;
 		}
+	}
+
+	public static bool IsFogged(Vector3 point) {
+		return false;
 	}
 }
