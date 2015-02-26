@@ -6,6 +6,7 @@ using Magicolo;
 public class PlayerInput : StateLayer {
 	
 	public bool debug;
+	public bool mouseMarginDrag = true;
 	public int mouseSelectButton = 0;
 	public int mouseActionButton = 1;
 	public int mouseMoveButton = 2;

@@ -5,7 +5,7 @@ using Magicolo;
 
 public class PlayerInputCamera : State {
 	
-	bool focusStatus;
+	bool focused;
 	
 	[SerializeField, PropertyField]
 	float dragMargin = 50;
@@ -51,16 +51,16 @@ public class PlayerInputCamera : State {
 	}
 	
 	public override void OnUpdate() {
-		if(focusStatus){
+		if (focused) {
 			Move();
 			Zoom();
 		}
 		
 	}
 
-	void OnApplicationFocus(bool newFocusStatus) {
-        this.focusStatus = newFocusStatus;
-    }
+	void OnApplicationFocus(bool focus) {
+		focused = focus;
+	}
 	
 	void Move() {
 		Vector3 keyMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * (Input.GetKey(Layer.fastMoveKey1) || Input.GetKey(Layer.fastMoveKey2) ? 6 : 3);
@@ -73,8 +73,8 @@ public class PlayerInputCamera : State {
 			dragDelta = Vector3.Lerp(dragDelta, Camera.main.ScreenToWorldPoint(dragStart) - Camera.main.ScreenToWorldPoint(dragEnd), Time.deltaTime * moveSmooth);
 			dragStart = dragEnd;
 		}
-		else if (!new Rect(dragMargin, dragMargin, Screen.width - dragMargin * 2, Screen.height - dragMargin * 2).Contains(Input.mousePosition)) {
-			Vector3 direction = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, Input.mousePosition.z)) / 1000;
+		else if (Layer.mouseMarginDrag && !new Rect(dragMargin, dragMargin, Screen.width - dragMargin * 2, Screen.height - dragMargin * 2).Contains(Input.mousePosition)) {
+			Vector3 direction = (Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, Input.mousePosition.z)) / 100;
 			dragDelta = Vector3.Lerp(dragDelta, new Vector3(direction.x, 0, direction.y), Time.deltaTime * moveSmooth);
 		}
 		else {
@@ -83,6 +83,7 @@ public class PlayerInputCamera : State {
 		
 		Vector3 targetPosition = Camera.main.transform.position + (dragDelta + keyMove) * moveSpeed;
 		float zoomModifier = Mathf.Min(maxZoom / Camera.main.transform.position.y, 3);
+		
 		Camera.main.transform.SetPosition(new Vector3(Mathf.Clamp(targetPosition.x, -maxMoveX * zoomModifier, maxMoveX * zoomModifier), targetPosition.y, Mathf.Clamp(targetPosition.z, -maxMoveY * zoomModifier, maxMoveY * zoomModifier)), "XZ");
 	}
 	
