@@ -141,11 +141,11 @@ public class TroopGroup {
 		return idTroopDict.GetKeyArray().Contains(troopId);
 	}
 
-	public bool ZoneContains(Vector3 point, bool useSightRadius = false) {
+	public bool ZoneContains(Vector3 point, bool useSightRadius) {
 		return useSightRadius ? sightZone.Contains(new Vector3(point.x, point.z, point.y)) : troopZone.Contains(new Vector3(point.x, point.z, point.y));
 	}
 	
-	public bool ZoneContains(TroopBase troop, bool useSightRadius = false) {
+	public bool ZoneContains(TroopBase troop, bool useSightRadius) {
 		return useSightRadius ? sightZone.Intersects(troop.GetSightRect()) : troopZone.Intersects(troop.GetRect());
 	}
 	

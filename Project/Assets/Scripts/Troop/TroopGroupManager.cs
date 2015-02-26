@@ -45,14 +45,14 @@ public class TroopGroupManager {
 		return groupCounter;
 	}
 
-	public void SwitchTroopsToGroup(int groupId, TroopBase[] troops) {
+	public void SwitchTroopsToGroup(int groupId, params TroopBase[] troops) {
 		if (idGroupDict.ContainsKey(groupId)) {
 			foreach (TroopBase troop in troops) {
 				if (troop.groupId != 0) {
 					RemoveTroopFromGroup(troop.groupId, troop.id);
 				}
 				
-				idGroupDict[groupId].AddTroop(troop);
+				AddTroopToGroup(groupId, troop);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ public class TroopGroupManager {
 
 	public bool GroupZoneContains(int groupId, Vector3 point) {
 		if (idGroupDict.ContainsKey(groupId)) {
-			return idGroupDict[groupId].ZoneContains(point);
+			return idGroupDict[groupId].ZoneContains(point, false);
 		}
 		
 		return false;
@@ -103,7 +103,7 @@ public class TroopGroupManager {
 
 	public bool GroupZoneContains(int groupId, TroopBase troop) {
 		if (idGroupDict.ContainsKey(groupId)) {
-			return idGroupDict[groupId].ZoneContains(troop);
+			return idGroupDict[groupId].ZoneContains(troop, false);
 		}
 		
 		return false;

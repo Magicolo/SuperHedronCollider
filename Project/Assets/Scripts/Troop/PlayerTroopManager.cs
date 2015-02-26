@@ -66,6 +66,18 @@ public class PlayerTroopManager {
 			
 		troopZone = Rect.MinMaxRect(xMinTroop, yMinTroop, xMaxTroop, yMaxTroop);
 		sightZone = Rect.MinMaxRect(xMinSight, yMinSight, xMaxSight, yMaxSight);
+		
+		if (Application.isEditor) {
+			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.forward * troopZone.height, Color.blue);
+			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.right * troopZone.width, Color.blue);
+			Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.back * troopZone.height, Color.blue);
+			Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.left * troopZone.width, Color.blue);
+		
+			Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.forward * sightZone.height, Color.yellow);
+			Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.right * sightZone.width, Color.yellow);
+			Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.back * sightZone.height, Color.yellow);
+			Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.left * sightZone.width, Color.yellow);
+		}
 	}
 	
 	public TroopBase GetTroop(int troopId) {
@@ -92,7 +104,7 @@ public class PlayerTroopManager {
 		RemoveTroop(troop.id);
 	}
 
-	public bool ZoneContains(TroopBase troop, bool useSightRadius = true) {
+	public bool ZoneContains(TroopBase troop, bool useSightRadius) {
 		return useSightRadius ? sightZone.Intersects(troop.GetSightRect()) : troopZone.Intersects(troop.GetRect());
 	}
 

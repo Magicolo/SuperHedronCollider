@@ -60,8 +60,10 @@ public class ClientController : MonoBehaviour {
 	
 	
 	#region Unit
-	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation){
-		networkView.RPC("ToServerSpawnUnit",RPCMode.Server, playerId, troopType, position, rotation);
+	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("ToServerSpawnUnit", RPCMode.Server, playerId, troopType, position, rotation);
+		}
 	}
 	
 	[RPC]
@@ -70,7 +72,9 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	public void sendUnitDamage(int troopPlayerId, int troopId, float damage){
-		networkView.RPC("UnitDamage",RPCMode.All, troopPlayerId, troopId, damage);
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UnitDamage", RPCMode.All, troopPlayerId, troopId, damage);
+		}
 	}
 	
 	[RPC]
@@ -78,8 +82,10 @@ public class ClientController : MonoBehaviour {
 		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	
-	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled){
-		networkView.RPC("UnitLightingData",RPCMode.Others, troopPlayerId, troopId, intensity, range, enabled);
+	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UnitLightingData", RPCMode.Others, troopPlayerId, troopId, intensity, range, enabled);
+		}
 	}
 	
 	[RPC]
@@ -90,12 +96,16 @@ public class ClientController : MonoBehaviour {
 		
 	}	
 	
-	public void sendUnitTarget(int troopId, Vector3 target){
-		networkView.RPC("UpdateUnitTarget",RPCMode.Others, this.playerId, troopId,  target);
+	public void sendUnitTarget(int troopId, Vector3 target) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UpdateUnitTarget", RPCMode.Others, this.playerId, troopId, target);
+		}
 	}
 	
-	public void sendUnitPosition(int troopId, Vector3 position){
-		networkView.RPC("UpdateUnitPosition",RPCMode.Others, this.playerId, troopId, position);
+	public void sendUnitPosition(int troopId, Vector3 position) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UpdateUnitPosition", RPCMode.Others, this.playerId, troopId, position);
+		}
 	}
 	
 	[RPC]
@@ -112,8 +122,10 @@ public class ClientController : MonoBehaviour {
 	
 	
 	
-	public void killUnit(int troopPlayerId, int troopId){
-		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);
+	public void killUnit(int troopPlayerId, int troopId) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("ToClientKillUnit", RPCMode.All, troopPlayerId, troopId);
+		}
 	}
 	
 	[RPC]

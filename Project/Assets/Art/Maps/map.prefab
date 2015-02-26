@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 441268}
   - 108: {fileID: 10841268}
   - 114: {fileID: 11483678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 441270}
   - 108: {fileID: 10841270}
   - 114: {fileID: 11441268}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 483672}
   - 108: {fileID: 10883672}
   - 114: {fileID: 11483676}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 483674}
   - 108: {fileID: 10883674}
   - 114: {fileID: 11483670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - 4: {fileID: 483676}
   - 108: {fileID: 10883676}
   - 114: {fileID: 11483672}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 483678}
   - 108: {fileID: 10883678}
   - 114: {fileID: 11483674}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - 33: {fileID: 3386176}
   - 23: {fileID: 2386176}
   - 64: {fileID: 6486176}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - 33: {fileID: 3386178}
   - 23: {fileID: 2386178}
   - 64: {fileID: 6486178}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - 33: {fileID: 3386180}
   - 23: {fileID: 2386180}
   - 64: {fileID: 6486180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerA2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - 33: {fileID: 3386182}
   - 23: {fileID: 2386182}
   - 64: {fileID: 6486182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - 33: {fileID: 3386184}
   - 23: {fileID: 2386184}
   - 64: {fileID: 6486184}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - 33: {fileID: 3386186}
   - 23: {fileID: 2386186}
   - 64: {fileID: 6486186}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - 33: {fileID: 3386188}
   - 23: {fileID: 2386188}
   - 64: {fileID: 6486188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 486190}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 186188}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 486190}
   m_RootOrder: 0
@@ -413,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 186190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 5, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486188}
   - {fileID: 486186}
