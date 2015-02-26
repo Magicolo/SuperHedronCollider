@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11455664}
   - 114: {fileID: 11455666}
   - 148: {fileID: 14855666}
+  - 114: {fileID: 11434334}
   m_Layer: 0
   m_Name: NetworkSystem
   m_TagString: Untagged
@@ -31,6 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11434334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8f2723e47a4264aa5133e6f16cbbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleOutput: {fileID: 0}
 --- !u!114 &11455662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -44,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalAddress: 127.0.0.1
   ServerAddress: 127.0.0.1
+  isConnected: 0
   networkLinkPrefab: {fileID: 116472, guid: d431739496a3c4145b1e2d1750386788, type: 2}
   serverController: {fileID: 11455664}
   clientController: {fileID: 11455666}

@@ -104,11 +104,11 @@ public class PlayerTroopManager {
 		}
 	}
 
-	public void changeTroopTarget(int troopId, Vector3 target) {
+	public void SetTroopTarget(int troopId, Vector3 target) {
 		TroopBase troop = GetTroop(troopId);
 		
 		if (troop != null) {
-			troop.ChangeTarget(target);
+			troop.SetTarget(target);
 		}
 	}
 
@@ -125,6 +125,14 @@ public class PlayerTroopManager {
 		
 		if (troop != null) {
 			troop.Kill();
+		}
+	}
+
+	public void FadeTroopLight(int troopId, float intensity, float range, bool enabled) {
+		TroopBase troop = GetTroop(troopId);
+		
+		if (troop != null) {
+			troop.FadeLight(intensity, range, enabled);
 		}
 	}
 }

@@ -116,10 +116,17 @@ public class TroopBase : StateLayer, ISelectable {
 		SwitchState(GetType().Name + "Dead");
 	}
 
-	public void ChangeTarget(Vector3 target){
-		Target = target;
-	}
 	public void Move(Vector3 position) {
 		transform.position = position;
+	}
+
+	public void SetTarget(Vector3 target) {
+		Target = target;
+	}
+
+	public void FadeLight(float intensity, float range, bool enabled) {
+		childLight.intensity = intensity;
+		childLight.range = range;
+		childLight.enabled = enabled;
 	}
 }
