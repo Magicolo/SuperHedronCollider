@@ -15,6 +15,13 @@ public class GameManager : MonoBehaviourExtended {
 		}
 	}
     
+	public bool debug;
+	public static bool Debug {
+		get {
+			return Instance.debug;
+		}
+	}
+	
 	public static void Start() {
 		Time.timeScale = 1;
 	}

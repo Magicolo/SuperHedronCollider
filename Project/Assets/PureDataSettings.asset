@@ -32,7 +32,7 @@ MonoBehaviour:
   sequences:
   - name: Music
     id: 1
-    volume: 2
+    volume: .289999992
     output: Master
     loop: 1
     sleepTime: 1

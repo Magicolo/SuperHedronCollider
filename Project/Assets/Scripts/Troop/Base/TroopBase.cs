@@ -5,8 +5,6 @@ using Magicolo;
 
 public class TroopBase : StateLayer, ISelectable {
 	
-	public bool debug;
-	
 	[SerializeField, PropertyField]
 	bool selected;
 	public bool Selected {
@@ -16,7 +14,7 @@ public class TroopBase : StateLayer, ISelectable {
 		set {
 			selected = value;
 			
-			if (debug) {
+			if (GameManager.Debug) {
 				renderer.material.color = selected ? Color.green : Color.red;
 			}
 		}
