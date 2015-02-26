@@ -80,7 +80,9 @@ public class PlayerInputSelect : State {
 	}
 
 	void Select() {
-		DeselectAll();
+		if (!Input.GetKey(Layer.addToSelectionKey1) && !Input.GetKey(Layer.addToSelectionKey2)) {
+			DeselectAll();
+		}
 		
 		TroopBase[] troops = TroopManager.GetTroops(NetworkController.CurrentPlayerId);
 		
@@ -93,7 +95,10 @@ public class PlayerInputSelect : State {
 				
 				if (troop != null && troop.playerId == NetworkController.CurrentPlayerId) {
 					troop.Selected = true;
-					Layer.selectedTroops.Add(troop);
+					
+					if (!Layer.selectedTroops.Contains(troop)) {
+						Layer.selectedTroops.Add(troop);
+					}
 				}
 			}
 		}

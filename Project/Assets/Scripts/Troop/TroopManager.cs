@@ -47,6 +47,7 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 		
 		troop.childLight.enabled = playerId == NetworkController.CurrentPlayerId;
+		troop.gameObject.layer = playerId == NetworkController.CurrentPlayerId ? 9 : 10;
 		troop.playerId = playerId;
 		troop.id = troopId;
 		playerIdTroopDict[playerId].AddTroop(troop);
@@ -131,7 +132,7 @@ public class TroopManager : MonoBehaviourExtended {
 			return false;
 		}
 		
-		return playerIdTroopDict[playerId].ZoneContains(troop);
+		return playerIdTroopDict[playerId].ZoneContains(troop, true);
 	}
 	
 	public static TroopBase[] GetInRangeAllies(TroopBase troop) {

@@ -9,6 +9,16 @@ public class PlayerInput : StateLayer {
 	public int mouseSelectButton = 0;
 	public int mouseActionButton = 1;
 	public int mouseMoveButton = 2;
+	public KeyCode addToSelectionKey1 = KeyCode.LeftShift;
+	public KeyCode addToSelectionKey2 = KeyCode.RightShift;
+	public KeyCode zoomKey1 = KeyCode.Equals;
+	public KeyCode zoomKey2 = KeyCode.Plus;
+	public KeyCode zoomKey3 = KeyCode.KeypadPlus;
+	public KeyCode dezoomKey1 = KeyCode.Minus;
+	public KeyCode dezoomKey2 = KeyCode.KeypadMinus;
+	public KeyCode dezoomKey3 = KeyCode.Underscore;
+	public KeyCode fastMoveKey1 = KeyCode.LeftShift;
+	public KeyCode fastMoveKey2 = KeyCode.RightShift;
 	public List<TroopBase> selectedTroops = new List<TroopBase>();
 	
 	public override void OnUpdate() {

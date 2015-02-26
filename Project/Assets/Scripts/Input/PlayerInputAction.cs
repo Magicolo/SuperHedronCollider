@@ -40,10 +40,8 @@ public class PlayerInputAction : State {
 			
 			TroopManager.MoveGroup(NetworkController.CurrentPlayerId, groupId, mouseRayInfo.point);
 		
-			if (NetworkController.instance.isConnected) {
-				foreach (TroopBase troop in Layer.selectedTroops) {
-					NetworkController.instance.clientController.sendUnitTarget(troop.id, troop.Target);
-				}
+			foreach (TroopBase troop in Layer.selectedTroops) {
+				NetworkController.instance.clientController.sendUnitTarget(troop.id, troop.Target);
 			}
 		}
 	}

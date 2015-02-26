@@ -26,6 +26,9 @@ public class TroopBaseIdle : State {
 		}
 		
 		if (Layer.CheckForEnemies()) {
+//			 && Physics.Raycast(transform.position, (Layer.closestInRangeEnemy.transform.position - transform.position).normalized, Mathf.Infinity, new LayerMask().AddToMask(10, 11)
+			Debug.DrawRay(transform.position, Layer.closestInRangeEnemy.transform.position - transform.position, Color.yellow, 5);
+			
 			SwitchState(Layer.GetType().Name + "Attack");
 			return;
 		}

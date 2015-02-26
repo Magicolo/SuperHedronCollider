@@ -151,6 +151,16 @@ MonoBehaviour:
   mouseSelectButton: 0
   mouseActionButton: 1
   mouseMoveButton: 2
+  addToSelectionKey1: 304
+  addToSelectionKey2: 303
+  zoomKey1: 61
+  zoomKey2: 43
+  zoomKey3: 270
+  dezoomKey1: 45
+  dezoomKey2: 269
+  dezoomKey3: 95
+  fastMoveKey1: 304
+  fastMoveKey2: 303
   selectedTroops: []
 --- !u!114 &11456804
 MonoBehaviour:
@@ -237,10 +247,12 @@ MonoBehaviour:
   dragMargin: 25
   moveSpeed: 1
   moveSmooth: 5
-  zoomSpeed: 10
+  zoomSpeed: 8
   zoomSmooth: 5
-  minZoom: 25
+  minZoom: 21
   maxZoom: 500
+  maxMoveX: 100
+  maxMoveY: 25
   smoothScrollDelta: 0
   dragStart: {x: 0, y: 0, z: 0}
   dragEnd: {x: 0, y: 0, z: 0}
