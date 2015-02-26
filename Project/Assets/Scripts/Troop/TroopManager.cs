@@ -46,7 +46,7 @@ public class TroopManager : MonoBehaviourExtended {
 			playerIdTroopDict[playerId] = new PlayerTroopManager(playerId);
 		}
 		
-		troop.SetLight(playerId == NetworkController.CurrentPlayerId);
+		troop.childLight.enabled = playerId == NetworkController.CurrentPlayerId;
 		troop.playerId = playerId;
 		troop.id = troopId;
 		playerIdTroopDict[playerId].AddTroop(troop);

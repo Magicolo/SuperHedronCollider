@@ -9,6 +9,8 @@ public class TroopGroup {
 	public int playerId;
 	public int id;
 	
+	const float lightFadeSpeed = 1;
+	const float lightGrowFactor = 0.5F;
 	readonly Dictionary<int, TroopBase> idTroopDict = new Dictionary<int, TroopBase>();
 	Rect troopZone;
 	Rect sightZone;
@@ -69,19 +71,42 @@ public class TroopGroup {
 		troopZone = Rect.MinMaxRect(xMinTroop, yMinTroop, xMaxTroop, yMaxTroop);
 		sightZone = Rect.MinMaxRect(xMinSight, yMinSight, xMaxSight, yMaxSight);
 		
-		Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.forward * troopZone.height, Color.cyan);
-		Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.right * troopZone.width, Color.cyan);
-		Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.back * troopZone.height, Color.cyan);
-		Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.left * troopZone.width, Color.cyan);
+		if (Application.isEditor) {
+			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.forward * troopZone.height, Color.cyan);
+			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.right * troopZone.width, Color.cyan);
+			Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.back * troopZone.height, Color.cyan);
+			Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.left * troopZone.width, Color.cyan);
 		
-		Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.forward * sightZone.height, Color.magenta);
-		Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.right * sightZone.width, Color.magenta);
-		Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.back * sightZone.height, Color.magenta);
-		Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.left * sightZone.width, Color.magenta);
+			Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.forward * sightZone.height, Color.magenta);
+			Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.right * sightZone.width, Color.magenta);
+			Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.back * sightZone.height, Color.magenta);
+			Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.left * sightZone.width, Color.magenta);
+		}
 	}
 	
 	public void UpdateLights() {
+		TroopBase[] troops = GetTroops();
+		TroopBase centerTroop = troops[0];
+		float centerIntensityTarget = 0;
+		float centerRangeTarget = 0;
+				
+		for (int i = 1; i < troops.Length; i++) {
+			TroopBase troop = troops[i];
+			float distanceToCenter = Vector3.Distance(troop.transform.position, centerTroop.transform.position);
+			float intensityTarget = -1;
+			float rangeTarget = -1;
+				
+			troop.childLight.intensity = Mathf.Lerp(troop.childLight.intensity, intensityTarget, Time.deltaTime * lightFadeSpeed);
+			troop.childLight.range = Mathf.Lerp(troop.childLight.range, rangeTarget, Time.deltaTime * lightFadeSpeed);
+			troop.childLight.enabled = troop.childLight.intensity > 0 && troop.childLight.range > 0;
+			
+			centerIntensityTarget += Mathf.Clamp(1 - distanceToCenter / troop.sightRadius, 0, 1) * troop.lightIntensity * lightGrowFactor;
+			centerRangeTarget += Mathf.Clamp(1 - distanceToCenter / troop.sightRadius, 0, 1) * troop.lightRange * lightGrowFactor;
+		}
 		
+		centerTroop.childLight.intensity = Mathf.Lerp(centerTroop.childLight.intensity, centerIntensityTarget.Pow(0.75), Time.deltaTime * lightFadeSpeed * 5);
+		centerTroop.childLight.range = Mathf.Lerp(centerTroop.childLight.range, centerRangeTarget.Pow(0.75), Time.deltaTime * lightFadeSpeed * 5);
+		centerTroop.childLight.enabled = centerTroop.childLight.intensity > 0 && centerTroop.childLight.range > 0;
 	}
 	
 	public void AddTroop(TroopBase troop) {
@@ -90,7 +115,9 @@ public class TroopGroup {
 	}
 	
 	public void RemoveTroop(int troopId) {
-		RemoveTroop(idTroopDict[troopId]);
+		if (idTroopDict.ContainsKey(troopId)) {
+			RemoveTroop(idTroopDict[troopId]);
+		}
 	}
 	
 	public void RemoveTroop(TroopBase troop) {
