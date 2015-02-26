@@ -68,6 +68,16 @@ public class TroopGroup {
 			
 		troopZone = Rect.MinMaxRect(xMinTroop, yMinTroop, xMaxTroop, yMaxTroop);
 		sightZone = Rect.MinMaxRect(xMinSight, yMinSight, xMaxSight, yMaxSight);
+		
+		Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.forward * troopZone.height, Color.cyan);
+		Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.right * troopZone.width, Color.cyan);
+		Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.back * troopZone.height, Color.cyan);
+		Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.left * troopZone.width, Color.cyan);
+		
+		Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.forward * sightZone.height, Color.magenta);
+		Debug.DrawRay(new Vector3(sightZone.xMin, 1, sightZone.yMin), Vector3.right * sightZone.width, Color.magenta);
+		Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.back * sightZone.height, Color.magenta);
+		Debug.DrawRay(new Vector3(sightZone.xMax, 1, sightZone.yMax), Vector3.left * sightZone.width, Color.magenta);
 	}
 	
 	public void UpdateLights() {
@@ -100,11 +110,11 @@ public class TroopGroup {
 		return idTroopDict.GetKeyArray().Contains(troopId);
 	}
 
-	public bool ZoneContains(Vector3 point, bool useSightRadius = true) {
+	public bool ZoneContains(Vector3 point, bool useSightRadius = false) {
 		return useSightRadius ? sightZone.Contains(new Vector3(point.x, point.z, point.y)) : troopZone.Contains(new Vector3(point.x, point.z, point.y));
 	}
 	
-	public bool ZoneContains(TroopBase troop, bool useSightRadius = true) {
+	public bool ZoneContains(TroopBase troop, bool useSightRadius = false) {
 		return useSightRadius ? sightZone.Intersects(troop.GetSightRect()) : troopZone.Intersects(troop.GetRect());
 	}
 	
@@ -119,7 +129,7 @@ public class TroopGroup {
 			for (int i = 0; i < segmentLength / 2;) {
 				TroopBase troop = troops[troopCounter];
 					
-				if (troop.gameObject.activeInHierarchy && troop.Selected) {
+				if (troop.gameObject.activeInHierarchy) {
 					troop.Target = lastPosition;
 					lastPosition += currentDirection * troop.radius;
 					i++;

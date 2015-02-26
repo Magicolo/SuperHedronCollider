@@ -327,11 +327,11 @@ public class TroopManager : MonoBehaviourExtended {
 	}
 	
 	void Update() {
-		foreach (PlayerTroopManager troops in playerIdTroopDict.GetValueArray()) {
+		foreach (PlayerTroopManager troops in playerIdTroopDict.Values) {
 			troops.UpdateZones();
 		}
 		
-		foreach (TroopGroupManager groups in playerIdGroupDict.GetValueArray()) {
+		foreach (TroopGroupManager groups in playerIdGroupDict.Values) {
 			groups.UpdateZones();
 			groups.UpdateLights();
 		}

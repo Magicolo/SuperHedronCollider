@@ -16,13 +16,13 @@ public class TroopGroupManager {
 	}
 	
 	public void UpdateZones() {
-		foreach (TroopGroup group in idGroupDict.GetValueArray()) {
+		foreach (TroopGroup group in idGroupDict.Values) {
 			group.UpdateZones();
 		}
 	}
 
 	public void UpdateLights() {
-		foreach (TroopGroup group in idGroupDict.GetValueArray()) {
+		foreach (TroopGroup group in idGroupDict.Values) {
 			group.UpdateLights();
 		}
 	}

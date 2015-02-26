@@ -1362,7 +1362,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1694710997
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 11496184, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 1134559877}
@@ -1393,7 +1393,7 @@ MonoBehaviour:
     height: 917
 --- !u!114 &1694710998
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 11456796, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 1134559877}
@@ -1420,7 +1420,7 @@ MonoBehaviour:
   draw: 0
 --- !u!114 &1694710999
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 11456798, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 1134559877}
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   machine: {fileID: 1694711002}
 --- !u!114 &1694711000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 11456800, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 1134559877}
@@ -1448,7 +1448,7 @@ MonoBehaviour:
   machine: {fileID: 1694711002}
 --- !u!114 &1694711001
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 11456802, guid: 4fb1e121206436943af23e0fd25dd353,
     type: 2}
   m_PrefabInternal: {fileID: 1134559877}

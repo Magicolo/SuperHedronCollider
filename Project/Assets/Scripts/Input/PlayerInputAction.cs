@@ -26,8 +26,7 @@ public class PlayerInputAction : State {
 		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit mouseRayInfo;
 			
-//		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo) && mouseRayInfo.point.y <= 0.5F) {
-		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo)) {
+		if (Layer.selectedTroops.Count > 0 && Physics.Raycast(mouseRay, out mouseRayInfo) && mouseRayInfo.point.y <= 3) {
 			int groupId;
 			int[] groupIds = TroopManager.ContainingGroupZones(NetworkController.CurrentPlayerId, mouseRayInfo.point);
 			
@@ -41,8 +40,10 @@ public class PlayerInputAction : State {
 			
 			TroopManager.MoveGroup(NetworkController.CurrentPlayerId, groupId, mouseRayInfo.point);
 		
-			foreach (TroopBase troop in Layer.selectedTroops) {
-				NetworkController.instance.clientController.sendUnitDeplacement(troop.id, troop.transform.position, troop.Target);
+			if (NetworkController.instance.isConnected) {
+				foreach (TroopBase troop in Layer.selectedTroops) {
+					NetworkController.instance.clientController.sendUnitDeplacement(troop.id, troop.transform.position, troop.Target);
+				}
 			}
 		}
 	}
