@@ -84,7 +84,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void UnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled, NetworkMessageInfo info){
-		TroopManager.ChangeUnitLightingData(troopPlayerId, troopId, intensity,range,lightingEnabled);
+		TroopManager.FadeTroopLight(troopPlayerId, troopId, intensity,range,lightingEnabled);
 	}	
 	
 	public void sendUnitTarget(int troopId, Vector3 target){
@@ -98,7 +98,7 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void UpdateUnitTarget(int troopPlayerId, int troopId, Vector3 target, NetworkMessageInfo info){
 		if(isMe(troopPlayerId)) return;
-		TroopManager.changeTroopTarget(troopPlayerId, troopId, target);
+		TroopManager.SetTroopTarget(troopPlayerId, troopId, target);
 	}
 	
 	[RPC]

@@ -190,11 +190,11 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static void changeTroopTarget(int playerId, int troopId, Vector3 target) {
+	public static void SetTroopTarget(int playerId, int troopId, Vector3 target) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
-			playerIdTroopDict[playerId].changeTroopTarget(troopId, target);
+			playerIdTroopDict[playerId].SetTroopTarget(troopId, target);
 		}
-	} 
+	}
 	
 	public static void MoveTroop(int playerId, int troopId, Vector3 position) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
@@ -202,12 +202,15 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static void ChangeUnityLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled){
-		//TODO CHANGE CA KEVIN
-	}
 	public static void KillTroop(int playerId, int troopId) {
 		if (playerIdTroopDict.ContainsKey(playerId)) {
 			playerIdTroopDict[playerId].KillTroop(troopId);
+		}
+	}
+	
+	public static void FadeTroopLight(int playerId, int troopId, float intensity, float range, bool enabled) {
+		if (playerIdTroopDict.ContainsKey(playerId)) {
+			playerIdTroopDict[playerId].FadeTroopLight(troopId, intensity, range, enabled);
 		}
 	}
 	
