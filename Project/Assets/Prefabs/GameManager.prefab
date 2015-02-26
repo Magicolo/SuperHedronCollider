@@ -442,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   precision: 2
   filterMode: 0
+  updateFow: 0
   fogAgents:
   - transform: {fileID: 0}
     sightRadius: 40

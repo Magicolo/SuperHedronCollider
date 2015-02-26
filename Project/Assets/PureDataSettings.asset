@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
   sequences:
-  - name: Drum
+  - name: Music
     id: 1
     volume: 2
     output: Master
@@ -41,6 +41,160 @@ MonoBehaviour:
       beats: 4
     tracks:
     - id: 1
+      instrumentPatchPath: Instruments/lead.pd
+      steps:
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 7
+        - 8
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 2
+        - 2
+        - 2000
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2000
+        - 0
+        sortedPattern:
+        - 7
+        - 2000
+        - 8
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 2
+        - 2000
+        - 2
+        - 0
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 2
+      instrumentPatchPath: Instruments/bass.pd
+      steps:
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 0
+        - 7
+        - 14
+        - 21
+        - -2
+        - 5
+        - 12
+        - 19
+        - -4
+        - 3
+        - 10
+        - 17
+        - -5
+        - 7
+        - -5
+        - 5
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        sortedPattern:
+        - 0
+        - 100
+        - 7
+        - 100
+        - 14
+        - 100
+        - 21
+        - 100
+        - -2
+        - 100
+        - 5
+        - 100
+        - 12
+        - 100
+        - 19
+        - 100
+        - -4
+        - 100
+        - 3
+        - 100
+        - 10
+        - 100
+        - 17
+        - 100
+        - -5
+        - 100
+        - 7
+        - 100
+        - -5
+        - 100
+        - 5
+        - 100
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 3
       instrumentPatchPath: Instruments/hihat.pd
       steps:
       - patternIndex: 0
@@ -100,7 +254,7 @@ MonoBehaviour:
         - 0
         pureData: {fileID: 0}
       pureData: {fileID: 0}
-    - id: 2
+    - id: 4
       instrumentPatchPath: Instruments/snare.pd
       steps:
       - patternIndex: 0
@@ -145,7 +299,7 @@ MonoBehaviour:
         - 0
         pureData: {fileID: 0}
       pureData: {fileID: 0}
-    - id: 3
+    - id: 5
       instrumentPatchPath: Instruments/kick.pd
       steps:
       - patternIndex: 0

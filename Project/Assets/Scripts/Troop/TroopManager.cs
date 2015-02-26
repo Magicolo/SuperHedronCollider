@@ -52,6 +52,8 @@ public class TroopManager : MonoBehaviourExtended {
 		troop.id = troopId;
 		playerIdTroopDict[playerId].AddTroop(troop);
 		
+		References.Fow.updateFow = true;
+		
 		return troop;
 	}
 	

@@ -33,6 +33,7 @@ public class FogOfWar : MonoBehaviour {
 	Material _material;
 	public Material material { get { return _material ? _material : (_material = renderer.sharedMaterial); } }
 	
+	public bool updateFow;
 	public FogAgent[] fogAgents;
 	
 	public float UnitsToPixels {
@@ -57,10 +58,13 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	void Update() {
-		UpdateFow();
+		if (updateFow) {
+			UpdateFow();
+		}
 	}
 	
 	void UpdateFow() {
+		Logger.Log("UpdateFow");
 		UpdateAlphaMap();
 		UpdateTexture();
 	}
@@ -106,6 +110,7 @@ public class FogOfWar : MonoBehaviour {
 			texture = new Texture2D(width, height, TextureFormat.Alpha8, false);
 			texture.filterMode = FilterMode;
 			material.mainTexture = texture;
+			updateFow = true;
 		}
 	}
 
