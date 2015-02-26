@@ -14,7 +14,7 @@ public class ServerController : MonoBehaviour {
 	public NetworkController networkController;
 	
 	
-	public static int nextUniqueId;
+	public static int nextPlayerId;
 	public static int nextUnitId;
 	public static int nextBulletId;
 	
@@ -22,7 +22,9 @@ public class ServerController : MonoBehaviour {
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
-		networkController.clientController.playerId = nextUniqueId++;
+		networkController.clientController.playerId = nextPlayerId++;
+		networkController.currentMap.setUpFor(networkController.clientController.playerId);
+		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
 		serverStarted = true;
@@ -42,6 +44,8 @@ public class ServerController : MonoBehaviour {
 		
 	[RPC]
 	void SendAllPlayers(NetworkMessageInfo info){
+		if(!Network.isServer) return;
+		
 		var networkLinks = GetComponentsInChildren<NetworkLink>();
 		
 		foreach (var link in networkLinks) {
@@ -51,23 +55,20 @@ public class ServerController : MonoBehaviour {
 		}
 	}
 	
-	/*[RPC]
-	void SendNextUniqueId(NetworkMessageInfo info){
-		networkView.RPC("", info.sender, viewId, networkPlayer);
-	}*/
 	
 	[RPC]
 	public void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation){
-		if(Network.isServer){
-			int unitId = nextUnitId++;
-			networkController.log(this.gameObject.GetInstanceID() + " - " + unitId + " : " + Network.isServer);
-			networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, unitId,troopType, position, rotation);
-		}
+		if(!Network.isServer) return;
+		
+		int unitId = nextUnitId++;
+		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, unitId,troopType, position, rotation);
 		
 	}
 	
 	[RPC]
 	void ToServerSpawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget, NetworkMessageInfo info){
+		if(!Network.isServer) return;
+		
 		networkView.RPC("ToClientSpawnBullet", RPCMode.All, nextBulletId++,playerIdSource, unitIdSource, playerIdTarget,unitIdTarget);
 		nextBulletId %= int.MaxValue;
 	}
@@ -78,7 +79,7 @@ public class ServerController : MonoBehaviour {
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
 		
-		networkView.RPC("ThisIsYourPlayerId", p, nextUniqueId++);
+		networkView.RPC("ThisIsYourPlayerId", p, nextPlayerId++);
 		
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
 			

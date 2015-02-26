@@ -50,13 +50,14 @@ public class TroopManager : MonoBehaviourExtended {
 		troop.gameObject.layer = playerId == NetworkController.CurrentPlayerId ? 9 : 10;
 		troop.playerId = playerId;
 		troop.id = troopId;
+		troop.childLight.color = TeamStaticStuff.getColorForTeam(playerId);
 		playerIdTroopDict[playerId].AddTroop(troop);
 		
 		References.Fow.updateFow = true;
 		
 		return troop;
 	}
-	
+
 	public static TroopBase Spawn(int playerId, int troopId, int troopTypeId, Vector3 position) {
 		return Spawn(playerId, troopId, troopTypeId, position, Quaternion.identity);
 	}
