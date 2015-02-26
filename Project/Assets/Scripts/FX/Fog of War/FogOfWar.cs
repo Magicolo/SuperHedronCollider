@@ -64,7 +64,6 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	void UpdateFow() {
-		Logger.Log("UpdateFow");
 		UpdateAlphaMap();
 		UpdateTexture();
 	}

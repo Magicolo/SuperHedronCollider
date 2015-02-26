@@ -39,11 +39,80 @@ MonoBehaviour:
     steps:
     - tempo: 120
       beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
     tracks:
     - id: 1
       instrumentPatchPath: Instruments/lead.pd
       steps:
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
       - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
       patterns:
       - name: 
         sendType: 1
@@ -120,6 +189,29 @@ MonoBehaviour:
     - id: 2
       instrumentPatchPath: Instruments/bass.pd
       steps:
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
       - patternIndex: 0
       patterns:
       - name: 
@@ -198,6 +290,29 @@ MonoBehaviour:
       instrumentPatchPath: Instruments/hihat.pd
       steps:
       - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
       patterns:
       - name: 
         sendType: 1
@@ -258,6 +373,29 @@ MonoBehaviour:
       instrumentPatchPath: Instruments/snare.pd
       steps:
       - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
       patterns:
       - name: 
         sendType: 1
@@ -302,6 +440,29 @@ MonoBehaviour:
     - id: 5
       instrumentPatchPath: Instruments/kick.pd
       steps:
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
       - patternIndex: 0
       patterns:
       - name: 

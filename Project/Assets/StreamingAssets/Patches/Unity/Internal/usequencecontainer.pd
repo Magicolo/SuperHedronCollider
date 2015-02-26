@@ -9,7 +9,7 @@
 #N canvas 43 653 311 113 utrack 0;
 #X obj 23 65 outlet~ left;
 #X obj 103 65 outlet~ right;
-#X obj 23 44 ../../Instruments/lea;
+#X obj 23 44 ../../Instruments/lead;
 #X obj 23 24 usequencemessager 1 1;
 #X connect 2 0 0 0;
 #X connect 2 1 1 0;
