@@ -31,6 +31,9 @@ public class NetworkController : MonoBehaviour {
 	private int nbMessage;
 	public Text outputText;
 	
+	
+	public MapSettings currentMap;
+	
 	void Awake() {
 		NetworkController.instance = this;
 		outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
