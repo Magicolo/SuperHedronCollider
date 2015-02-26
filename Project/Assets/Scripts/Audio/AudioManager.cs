@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviourExtended {
 
 	[Button("PlayDrum", "PlayDrum", NoPrefixLabel = true)] public bool playDrum;
 	void PlayDrum() {
-		PureData.PlaySequence("Drum");
+		PureData.PlaySequence("Music");
 	}
 	
 	void Awake() {

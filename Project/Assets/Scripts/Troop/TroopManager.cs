@@ -53,6 +53,8 @@ public class TroopManager : MonoBehaviourExtended {
 		troop.childLight.color = TeamStaticStuff.getColorForTeam(playerId);
 		playerIdTroopDict[playerId].AddTroop(troop);
 		
+		References.Fow.updateFow = true;
+		
 		return troop;
 	}
 
