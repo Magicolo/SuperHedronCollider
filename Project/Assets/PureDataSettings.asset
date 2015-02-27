@@ -28,8 +28,492 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99a5111373ace34a8b421667e42b72e, type: 3}
   m_Name: Sequences
   m_EditorClassIdentifier: 
-  containerPath: C:\Users\BananaMobile\Documents\Workshop\Unity\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
-  sequences: []
+  containerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\usequencecontainer.pd
+  sequences:
+  - name: Music
+    id: 1
+    volume: .289999992
+    output: Master
+    loop: 1
+    sleepTime: 1
+    steps:
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    - tempo: 120
+      beats: 4
+    tracks:
+    - id: 1
+      instrumentPatchPath: Instruments/lead.pd
+      steps:
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 7
+        - 8
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 7
+        - 2
+        - 2
+        - 2000
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2000
+        - 0
+        sortedPattern:
+        - 7
+        - 2000
+        - 8
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 7
+        - 0
+        - 2
+        - 2000
+        - 2
+        - 0
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 2
+      instrumentPatchPath: Instruments/bass.pd
+      steps:
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: -1
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 0
+        - 7
+        - 14
+        - 21
+        - -2
+        - 5
+        - 12
+        - 19
+        - -4
+        - 3
+        - 10
+        - 17
+        - -5
+        - 7
+        - -5
+        - 5
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        - 100
+        sortedPattern:
+        - 0
+        - 100
+        - 7
+        - 100
+        - 14
+        - 100
+        - 21
+        - 100
+        - -2
+        - 100
+        - 5
+        - 100
+        - 12
+        - 100
+        - 19
+        - 100
+        - -4
+        - 100
+        - 3
+        - 100
+        - 10
+        - 100
+        - 17
+        - 100
+        - -5
+        - 100
+        - 7
+        - 100
+        - -5
+        - 100
+        - 5
+        - 100
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 3
+      instrumentPatchPath: Instruments/hihat.pd
+      steps:
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 50
+        - 0
+        - 25
+        - 50
+        - 0
+        - 25
+        - 25
+        - 50
+        - 0
+        - 50
+        - 0
+        - 25
+        - 50
+        - 25
+        - 25
+        - 0
+        sortedPattern:
+        - 50
+        - 0
+        - 25
+        - 50
+        - 0
+        - 25
+        - 25
+        - 50
+        - 0
+        - 50
+        - 0
+        - 25
+        - 50
+        - 25
+        - 25
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 4
+        pattern:
+        - 0
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - 0
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 4
+      instrumentPatchPath: Instruments/snare.pd
+      steps:
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 200
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 200
+        - 0
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 200
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 200
+        - 0
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    - id: 5
+      instrumentPatchPath: Instruments/kick.pd
+      steps:
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      - patternIndex: 0
+      patterns:
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 25
+        - 50
+        - 0
+        - 25
+        - 0
+        - 25
+        - 50
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 25
+        - 50
+        - 0
+        - 25
+        - 0
+        - 25
+        - 50
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
+      pureData: {fileID: 0}
+    spatializer:
+      name: 
+      showing: 0
+      pureData: {fileID: 0}
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+    pureData: {fileID: 0}
   pureData: {fileID: 0}
 --- !u!114 &11423906
 MonoBehaviour:
@@ -68,5 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be5b51822352f04a908d2b4de9815f7, type: 3}
   m_Name: Buses
   m_EditorClassIdentifier: 
-  mixerPath: C:\Users\BananaMobile\Documents\Workshop\Unity\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\umixer~.pd
-  buses: []
+  mixerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\umixer~.pd
+  buses:
+  - name: Music
+    volume: 1
+    pureData: {fileID: 0}

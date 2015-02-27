@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel;
+using UnityEngine;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using UnityEngine.UI;
 
 public class ClientController : MonoBehaviour {
 
@@ -10,12 +12,25 @@ public class ClientController : MonoBehaviour {
 	
 	public int playerId;
 	
+	public Text centerScreenText;
+	public float centerScreenTextTimer;
+	
+	
+	void Update(){
+		if(centerScreenTextTimer>0){
+			centerScreenTextTimer -= Time.deltaTime;
+			if(centerScreenTextTimer <= 0){
+				centerScreenText.text = "";
+			}
+		}
+	}
 	
 	public void ConnectToServer(string ip, int remotePort){
     	Network.Connect(ip, remotePort);
 	}
 	
 	void OnConnectedToServer(){
+		networkController.isConnected = true;
 		networkView.RPC("SendAllPlayers", RPCMode.Server);
 	}
 	
@@ -26,12 +41,14 @@ public class ClientController : MonoBehaviour {
 	[RPC]
 	void ThisIsYourPlayerId(int myNewPlayerId, NetworkMessageInfo info){
 		playerId = myNewPlayerId;
+		networkController.currentMap.setUpFor(playerId);
 	}
 	
 		
 	[RPC]
-	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p){
-		networkController.addPlayer(newPlayerView,p);
+	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p, int playerId){
+		networkController.addPlayer(newPlayerView,p,playerId);
+		
 	}
 	
 	
@@ -59,39 +76,79 @@ public class ClientController : MonoBehaviour {
 	
 	
 	#region Unit
-	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation){
-		networkView.RPC("ToServerSpawnUnit",RPCMode.Server, playerId, troopType, position, rotation);
+	public void spawnUnit(int troopType, Vector3 position, Quaternion rotation) {
+		if (NetworkController.instance.isConnected) {
+			if(Network.isServer){
+				networkController.serverController.ToServerSpawnUnit(playerId, troopType, position, rotation);
+			}else{
+				networkView.RPC("ToServerSpawnUnit", RPCMode.Server, playerId, troopType, position, rotation);
+			}
+			
+		}
 	}
 	
 	[RPC]
 	void ToClientSpawnUnit(int troopPlayerId, int troopId, int troopType, Vector3 position, Quaternion rotation, NetworkMessageInfo info){
+		//networkController.log("Spawn unit " + troopId + " for " + troopPlayerId + " at " + position);
 		TroopManager.Spawn(troopPlayerId,troopId,troopType,position,rotation);
 	}
 	
 	public void sendUnitDamage(int troopPlayerId, int troopId, float damage){
-		networkView.RPC("UnitDamage",RPCMode.All, this.playerId, troopId, damage);
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UnitDamage", RPCMode.All, troopPlayerId, troopId, damage);
+		}
 	}
 	
 	[RPC]
-	void UnitDamage(int troopPlayerId, int troopId, int damage, NetworkMessageInfo info){
-		TroopManager.DamageTroop(troopPlayerId, troopId,damage);
+	void UnitDamage(int troopPlayerId, int troopId, float damage, NetworkMessageInfo info){
+		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	
-	public void sendUnitDeplacement(int troopId, Vector3 position, Vector3 target){
-		networkView.RPC("UpdateUnit",RPCMode.Others, this.playerId, troopId, position, target);
+	public void sendUnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool enabled) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UnitLightingData", RPCMode.All, troopPlayerId, troopId, intensity, range, enabled);
+		}
 	}
 	
 	[RPC]
-	void UpdateUnit(int troopPlayerId, int troopId, Vector3 position, Vector3 target, NetworkMessageInfo info){
+	void UnitLightingData(int troopPlayerId, int troopId, float intensity, float range, bool lightingEnabled, NetworkMessageInfo info){
+		if(!isMe(troopPlayerId)){
+			//networkController.log("unit FadeTroopLight " + troopId + " for " + troopPlayerId + " intensity:" + intensity + " , range:" + range + " , enabled:" + lightingEnabled);
+			TroopManager.FadeTroopLight(troopPlayerId, troopId, intensity,range,lightingEnabled);
+		}
+		
+	}	
+	
+	public void sendUnitTarget(int troopId, Vector3 target) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UpdateUnitTarget", RPCMode.All, this.playerId, troopId, target);
+		}
+	}
+	
+	public void sendUnitPosition(int troopId, Vector3 position) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("UpdateUnitPosition", RPCMode.All, this.playerId, troopId, position);
+		}
+	}
+	
+	[RPC]
+	void UpdateUnitTarget(int troopPlayerId, int troopId, Vector3 target, NetworkMessageInfo info){
 		if(isMe(troopPlayerId)) return;
-		Debug.Log("Yo dog bouge moi ca à " + target);
-		TroopManager.MoveTroop(troopPlayerId, troopId, position, target);
-		GameObject go =  GameObject.Find("TestTroupe");
-		go.transform.position = target;
+		TroopManager.SetTroopTarget(troopPlayerId, troopId, target);
 	}
 	
-	public void killUnit(int troopPlayerId, int troopId){
-		networkView.RPC("ToClientKillUnit",RPCMode.All, troopPlayerId, troopId);
+	[RPC]
+	void UpdateUnitPosition(int troopPlayerId, int troopId, Vector3 position, NetworkMessageInfo info){
+		if(isMe(troopPlayerId)) return;
+		TroopManager.MoveTroop(troopPlayerId, troopId, position);
+	}
+	
+	
+	
+	public void killUnit(int troopPlayerId, int troopId) {
+		if (NetworkController.instance.isConnected) {
+			networkView.RPC("ToClientKillUnit", RPCMode.All, troopPlayerId, troopId);
+		}
 	}
 	
 	[RPC]
@@ -104,7 +161,7 @@ public class ClientController : MonoBehaviour {
 	#region Bullet
 	
 	public void spawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget){
-		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerId, playerIdSource, unitIdSource,playerIdTarget,unitIdTarget);
+		networkView.RPC("ToServerSpawnBullet",RPCMode.Server, playerIdSource, unitIdSource, playerIdTarget, unitIdTarget);
 	}
 	
 	[RPC]
@@ -114,7 +171,7 @@ public class ClientController : MonoBehaviour {
 	
 	
 	public void sendBulletDeplacement(int bulletId, Vector3 position){
-		networkView.RPC("UpdateBullet",RPCMode.Others, this.playerId, bulletId, position);
+		networkView.RPC("UpdateBullet",RPCMode.All, this.playerId, bulletId, position);
 	}
 	
 	[RPC]
@@ -142,14 +199,31 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	[RPC]
+	void ClientCenterScreenMessage(string message, float duration, NetworkMessageInfo info){
+		centerScreenText.text = message;
+		centerScreenTextTimer = duration;
+	}
+	
+	
+	#region gameLoop
+	
+	[RPC]
+	void PrepareStartGame(NetworkMessageInfo info){
+		GameManager.Instance.PrepareStart();
+	}
+		
+	[RPC]
 	void StartGame(NetworkMessageInfo info){
-		GameManager.Start();
+		GameManager.Instance.Start();
+		ServerStartSuff.StartMoiUnGameDeTest();
 	}
 	
 	[RPC]
 	void StopGame(NetworkMessageInfo info){
-		GameManager.STOP();
+		GameManager.Instance.Stop();
 	}
+	
+	#endregion
 
 	bool isMe(int otherPlayerId){
 		return otherPlayerId == this.playerId;

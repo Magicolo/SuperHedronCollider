@@ -24,5 +24,8 @@ public class TroopBaseMove : State {
 			SwitchState(Layer.GetType().Name + "Idle");
 			return;
 		}
+		
+		References.Fow.updateFow = true;
+		NetworkController.instance.clientController.sendUnitPosition(Layer.id, transform.position);
 	}
 }

@@ -14,15 +14,19 @@ public class ServerController : MonoBehaviour {
 	public NetworkController networkController;
 	
 	
-	public int nextUniqueId;
-	public int nextUnitId;
-	public int nextBulletId;
+	public static int nextPlayerId;
+	public static int nextUnitId;
+	public static int nextBulletId;
 	
 	
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
-		networkController.clientController.playerId = nextUniqueId++;
+		int playerId = nextPlayerId++;
+		networkController.clientController.playerId = playerId;
+		networkController.currentMap.imPlayer(playerId);
+		networkController.currentPlayer = networkController.currentMap.players[playerId];
+		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
 		serverStarted = true;
@@ -31,8 +35,18 @@ public class ServerController : MonoBehaviour {
 	}
 	
 	void OnServerInitialized() {
+		networkController.isConnected = true;
 		NetworkViewID newViewID = Network.AllocateViewID();
 		networkController.playerCount++;
+		
+		
+		GameObject newPlayer = Instantiate(networkController.networkLinkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		newPlayer.transform.parent = transform;
+		
+		newPlayer.GetComponent<NetworkLink>().playerId = 0;
+		
+		networkController.networkLinks.Add("Server/Client Genre", newPlayer.GetComponent<NetworkLink>());
+		
 		
 		networkController.log("Server as " + newViewID.ToString());
 		networkController.log("Server initialized and ready");
@@ -41,27 +55,31 @@ public class ServerController : MonoBehaviour {
 		
 	[RPC]
 	void SendAllPlayers(NetworkMessageInfo info){
+		if(!Network.isServer) return;
+		
 		var networkLinks = GetComponentsInChildren<NetworkLink>();
 		
 		foreach (var link in networkLinks) {
 			NetworkPlayer networkPlayer = link.networkPlayer;
 			NetworkViewID viewId = link.networkView.viewID;
-			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
+			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer, link.playerId);
 		}
 	}
 	
-	/*[RPC]
-	void SendNextUniqueId(NetworkMessageInfo info){
-		networkView.RPC("", info.sender, viewId, networkPlayer);
-	}*/
 	
 	[RPC]
-	void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation,NetworkMessageInfo info){
-		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, nextUnitId++,troopType, position, rotation);
+	public void ToServerSpawnUnit(int playerId, int troopType, Vector3 position, Quaternion rotation){
+		if(!Network.isServer) return;
+		
+		int unitId = nextUnitId++;
+		networkView.RPC("ToClientSpawnUnit", RPCMode.All, playerId, unitId,troopType, position, rotation);
+		
 	}
 	
 	[RPC]
 	void ToServerSpawnBullet(int playerIdSource, int unitIdSource, int playerIdTarget, int unitIdTarget, NetworkMessageInfo info){
+		if(!Network.isServer) return;
+		
 		networkView.RPC("ToClientSpawnBullet", RPCMode.All, nextBulletId++,playerIdSource, unitIdSource, playerIdTarget,unitIdTarget);
 		nextBulletId %= int.MaxValue;
 	}
@@ -72,14 +90,15 @@ public class ServerController : MonoBehaviour {
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
 		
-		networkView.RPC("ThisIsYourPlayerId", p, nextUniqueId++);
+		int playerId = nextPlayerId++;
+		networkView.RPC("ThisIsYourPlayerId", p, playerId);
 		
-		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
+		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p, playerId);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
-		if(networkController.networkLinks.Count == 1){
-			networkView.RPC("ClientMessageAll",RPCMode.All,"Start game");
-			networkView.RPC("StartGame", RPCMode.All);
+		if(networkController.networkLinks.Count == networkController.currentMap.players.Length){
+			networkView.RPC("PrepareStartGame", RPCMode.All);
+			GetComponent<GameStartingCounter>().startCounting = true;
 		}
     }
 		
