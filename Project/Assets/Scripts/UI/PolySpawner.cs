@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class polyspawner : MonoBehaviour {
+public class PolySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

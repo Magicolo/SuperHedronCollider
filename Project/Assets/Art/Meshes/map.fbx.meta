@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ec390a94a88a3a4380236d1ad45c328
+guid: 29c108975b86c6a4097697e1a8ac342a
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -8,17 +8,22 @@ ModelImporter:
     100004: Goal
     100006: Lamp
     100008: //RootNode
+    100010: Goal.001
     400000: Camera
     400002: Collisions
     400004: Goal
     400006: Lamp
     400008: //RootNode
+    400010: Goal.001
     2300000: Collisions
     2300002: Goal
+    2300004: Goal.001
     3300000: Collisions
     3300002: Goal
+    3300004: Goal.001
     4300000: Goal
     4300002: Collisions
+    4300004: Goal.001
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -39,7 +44,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
