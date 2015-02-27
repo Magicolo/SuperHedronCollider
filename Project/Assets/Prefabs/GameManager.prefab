@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11413594}
   machine: {fileID: 11444450}
-  dragMargin: 50
+  dragMargin: 30
   moveSpeed: 1
   moveSmooth: 5
   zoomSpeed: 8
