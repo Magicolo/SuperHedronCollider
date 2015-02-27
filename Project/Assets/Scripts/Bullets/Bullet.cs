@@ -9,23 +9,22 @@ public class Bullet : MonoBehaviour {
 	[Disable] public float lifeCounter;
 	[Disable] public TroopBase source;
 	[Disable] public TroopBase target;
-	[Disable] public Vector3 lastDirection;
 	[Disable] public int id;
 	
 	void Update() {
 		lifeCounter -= Time.deltaTime;
 		Rotate();
 		
-		if (source == null || target == null) {
+		if (source.playerId == NetworkController.CurrentPlayerId && lifeCounter <= 0) {
 			Kill();
+			return;
 		}
-		else if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
-			Kill();
-		}
-		else {
+		
+		if (source != null && target != null && source.gameObject.activeInHierarchy && target.gameObject.activeInHierarchy) {
 			transform.LookAt(target.transform);
-			transform.Translate(transform.forward * source.bulletSpeed * Time.deltaTime, "XZ");
 		}
+		
+		transform.Translate(transform.forward * source.bulletSpeed * Time.deltaTime, "XZ");
 	}
 	
 	void OnTriggerEnter(Collider collision) {
