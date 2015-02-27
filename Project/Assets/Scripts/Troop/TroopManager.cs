@@ -310,7 +310,7 @@ public class TroopManager : MonoBehaviourExtended {
 		
 		return typeId;
 	}
-	
+
 	public static GameObject TypeIdToPrefab(int typeId) {
 		GameObject prefab;
 		

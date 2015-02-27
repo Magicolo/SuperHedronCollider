@@ -1,51 +1,24 @@
 fileFormatVersion: 2
-guid: 79c065ac6eb83a64f90a57b21045b5f3
+guid: 8ec390a94a88a3a4380236d1ad45c328
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Hexa
-    100004: HexaBullet
-    100006: Iso
-    100008: IsoBullet
-    100010: Tetra
-    100012: TetraBullet
-    100014: Icona
-    100016: IconaBullet
-    400000: //RootNode
-    400002: Hexa
-    400004: HexaBullet
-    400006: Iso
-    400008: IsoBullet
-    400010: Tetra
-    400012: TetraBullet
-    400014: Icona
-    400016: IconaBullet
-    2300000: Hexa
-    2300002: HexaBullet
-    2300004: Iso
-    2300006: IsoBullet
-    2300008: Tetra
-    2300010: TetraBullet
-    2300012: Icona
-    2300014: IconaBullet
-    3300000: Hexa
-    3300002: HexaBullet
-    3300004: Iso
-    3300006: IsoBullet
-    3300008: Tetra
-    3300010: TetraBullet
-    3300012: Icona
-    3300014: IconaBullet
-    4300000: IsoBullet
-    4300002: TetraBullet
-    4300004: HexaBullet
-    4300006: Iso
-    4300008: Tetra
-    4300010: Hexa
-    4300012: Icona
-    4300014: IconaBullet
-    7400000: Default Take
+    100000: Camera
+    100002: Collisions
+    100004: Goal
+    100006: Lamp
+    100008: //RootNode
+    400000: Camera
+    400002: Collisions
+    400004: Goal
+    400006: Lamp
+    400008: //RootNode
+    2300000: Collisions
+    2300002: Goal
+    3300000: Collisions
+    3300002: Goal
+    4300000: Goal
+    4300002: Collisions
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -66,7 +39,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
