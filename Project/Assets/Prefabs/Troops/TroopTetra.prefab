@@ -147,7 +147,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11481632
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181632}
@@ -160,7 +160,7 @@ MonoBehaviour:
   machine: {fileID: 11481642}
 --- !u!114 &11481634
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181632}
@@ -173,7 +173,7 @@ MonoBehaviour:
   machine: {fileID: 11481642}
 --- !u!114 &11481636
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181632}
@@ -186,7 +186,7 @@ MonoBehaviour:
   machine: {fileID: 11481642}
 --- !u!114 &11481638
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181632}
@@ -200,7 +200,7 @@ MonoBehaviour:
   attackCounter: 0
 --- !u!114 &11481640
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181632}
@@ -218,9 +218,9 @@ MonoBehaviour:
   currentStates:
   - {fileID: 11481634}
   selected: 0
-  radius: 1.5
+  radius: 1.25
   sightRadius: 10
-  lightIntensity: 1
+  lightIntensity: 2
   lightRange: 25
   attackSpeed: .5
   bulletLifeTime: 4

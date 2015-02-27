@@ -38,8 +38,8 @@ public class BulletManager : MonoBehaviourExtended {
 	
 	static readonly Dictionary<int, PlayerBulletManager> playerIdBulletDict = new Dictionary<int, PlayerBulletManager>();
 	
-	public static Bullet Spawn<T>(int bulletId, T source, TroopBase target) where T : TroopBase {
-		Bullet bullet = hObjectPool.Instance.Spawn(TypeIdToPrefab(ToTypeId<T>()), source.transform.position, Quaternion.identity).GetComponent<Bullet>();
+	public static Bullet Spawn(int bulletId, TroopBase source, TroopBase target) {
+		Bullet bullet = hObjectPool.Instance.Spawn(TypeIdToPrefab(ToTypeId(source)), source.transform.position, Quaternion.identity).GetComponent<Bullet>();
 		
 		if (!playerIdBulletDict.ContainsKey(source.playerId)) {
 			playerIdBulletDict[source.playerId] = new PlayerBulletManager(source.playerId);
@@ -94,8 +94,8 @@ public class BulletManager : MonoBehaviourExtended {
 		}
 	}
 
-	public static int ToTypeId<T>() where T : TroopBase {
-		return TroopManager.ToTypeId<T>();
+	public static int ToTypeId(TroopBase troop) {
+		return TroopManager.ToTypeId(troop);
 	}
 	
 	public static GameObject TypeIdToPrefab(int typeId) {

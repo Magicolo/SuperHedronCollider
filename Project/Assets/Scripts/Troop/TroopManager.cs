@@ -295,13 +295,13 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 	}
 	
-	public static int ToTypeId<T>() {
+	public static int ToTypeId(System.Type troopType) {
 		int typeId;
 		
-		if (typeof(T) == typeof(TroopHexa)) {
+		if (troopType == typeof(TroopHexa)) {
 			typeId = 0;
 		}
-		else if (typeof(T) == typeof(TroopIcosa)) {
+		else if (troopType == typeof(TroopIcosa)) {
 			typeId = 1;
 		}
 		else {
@@ -309,6 +309,14 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 		
 		return typeId;
+	}
+
+	public static int ToTypeId<T>() {
+		return ToTypeId(typeof(T));
+	}
+
+	public static int ToTypeId(TroopBase troop) {
+		return ToTypeId(troop.GetType());
 	}
 
 	public static GameObject TypeIdToPrefab(int typeId) {

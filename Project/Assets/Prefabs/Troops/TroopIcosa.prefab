@@ -171,7 +171,7 @@ MonoBehaviour:
   - {fileID: 11434058}
 --- !u!114 &11434050
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133862}
@@ -184,7 +184,7 @@ MonoBehaviour:
   machine: {fileID: 11433874}
 --- !u!114 &11434052
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133862}
@@ -197,7 +197,7 @@ MonoBehaviour:
   machine: {fileID: 11433874}
 --- !u!114 &11434054
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133862}
@@ -210,7 +210,7 @@ MonoBehaviour:
   machine: {fileID: 11433874}
 --- !u!114 &11434056
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133862}
@@ -224,7 +224,7 @@ MonoBehaviour:
   attackCounter: 0
 --- !u!114 &11434058
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133862}
@@ -243,15 +243,15 @@ MonoBehaviour:
   - {fileID: 11434052}
   selected: 0
   radius: 1.25
-  sightRadius: 5
-  lightIntensity: 1
+  sightRadius: 10
+  lightIntensity: 2
   lightRange: 25
-  attackSpeed: 1
+  attackSpeed: .5
   bulletLifeTime: 4
   bulletBurst: 3
-  bulletSpeed: 2
-  damage: 5
-  maxHealth: 16
+  bulletSpeed: 5
+  damage: 1
+  maxHealth: 5
   health: 0
   target: {x: 0, y: 0, z: 0}
   closestInRangeEnemy: {fileID: 0}

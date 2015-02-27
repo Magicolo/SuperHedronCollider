@@ -64,6 +64,10 @@ MonoBehaviour:
   playerCount: 0
   outputText: {fileID: 0}
   currentMap: {fileID: 0}
+  currentPlayer:
+    cameraStartingLocation: {x: 0, y: 0, z: 0}
+    superHedronCollider: {fileID: 0}
+    spawnners: []
 --- !u!114 &11484208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +95,8 @@ MonoBehaviour:
   networkController: {fileID: 11484206}
   localNetworkLink: {fileID: 0}
   playerId: 0
+  centerScreenText: {fileID: 0}
+  centerScreenTextTimer: 0
 --- !u!148 &14884210
 NetworkView:
   m_ObjectHideFlags: 1
