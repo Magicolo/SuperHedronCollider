@@ -4,14 +4,6 @@ using System.Collections;
 public class NetworkLink : MonoBehaviour {
 
 	public NetworkPlayer networkPlayer;
-	//public NetworkView networkView;
+	public int playerId;
 	
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

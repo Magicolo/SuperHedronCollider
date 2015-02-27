@@ -89,22 +89,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &144456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 444456}
-  - 114: {fileID: 11413596}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &144458
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,26 +100,6 @@ GameObject:
   - 114: {fileID: 11444452}
   m_Layer: 0
   m_Name: CoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &147744
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 447744}
-  - 114: {fileID: 11447744}
-  - 114: {fileID: 11447742}
-  - 114: {fileID: 11447740}
-  - 148: {fileID: 14847734}
-  - 114: {fileID: 11447746}
-  m_Layer: 0
-  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,8 +120,6 @@ Transform:
   - {fileID: 444454}
   - {fileID: 444458}
   - {fileID: 444452}
-  - {fileID: 444456}
-  - {fileID: 447744}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &439388
@@ -208,18 +170,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 427890}
   m_RootOrder: 2
---- !u!4 &444456
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 427890}
-  m_RootOrder: 5
 --- !u!4 &444458
 Transform:
   m_ObjectHideFlags: 1
@@ -232,18 +182,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 427890}
   m_RootOrder: 3
---- !u!4 &447744
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 427890}
-  m_RootOrder: 6
 --- !u!23 &2339388
 Renderer:
   m_ObjectHideFlags: 1
@@ -310,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11413594}
   machine: {fileID: 11444450}
-  dragMargin: 50
+  dragMargin: 30
   moveSpeed: 1
   moveSmooth: 5
   zoomSpeed: 8
@@ -405,18 +343,6 @@ MonoBehaviour:
   fastMoveKey1: 304
   fastMoveKey2: 303
   selectedTroops: []
---- !u!114 &11413596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a959366c53c3f44ebede086e16a9a5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playDrum: 0
 --- !u!114 &11427890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,7 +449,25 @@ MonoBehaviour:
     DespawnPoolLocation: 1
     ManageParticles: 1
     Prefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
-    PreloadAmount: 100
+    PreloadAmount: 50
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 115218, guid: 8ad1e7d86a7f39a4b9274b7617061be8, type: 2}
+    PreloadAmount: 50
+    SendMessage: 0
+    SpawnMore: 1
+    TrackObjects: 0
+  - CullExtras: 0
+    CullInterval: 3
+    DespawnPoolLocation: 1
+    ManageParticles: 1
+    Prefab: {fileID: 115218, guid: f2b179c2b8d68754199da906851c2f89, type: 2}
+    PreloadAmount: 50
     SendMessage: 0
     SpawnMore: 1
     TrackObjects: 0
@@ -543,7 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13aed967a8492b4594b39ebf1563fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
+  hexaBulletPrefab: {fileID: 115218, guid: 23f92f16497ea3b4cba5cbff74e7c93c, type: 2}
+  iconaBulletPrefab: {fileID: 115218, guid: 8ad1e7d86a7f39a4b9274b7617061be8, type: 2}
+  tetraBulletPrefab: {fileID: 115218, guid: f2b179c2b8d68754199da906851c2f89, type: 2}
 --- !u!114 &11444456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -558,65 +504,6 @@ MonoBehaviour:
   hexaTroopPrefab: {fileID: 163964, guid: b6548a82f170a2d4daa4f0d5914e9061, type: 2}
   isoTroopPrefab: {fileID: 133862, guid: bf2c8fb58f67fcf43b9c1894dfdcad59, type: 2}
   tetraTroopPrefab: {fileID: 181632, guid: 162369ec6c16d444bbadc2b32390f559, type: 2}
---- !u!114 &11447740
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f119731bfbbc3a4fb07696956bd63dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkController: {fileID: 11447744}
-  localNetworkLink: {fileID: 0}
-  playerId: 0
---- !u!114 &11447742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf644bcdab7e0db40a4ed9ea4e839345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverStarted: 0
-  networkController: {fileID: 11447744}
---- !u!114 &11447744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8974bcc9f0c6ae647948b7b295a47c3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalAddress: 127.0.0.1
-  ServerAddress: 127.0.0.1
-  isConnected: 0
-  networkLinkPrefab: {fileID: 116472, guid: d431739496a3c4145b1e2d1750386788, type: 2}
-  serverController: {fileID: 11447742}
-  clientController: {fileID: 11447740}
-  playerCount: 0
-  outputText: {fileID: 0}
-  currentMap: {fileID: 0}
---- !u!114 &11447746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8f2723e47a4264aa5133e6f16cbbc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consoleOutput: {fileID: 0}
 --- !u!114 &11456794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,18 +516,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
---- !u!148 &14847734
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147744}
-  m_Enabled: 1
-  m_StateSynchronization: 0
-  m_Observed: {fileID: 0}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

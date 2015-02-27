@@ -14,26 +14,43 @@ public class BulletManager : MonoBehaviourExtended {
 			return instance;
 		}
 	}
-    
-	public GameObject bulletPrefab;
-	public static GameObject BulletPrefab {
+
+	public GameObject hexaBulletPrefab;
+	public static GameObject HexaBulletPrefab {
 		get {
-			return Instance.bulletPrefab;
+			return Instance.hexaBulletPrefab;
 		}
 	}
-
+	
+	public GameObject iconaBulletPrefab;
+	public static GameObject IconaBulletPrefab {
+		get {
+			return Instance.iconaBulletPrefab;
+		}
+	}
+	
+	public GameObject tetraBulletPrefab;
+	public static GameObject TetraBulletPrefab {
+		get {
+			return Instance.tetraBulletPrefab;
+		}
+	}
+	
 	static readonly Dictionary<int, PlayerBulletManager> playerIdBulletDict = new Dictionary<int, PlayerBulletManager>();
 	
 	public static Bullet Spawn(int bulletId, TroopBase source, TroopBase target) {
-		Bullet bullet = hObjectPool.Instance.Spawn(BulletPrefab, source.transform.position, Quaternion.identity).GetComponent<Bullet>();
+		Bullet bullet = hObjectPool.Instance.Spawn(TypeIdToPrefab(ToTypeId(source)), source.transform.position, Quaternion.identity).GetComponent<Bullet>();
 		
 		if (!playerIdBulletDict.ContainsKey(source.playerId)) {
 			playerIdBulletDict[source.playerId] = new PlayerBulletManager(source.playerId);
 		}
 		
+		bullet.gameObject.layer = source.playerId == NetworkController.CurrentPlayerId ? 9 : 10;
 		bullet.lifeCounter = source.bulletLifeTime;
 		bullet.source = source;
 		bullet.target = target;
+		bullet.damage = source.damage;
+		bullet.playerId = source.playerId;
 		bullet.id = bulletId;
 		playerIdBulletDict[source.playerId].AddBullet(bullet);
 			
@@ -78,6 +95,26 @@ public class BulletManager : MonoBehaviourExtended {
 		if (playerIdBulletDict.ContainsKey(playerId)) {
 			playerIdBulletDict[playerId].KillBullet(bulletId);
 		}
+	}
+
+	public static int ToTypeId(TroopBase troop) {
+		return TroopManager.ToTypeId(troop);
+	}
+	
+	public static GameObject TypeIdToPrefab(int typeId) {
+		GameObject prefab;
+		
+		if (typeId == 0) {
+			prefab = HexaBulletPrefab;
+		}
+		else if (typeId == 1) {
+			prefab = IconaBulletPrefab;
+		}
+		else {
+			prefab = TetraBulletPrefab;
+		}
+		
+		return prefab;
 	}
 }
 

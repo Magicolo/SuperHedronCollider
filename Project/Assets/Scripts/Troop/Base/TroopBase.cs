@@ -13,10 +13,6 @@ public class TroopBase : StateLayer, ISelectable {
 		}
 		set {
 			selected = value;
-			
-			if (GameManager.Debug) {
-				renderer.material.color = selected ? Color.green : Color.red;
-			}
 		}
 	}
 

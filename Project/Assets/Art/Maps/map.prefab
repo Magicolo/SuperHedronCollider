@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3386176}
   - 23: {fileID: 2386176}
   - 64: {fileID: 6486176}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 33: {fileID: 3386178}
   - 23: {fileID: 2386178}
   - 64: {fileID: 6486178}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - 33: {fileID: 3386180}
   - 23: {fileID: 2386180}
   - 64: {fileID: 6486180}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerA2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - 33: {fileID: 3386182}
   - 23: {fileID: 2386182}
   - 64: {fileID: 6486182}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - 33: {fileID: 3386184}
   - 23: {fileID: 2386184}
   - 64: {fileID: 6486184}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - 33: {fileID: 3386186}
   - 23: {fileID: 2386186}
   - 64: {fileID: 6486186}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - 33: {fileID: 3386188}
   - 23: {fileID: 2386188}
   - 64: {fileID: 6486188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnerB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 486188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: map
   m_TagString: Untagged
   m_Icon: {fileID: 0}

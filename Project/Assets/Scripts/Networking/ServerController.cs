@@ -22,8 +22,10 @@ public class ServerController : MonoBehaviour {
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
-		networkController.clientController.playerId = nextPlayerId++;
-		networkController.currentMap.setUpFor(networkController.clientController.playerId);
+		int playerId = nextPlayerId++;
+		networkController.clientController.playerId = playerId;
+		networkController.currentMap.imPlayer(playerId);
+		networkController.currentPlayer = networkController.currentMap.players[playerId];
 		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
@@ -36,6 +38,15 @@ public class ServerController : MonoBehaviour {
 		networkController.isConnected = true;
 		NetworkViewID newViewID = Network.AllocateViewID();
 		networkController.playerCount++;
+		
+		
+		GameObject newPlayer = Instantiate(networkController.networkLinkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		newPlayer.transform.parent = transform;
+		
+		newPlayer.GetComponent<NetworkLink>().playerId = 0;
+		
+		networkController.networkLinks.Add("Server/Client Genre", newPlayer.GetComponent<NetworkLink>());
+		
 		
 		networkController.log("Server as " + newViewID.ToString());
 		networkController.log("Server initialized and ready");
@@ -51,7 +62,7 @@ public class ServerController : MonoBehaviour {
 		foreach (var link in networkLinks) {
 			NetworkPlayer networkPlayer = link.networkPlayer;
 			NetworkViewID viewId = link.networkView.viewID;
-			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer);
+			networkView.RPC("JoinPlayer", info.sender, viewId, networkPlayer, link.playerId);
 		}
 	}
 	
@@ -79,14 +90,15 @@ public class ServerController : MonoBehaviour {
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
 		
-		networkView.RPC("ThisIsYourPlayerId", p, nextPlayerId++);
+		int playerId = nextPlayerId++;
+		networkView.RPC("ThisIsYourPlayerId", p, playerId);
 		
-		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p);
+		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p, playerId);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
-		if(networkController.networkLinks.Count == 1){
-			networkView.RPC("ClientMessageAll",RPCMode.All,"Start game");
-			networkView.RPC("StartGame", RPCMode.All);
+		if(networkController.networkLinks.Count == networkController.currentMap.players.Length){
+			networkView.RPC("PrepareStartGame", RPCMode.All);
+			GetComponent<GameStartingCounter>().startCounting = true;
 		}
     }
 		

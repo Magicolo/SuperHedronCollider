@@ -10,6 +10,6 @@ public class zTest : MonoBehaviour {
 	}
 	
 	void Start() {
-		GameManager.Start();
+		GameManager.Instance.Start();
 	}
 }

@@ -7,44 +7,36 @@ public class Bullet : MonoBehaviour {
 	public float rotateSpeed = 5;
 	
 	[Disable] public float lifeCounter;
+	[Disable] public float damage;
 	[Disable] public TroopBase source;
 	[Disable] public TroopBase target;
+	[Disable] public int playerId;
 	[Disable] public int id;
 	
 	void Update() {
 		lifeCounter -= Time.deltaTime;
 		Rotate();
 		
-		if (source == null || target == null) {
+		if (source.playerId == NetworkController.CurrentPlayerId && lifeCounter <= 0) {
 			Kill();
+			return;
 		}
-		else if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
-			Kill();
-		}
-		else {
+		
+		if (source != null && target != null && source.gameObject.activeInHierarchy && target.gameObject.activeInHierarchy) {
 			transform.LookAt(target.transform);
-			transform.Translate(transform.forward * source.bulletSpeed * Time.deltaTime, "XZ");
 		}
+		
+		transform.Translate(transform.forward * source.bulletSpeed * Time.deltaTime, "XZ");
 	}
 	
 	void OnTriggerEnter(Collider collision) {
-		if (source == null || target == null) {
-			Kill();
-		}
-		else if (!source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy || source.playerId != NetworkController.CurrentPlayerId) {
-			return;
-		}
-		else {
-			TroopBase troop = collision.GetComponent<TroopBase>();
+		TroopBase troop = collision.GetComponent<TroopBase>();
 			
-			if (troop != null && troop.playerId != source.playerId) {
-				dammageTroop(troop, source.damage);
-				
-				Kill();
-			}
+		if (troop != null && playerId != troop.playerId && playerId == NetworkController.CurrentPlayerId) {
+			dammageTroop(troop, damage);
 		}
 		
-		
+		Kill();
 	}
 
 	void Rotate() {
