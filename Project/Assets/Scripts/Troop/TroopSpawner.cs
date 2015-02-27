@@ -51,7 +51,8 @@ public class TroopSpawner : MonoBehaviour {
 			spawnTimer += Time.deltaTime;
 			if (spawnTimer > curSpawn.rate){
 				Debug.Log ("Spawn!");
-				anim.Play();
+				anim.Play("Poop");
+				spawnTimer = 0;
 			}
 		}
 	}
