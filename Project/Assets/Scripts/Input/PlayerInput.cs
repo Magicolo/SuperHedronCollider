@@ -27,7 +27,7 @@ public class PlayerInput : StateLayer {
 		
 		if (debug && Input.GetKey(KeyCode.Space)) {
 			if (!NetworkController.instance.isConnected) {
-				TroopManager.Spawn<TroopHexa>(new []{ NetworkController.CurrentPlayerId, 100 }.GetRandom(), Random.Range(0, int.MaxValue));
+				TroopManager.Spawn(new []{ NetworkController.CurrentPlayerId, 100 }.GetRandom(), Random.Range(0, int.MaxValue), Random.Range(0, 3));
 			}
 			else if (NetworkController.instance.clientController.playerId == 1) {
 				NetworkController.instance.clientController.spawnUnit(0, new Vector3(-50, 0, 0), Quaternion.identity);
