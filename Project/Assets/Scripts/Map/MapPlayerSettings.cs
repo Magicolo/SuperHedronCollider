@@ -4,6 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class MapPlayerSettings  {
 
+	public Vector3 cameraStartingLocation;
 	public GameObject superHedronCollider;
 	public GameObject[] spawnners;
 	
@@ -13,8 +14,8 @@ public class MapPlayerSettings  {
 		}
 		superHedronCollider.GetComponentInChildren<Light>().color = TeamStaticStuff.getColorForTeam(playerId);
 	}
-	
-	public void imPlayer(int playerId){
-		
+
+	public void setUpMeAsPlayer() {
+		Camera.main.transform.position = cameraStartingLocation;
 	}
 }

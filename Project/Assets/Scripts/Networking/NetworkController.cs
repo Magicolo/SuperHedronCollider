@@ -33,6 +33,7 @@ public class NetworkController : MonoBehaviour {
 	
 	
 	public MapSettings currentMap;
+	public MapPlayerSettings currentPlayer;
 	
 	void Awake() {
 		NetworkController.instance = this;
@@ -85,6 +86,7 @@ public class NetworkController : MonoBehaviour {
 		
 		if (p.ipAddress == LocalAddress) {
 			currentMap.imPlayer(playerId);
+			currentPlayer = currentMap.players[playerId];
 			localNetworkPlayer = p;
 			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
 		}else {

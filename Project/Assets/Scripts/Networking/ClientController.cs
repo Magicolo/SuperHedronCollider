@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel;
+using UnityEngine;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using UnityEngine.UI;
 
 public class ClientController : MonoBehaviour {
 
@@ -10,6 +12,18 @@ public class ClientController : MonoBehaviour {
 	
 	public int playerId;
 	
+	public Text centerScreenText;
+	public float centerScreenTextTimer;
+	
+	
+	void Update(){
+		if(centerScreenTextTimer>0){
+			centerScreenTextTimer -= Time.deltaTime;
+			if(centerScreenTextTimer <= 0){
+				centerScreenText.text = "";
+			}
+		}
+	}
 	
 	public void ConnectToServer(string ip, int remotePort){
     	Network.Connect(ip, remotePort);
@@ -185,15 +199,31 @@ public class ClientController : MonoBehaviour {
 	}
 	
 	[RPC]
+	void ClientCenterScreenMessage(string message, float duration, NetworkMessageInfo info){
+		centerScreenText.text = message;
+		centerScreenTextTimer = duration;
+	}
+	
+	
+	#region gameLoop
+	
+	[RPC]
+	void PrepareStartGame(NetworkMessageInfo info){
+		GameManager.Instance.PrepareStart();
+	}
+		
+	[RPC]
 	void StartGame(NetworkMessageInfo info){
-		GameManager.Start();
+		GameManager.Instance.Start();
 		ServerStartSuff.StartMoiUnGameDeTest();
 	}
 	
 	[RPC]
 	void StopGame(NetworkMessageInfo info){
-		GameManager.Stop();
+		GameManager.Instance.Stop();
 	}
+	
+	#endregion
 
 	bool isMe(int otherPlayerId){
 		return otherPlayerId == this.playerId;
