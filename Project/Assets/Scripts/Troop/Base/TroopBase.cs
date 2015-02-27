@@ -72,7 +72,6 @@ public class TroopBase : StateLayer, ISelectable {
 	
 	public void Despawned() {
 		Selected = false;
-		TroopManager.RemoveTroopFromGroup(this);
 		SwitchState(GetType().Name + "Idle");
 	}
 	

@@ -15,6 +15,13 @@ public class References : MonoBehaviourExtended {
 		}
 	}
 	
+	public PlayerInput inputManager;
+	public static PlayerInput InputManager {
+		get {
+			return Instance.inputManager;
+		}
+	}
+	
 	public FogOfWar fow;
 	public static FogOfWar Fow {
 		get {
