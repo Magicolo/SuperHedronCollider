@@ -45,9 +45,12 @@ public class BulletManager : MonoBehaviourExtended {
 			playerIdBulletDict[source.playerId] = new PlayerBulletManager(source.playerId);
 		}
 		
+		bullet.gameObject.layer = source.playerId == NetworkController.CurrentPlayerId ? 9 : 10;
 		bullet.lifeCounter = source.bulletLifeTime;
 		bullet.source = source;
 		bullet.target = target;
+		bullet.damage = source.damage;
+		bullet.playerId = source.playerId;
 		bullet.id = bulletId;
 		playerIdBulletDict[source.playerId].AddBullet(bullet);
 			
