@@ -10,6 +10,7 @@ public class MapSettings : MonoBehaviour {
 	}
 	
 	public void imPlayer(int playerId){
-		players[playerId].imPlayer(playerId);
+		players[playerId].setUpFor(playerId);
+		players[playerId].setUpMeAsPlayer();
 	}
 }

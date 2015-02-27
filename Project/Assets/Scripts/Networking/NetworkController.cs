@@ -33,6 +33,7 @@ public class NetworkController : MonoBehaviour {
 	
 	
 	public MapSettings currentMap;
+	public MapPlayerSettings currentPlayer;
 	
 	void Awake() {
 		NetworkController.instance = this;
@@ -71,20 +72,25 @@ public class NetworkController : MonoBehaviour {
 		return localIP;
 	}
 
-	public void addPlayer(NetworkViewID newPlayerView, NetworkPlayer p) {
+	public void addPlayer(NetworkViewID newPlayerView, NetworkPlayer p, int playerId) {
 		GameObject newPlayer = Instantiate(networkLinkPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		newPlayer.transform.parent = transform;
 		
 		newPlayer.GetComponent<NetworkView>().viewID = newPlayerView;
 		newPlayer.GetComponent<NetworkLink>().networkPlayer = p;
+		newPlayer.GetComponent<NetworkLink>().playerId = playerId;
 		
 		networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
 		
+		
+		
 		if (p.ipAddress == LocalAddress) {
+			currentMap.imPlayer(playerId);
+			currentPlayer = currentMap.players[playerId];
 			localNetworkPlayer = p;
 			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
-		}
-		else {
+		}else {
+			currentMap.setUpFor(playerId);
 			log("Another player connected: " + newPlayerView.ToString() + " - " + p.ipAddress);
 		}
 	}
