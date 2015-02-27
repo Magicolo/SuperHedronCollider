@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-[RequireComponent(typeof(Animation))]
-[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Animator))]
 public class TroopSpawner : MonoBehaviour {
 	[System.Serializable]
 	public class SpawnerType {
@@ -47,11 +46,14 @@ public class TroopSpawner : MonoBehaviour {
 		if (cooldown > 0){
 			cooldown -= Time.deltaTime;
 			mr.material.color = Color.Lerp(darkColour, readyColour, (cooldownMax - cooldown) / cooldownMax);
+			anim.StopPlayback();
 		} else {
 			spawnTimer += Time.deltaTime;
 			if (spawnTimer > curSpawn.rate){
 				Debug.Log ("Spawn!");
+				anim.Play();
 			}
 		}
 	}
+	
 }
