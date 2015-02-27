@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
 	[Disable] public float lifeCounter;
 	[Disable] public TroopBase source;
 	[Disable] public TroopBase target;
+	[Disable] public Vector3 lastDirection;
 	[Disable] public int id;
 	
 	void Update() {
