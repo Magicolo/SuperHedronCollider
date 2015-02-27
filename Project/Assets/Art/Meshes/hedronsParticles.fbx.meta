@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: ba992f351a6065d47b4e845d65ad707f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Camera
+    100002: //RootNode
+    100004: Hexa
+    100006: HexaBullet
+    100008: Iso
+    100010: IsoBullet
+    100012: Lamp
+    100014: Tetra
+    100016: TetraBullet
+    100018: HexaBulletPart
+    100020: HexaPart
+    100022: IsoBulletPart
+    100024: IsoPart
+    100026: TetraBulletPart
+    100028: TetraPart
+    100030: IcosaBulletPart
+    100032: IcosaPart
+    400000: Camera
+    400002: //RootNode
+    400004: Hexa
+    400006: HexaBullet
+    400008: Iso
+    400010: IsoBullet
+    400012: Lamp
+    400014: Tetra
+    400016: TetraBullet
+    400018: HexaBulletPart
+    400020: HexaPart
+    400022: IsoBulletPart
+    400024: IsoPart
+    400026: TetraBulletPart
+    400028: TetraPart
+    400030: IcosaBulletPart
+    400032: IcosaPart
+    2300000: Hexa
+    2300002: HexaBullet
+    2300004: Iso
+    2300006: IsoBullet
+    2300008: Tetra
+    2300010: TetraBullet
+    2300012: HexaBulletPart
+    2300014: HexaPart
+    2300016: IsoBulletPart
+    2300018: IsoPart
+    2300020: TetraBulletPart
+    2300022: TetraPart
+    2300024: IcosaBulletPart
+    2300026: IcosaPart
+    3300000: Hexa
+    3300002: HexaBullet
+    3300004: Iso
+    3300006: IsoBullet
+    3300008: Tetra
+    3300010: TetraBullet
+    3300012: HexaBulletPart
+    3300014: HexaPart
+    3300016: IsoBulletPart
+    3300018: IsoPart
+    3300020: TetraBulletPart
+    3300022: TetraPart
+    3300024: IcosaBulletPart
+    3300026: IcosaPart
+    4300000: IsoBullet
+    4300002: TetraBullet
+    4300004: HexaBullet
+    4300006: Iso
+    4300008: Tetra
+    4300010: Hexa
+    4300012: IsoBulletPart
+    4300014: TetraBulletPart
+    4300016: HexaBulletPart
+    4300018: IsoPart
+    4300020: TetraPart
+    4300022: HexaPart
+    4300024: IcosaBulletPart
+    4300026: IcosaPart
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
