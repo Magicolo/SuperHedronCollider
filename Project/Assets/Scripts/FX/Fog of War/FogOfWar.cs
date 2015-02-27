@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 using Magicolo;
 
@@ -34,7 +35,7 @@ public class FogOfWar : MonoBehaviour {
 	public Material material { get { return _material ? _material : (_material = renderer.sharedMaterial); } }
 	
 	public bool updateFow;
-	public FogAgent[] fogAgents;
+	public List<FogAgent> fogAgents;
 	
 	public bool activated = true;
 	
@@ -154,6 +155,20 @@ public class FogOfWar : MonoBehaviour {
 	
 	Vector2 WorldToPixel(Vector3 worldPoint) {
 		return new Vector2(worldPoint.x * UnitsToPixels + (float)width / 2, worldPoint.z * UnitsToPixels + (float)height / 2);
+	}
+	
+	public void AddAgent(params FogAgent[] agents) {
+		fogAgents.AddRange(agents);
+		
+		CreateTexture();
+	}
+	
+	public void RemoveAgent(params FogAgent[] agents) {
+		foreach (FogAgent agent in agents) {
+			fogAgents.Remove(agent);
+		}
+		
+		CreateTexture();
 	}
 	
 	public bool IsFogged(Vector3 point, float alphaThreshold) {
