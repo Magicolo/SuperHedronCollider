@@ -8,17 +8,27 @@ public class FogAgent {
 
 	public Transform transform;
 	[Min] public float sightRadius = 10;
-	public bool clearsFog = true;
+	[Range(-1, 1)] public float strength = 1;
 	
-	public FogAgent(Transform transform, float sightRadius, bool clearsFog) {
+	public Vector3 position { get; set; }
+	
+	public FogAgent(Transform transform, float sightRadius, float strength) {
 		this.transform = transform;
 		this.sightRadius = sightRadius;
-		this.clearsFog = clearsFog;
+		this.strength = Mathf.Clamp(strength, -1, 1);
+		
+		position = transform.position;
 	}
 	
 	public FogAgent(Transform transform, float sightRadius) {
 		this.transform = transform;
 		this.sightRadius = sightRadius;
+		
+		position = transform.position;
+	}
+
+	public void Update() {
+		position = transform.position;
 	}
 }
 

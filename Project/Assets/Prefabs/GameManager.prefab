@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 139388}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 68, y: 1, z: 17}
+  m_LocalScale: {x: 72, y: 1, z: 18}
   m_Children: []
   m_Father: {fileID: 427890}
   m_RootOrder: 1
@@ -367,28 +367,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69cbcb0dccdb6e49b43a5ac0d77da3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precision: 2
+  precision: 8
   filterMode: 0
-  updateFow: 0
   fogAgents:
   - transform: {fileID: 0}
     sightRadius: 40
-    clearsFog: 1
+    strength: 1
   - transform: {fileID: 0}
     sightRadius: 20
-    clearsFog: 1
+    strength: 1
   - transform: {fileID: 0}
     sightRadius: 20
-    clearsFog: 1
+    strength: 1
   - transform: {fileID: 0}
     sightRadius: 40
-    clearsFog: 1
+    strength: 1
   - transform: {fileID: 0}
     sightRadius: 20
-    clearsFog: 1
+    strength: 1
   - transform: {fileID: 0}
     sightRadius: 20
-    clearsFog: 1
+    strength: 1
 --- !u!114 &11444450
 MonoBehaviour:
   m_ObjectHideFlags: 1
