@@ -76,7 +76,8 @@ public class TroopBase : StateLayer, ISelectable {
 	}
 	
 	public bool CheckForEnemies() {
-		closestInRangeEnemy = TroopManager.GetClosestInRangeEnemy(this);
+		TroopBase enemy = TroopManager.GetClosestInRangeEnemy(this);
+		closestInRangeEnemy = (enemy == null || enemy.playerId == playerId) ? null : enemy;
 		
 		return closestInRangeEnemy != null;
 	}
