@@ -367,8 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69cbcb0dccdb6e49b43a5ac0d77da3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precision: 8
+  precision: 2
   filterMode: 0
+  manualUpdate: 0
   fogAgents:
   - transform: {fileID: 0}
     sightRadius: 40
