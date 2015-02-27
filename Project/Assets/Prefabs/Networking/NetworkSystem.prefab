@@ -12,7 +12,8 @@ GameObject:
   - 114: {fileID: 11455664}
   - 114: {fileID: 11455666}
   - 148: {fileID: 14855666}
-  - 114: {fileID: 11434334}
+  - 114: {fileID: 11461316}
+  - 114: {fileID: 11461314}
   m_Layer: 0
   m_Name: NetworkSystem
   m_TagString: Untagged
@@ -32,18 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11434334
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8f2723e47a4264aa5133e6f16cbbc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consoleOutput: {fileID: 0}
 --- !u!114 &11455662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,6 +52,11 @@ MonoBehaviour:
   clientController: {fileID: 11455666}
   playerCount: 0
   outputText: {fileID: 0}
+  currentMap: {fileID: 0}
+  currentPlayer:
+    cameraStartingLocation: {x: 0, y: 0, z: 0}
+    superHedronCollider: {fileID: 0}
+    spawnners: []
 --- !u!114 &11455664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,9 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverStarted: 0
   networkController: {fileID: 11455662}
-  nextUniqueId: 0
-  nextUnitId: 0
-  nextBulletId: 0
 --- !u!114 &11455666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +84,32 @@ MonoBehaviour:
   networkController: {fileID: 11455662}
   localNetworkLink: {fileID: 0}
   playerId: 0
+  centerScreenText: {fileID: 0}
+  centerScreenTextTimer: 0
+--- !u!114 &11461314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2d513931f7cbd4c9299b0b10c36d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCounting: 0
+--- !u!114 &11461316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8f2723e47a4264aa5133e6f16cbbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleOutput: {fileID: 0}
 --- !u!148 &14855666
 NetworkView:
   m_ObjectHideFlags: 1
