@@ -428,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe973aa67e290a943ab020e2178d0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 11413594}
   fow: {fileID: 11439388}
 --- !u!114 &11439388
 MonoBehaviour:
@@ -627,6 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dca4cd418eb0504aa9aa35ee63b6607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
 --- !u!148 &14847734
 NetworkView:
   m_ObjectHideFlags: 1

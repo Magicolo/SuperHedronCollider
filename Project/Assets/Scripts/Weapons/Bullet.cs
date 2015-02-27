@@ -4,6 +4,8 @@ using Magicolo;
 
 public class Bullet : MonoBehaviour {
 	
+	public float rotateSpeed = 5;
+	
 	[Disable] public float lifeCounter;
 	[Disable] public TroopBase source;
 	[Disable] public TroopBase target;
@@ -11,23 +13,28 @@ public class Bullet : MonoBehaviour {
 	
 	void Update() {
 		lifeCounter -= Time.deltaTime;
+		Rotate();
 		
-		if(source == null || target == null){
+		if (source == null || target == null) {
 			Kill();
-		}else if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
+		}
+		else if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
 			Kill();
-		}else{
+		}
+		else {
 			transform.LookAt(target.transform);
 			transform.Translate(transform.forward * source.bulletSpeed * Time.deltaTime, "XZ");
 		}
 	}
 	
 	void OnTriggerEnter(Collider collision) {
-		if(source == null || target == null){
+		if (source == null || target == null) {
 			Kill();
-		} else  if (!source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy || source.playerId != NetworkController.CurrentPlayerId) {
+		}
+		else if (!source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy || source.playerId != NetworkController.CurrentPlayerId) {
 			return;
-		}else{
+		}
+		else {
 			TroopBase troop = collision.GetComponent<TroopBase>();
 			
 			if (troop != null && troop.playerId != source.playerId) {
@@ -40,10 +47,15 @@ public class Bullet : MonoBehaviour {
 		
 	}
 
-	void dammageTroop(TroopBase troop, float damage){
-		if(!NetworkController.instance.isConnected){
+	void Rotate() {
+		transform.Rotate(rotateSpeed, "Z");
+	}
+	
+	void dammageTroop(TroopBase troop, float damage) {
+		if (!NetworkController.instance.isConnected) {
 			troop.Damage(source.damage);
-		}else{
+		}
+		else {
 			NetworkController.instance.clientController.sendUnitDamage(troop.playerId, troop.id, damage);
 		}
 	}
@@ -53,9 +65,10 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	public void Kill() {
-		if(!NetworkController.instance.isConnected){
+		if (!NetworkController.instance.isConnected) {
 			BulletManager.Despawn(this);
-		}else{
+		}
+		else {
 			// FIXME ceci ne ferai AUCUN bug si le troop est deactivé et reacivé pour un autre troop pendant que la balle se promene
 			NetworkController.instance.clientController.killBullet(source.playerId, id);
 		}

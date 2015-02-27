@@ -71,7 +71,7 @@ public class TroopGroup {
 		troopZone = Rect.MinMaxRect(xMinTroop, yMinTroop, xMaxTroop, yMaxTroop);
 		sightZone = Rect.MinMaxRect(xMinSight, yMinSight, xMaxSight, yMaxSight);
 		
-		if (Application.isEditor) {
+		if (GameManager.Debug) {
 			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.forward * troopZone.height, Color.cyan);
 			Debug.DrawRay(new Vector3(troopZone.xMin, 1, troopZone.yMin), Vector3.right * troopZone.width, Color.cyan);
 			Debug.DrawRay(new Vector3(troopZone.xMax, 1, troopZone.yMax), Vector3.back * troopZone.height, Color.cyan);
@@ -93,8 +93,8 @@ public class TroopGroup {
 		for (int i = 1; i < troops.Length; i++) {
 			TroopBase troop = troops[i];
 			float distanceToCenter = Vector3.Distance(troop.transform.position, centerTroop.transform.position);
-			float intensityTarget = -1;
-			float rangeTarget = -1;
+			const float intensityTarget = -1;
+			const float rangeTarget = -1;
 				
 			troop.childLight.intensity = Mathf.Lerp(troop.childLight.intensity, intensityTarget, Time.deltaTime * lightFadeSpeed);
 			troop.childLight.range = Mathf.Lerp(troop.childLight.range, rangeTarget, Time.deltaTime * lightFadeSpeed);

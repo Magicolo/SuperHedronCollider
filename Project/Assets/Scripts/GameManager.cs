@@ -14,6 +14,15 @@ public class GameManager : MonoBehaviourExtended {
 			return instance;
 		}
 	}
+
+	public bool debug;
+		public static bool Debug {
+			get {
+				return Instance.debug;
+			}
+		}
+
+    
 	
 	Vector3 startCamera;
 	Vector3 endCamera;
