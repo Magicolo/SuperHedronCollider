@@ -16,11 +16,9 @@ public class Bullet : MonoBehaviour {
 		Rotate();
 		
 		if (source == null || target == null) {
-			Debug.Log("a bien kill dans update" );
 			Kill();
 		}
 		else if (source.playerId == NetworkController.CurrentPlayerId && (lifeCounter <= 0 || !source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy)) {
-			Debug.Log("a bien kill plus dans update" );
 			Kill();
 		}
 		else {
@@ -31,16 +29,12 @@ public class Bullet : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider collision) {
 		if (source == null || target == null) {
-			Debug.Log("a bien kill");
 			Kill();
 		}
 		else if (!source.gameObject.activeInHierarchy || !target.gameObject.activeInHierarchy || source.playerId != NetworkController.CurrentPlayerId) {
-			Debug.Log("Skip");
 			return;
 		}
 		else {
-			
-			Debug.Log("On touche");
 			TroopBase troop = collision.GetComponent<TroopBase>();
 			
 			if (troop != null && troop.playerId != source.playerId) {

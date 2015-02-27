@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviourExtended {
 		startCamera = NetworkController.instance.currentPlayer.cameraStartingLocation;
 		endCamera = NetworkController.instance.currentPlayer.superHedronCollider.transform.position;
 		endCamera += new Vector3(0,75,0);
+		
+		MapSettings mapSettings = NetworkController.instance.currentMap;
+		foreach (var playerSettings in mapSettings.players) {
+			//References.Fow.add
+		}
+		
 		InPrepareStart = true;
 	}
 	
