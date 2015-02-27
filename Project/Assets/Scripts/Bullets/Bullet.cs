@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 			return;
 		}
 		
-		if (source != null && target != null && source.gameObject.activeInHierarchy && target.gameObject.activeInHierarchy) {
+		if (source != null && target != null && source.gameObject.activeInHierarchy && target.gameObject.activeInHierarchy && target.playerId != playerId) {
 			transform.LookAt(target.transform);
 		}
 		
