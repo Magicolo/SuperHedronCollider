@@ -36,6 +36,8 @@ public class FogOfWar : MonoBehaviour {
 	public bool updateFow;
 	public FogAgent[] fogAgents;
 	
+	public bool activated = true;
+	
 	public float UnitsToPixels {
 		get {
 			return (float)Precision / 10;
@@ -58,7 +60,7 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	void Update() {
-		if (updateFow) {
+		if (activated && updateFow) {
 			UpdateFow();
 		}
 	}
@@ -109,7 +111,10 @@ public class FogOfWar : MonoBehaviour {
 			texture = new Texture2D(width, height, TextureFormat.Alpha8, false);
 			texture.filterMode = FilterMode;
 			material.mainTexture = texture;
-			updateFow = true;
+			if(activated){
+				updateFow = true;
+			}
+			
 		}
 	}
 
@@ -152,6 +157,8 @@ public class FogOfWar : MonoBehaviour {
 	}
 	
 	public bool IsFogged(Vector3 point, float alphaThreshold) {
+		if(!activated) return false;
+		
 		Vector2 pixel = WorldToPixel(point);
 		float alpha = alphaMap[(int)pixel.x.Round(), (int)pixel.y.Round()];
 		

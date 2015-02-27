@@ -101,6 +101,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void UnitDamage(int troopPlayerId, int troopId, float damage, NetworkMessageInfo info){
+		networkController.log("Unit " + troopId + " of " + troopPlayerId + " is dealted for " + damage);
 		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	
