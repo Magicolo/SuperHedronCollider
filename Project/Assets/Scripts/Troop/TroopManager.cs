@@ -83,6 +83,8 @@ public class TroopManager : MonoBehaviourExtended {
 			playerIdTroopDict[troop.playerId].RemoveTroop(troop);
 		}
 		
+		References.InputManager.selectedTroops.Remove(troop);
+		troop.Selected = false;
 		RemoveTroopFromGroup(troop);
 		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
