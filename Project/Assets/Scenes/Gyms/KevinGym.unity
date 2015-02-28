@@ -236,7 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a959366c53c3f44ebede086e16a9a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playDrum: 0
+  playSequence: 0
+  setRandomPattern: 0
 --- !u!1 &192063959
 GameObject:
   m_ObjectHideFlags: 1
@@ -926,11 +927,107 @@ MonoBehaviour:
   itemManager:
     pureData: {fileID: 0}
   infoManager:
-    infos: []
+    infos:
+    - name: button 1
+      path: button 1
+      samples: 11905
+      frequency: 44100
+      channels: 1
+      length: .268999994
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: health 1
+      path: health 1
+      samples: 88200
+      frequency: 44100
+      channels: 2
+      length: 2
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: Hit 1
+      path: Hit 1
+      samples: 19584
+      frequency: 44100
+      channels: 2
+      length: .444000006
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
     pureData: {fileID: 459824419}
   clipManager:
-    containerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudioclipcontainer.pd
-    clips: []
+    containerPath: E:\Projects\Unity\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudioclipcontainer.pd
+    clips:
+    - name: button 1
+      id: 0
+      path: button 1
+      samples: 11905
+      frequency: 44100
+      channels: 1
+      length: .268999994
+      pureData: {fileID: 459824419}
+    - name: health 1
+      id: 0
+      path: health 1
+      samples: 88200
+      frequency: 44100
+      channels: 2
+      length: 2
+      pureData: {fileID: 459824419}
+    - name: Hit 1
+      id: 0
+      path: Hit 1
+      samples: 19584
+      frequency: 44100
+      channels: 2
+      length: .444000006
+      pureData: {fileID: 459824419}
     pureData: {fileID: 459824419}
   sourceManager:
     containerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudiosourcecontainer.pd
@@ -948,8 +1045,7 @@ MonoBehaviour:
     paths: []
     pureData: {fileID: 459824419}
   editorHelper:
-    selection:
-    - {fileID: 682877786}
+    selection: []
     repaintDummy: 0
     repaint: 0
     pureDataIcon: {fileID: 2800000, guid: 1f1f8b71fa69e14418bf3e49d9399524, type: 3}

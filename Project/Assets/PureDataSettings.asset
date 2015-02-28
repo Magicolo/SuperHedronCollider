@@ -45,74 +45,14 @@ MonoBehaviour:
       beats: 4
     - tempo: 120
       beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
-    - tempo: 120
-      beats: 4
     tracks:
     - id: 1
       instrumentPatchPath: Instruments/lead.pd
       steps:
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
       - patternIndex: 0
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: 0
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: 0
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: 0
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
+      - patternIndex: 4
+      - patternIndex: 4
+      - patternIndex: 4
       patterns:
       - name: 
         sendType: 1
@@ -183,6 +123,51 @@ MonoBehaviour:
         - 2
         - 2000
         - 2
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
         - 0
         pureData: {fileID: 0}
       pureData: {fileID: 0}
@@ -193,26 +178,6 @@ MonoBehaviour:
       - patternIndex: -1
       - patternIndex: -1
       - patternIndex: -1
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
       patterns:
       - name: 
         sendType: 1
@@ -285,30 +250,81 @@ MonoBehaviour:
         - 5
         - 100
         pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - -2
+        - 0
+        - 0
+        - -4
+        - 0
+        - 0
+        - -5
+        - 0
+        - 0
+        - -7
+        - 0
+        - 0
+        - -9
+        - 0
+        - 0
+        - 0
+        - 500
+        - 0
+        - 0
+        - 500
+        - 0
+        - 0
+        - 500
+        - 0
+        - 0
+        - 500
+        - 0
+        - 0
+        - 500
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - -2
+        - 500
+        - 0
+        - 0
+        - 0
+        - 0
+        - -4
+        - 500
+        - 0
+        - 0
+        - 0
+        - 0
+        - -5
+        - 500
+        - 0
+        - 0
+        - 0
+        - 0
+        - -7
+        - 500
+        - 0
+        - 0
+        - 0
+        - 0
+        - -9
+        - 500
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
       pureData: {fileID: 0}
     - id: 3
       instrumentPatchPath: Instruments/hihat.pd
       steps:
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
       - patternIndex: 0
       - patternIndex: 0
       - patternIndex: 0
@@ -351,21 +367,6 @@ MonoBehaviour:
         - 50
         - 25
         - 25
-        - 0
-        pureData: {fileID: 0}
-      - name: 
-        sendType: 0
-        sendSize: 1
-        subdivision: 4
-        pattern:
-        - 0
-        - 0
-        - 0
-        - 0
-        sortedPattern:
-        - 0
-        - 0
-        - 0
         - 0
         pureData: {fileID: 0}
       pureData: {fileID: 0}
@@ -376,26 +377,6 @@ MonoBehaviour:
       - patternIndex: 0
       - patternIndex: 0
       - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
       patterns:
       - name: 
         sendType: 1
@@ -436,34 +417,23 @@ MonoBehaviour:
         - 0
         - 0
         pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
+        - 0
+        pureData: {fileID: 0}
       pureData: {fileID: 0}
     - id: 5
       instrumentPatchPath: Instruments/kick.pd
       steps:
       - patternIndex: 0
+      - patternIndex: 1
       - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
-      - patternIndex: 0
+      - patternIndex: 2
       patterns:
       - name: 
         sendType: 1
@@ -502,6 +472,132 @@ MonoBehaviour:
         - 50
         - 0
         - 0
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 0
+        - 0
+        - 50
+        - 0
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 50
+        - 0
+        - 25
+        - 50
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - 0
+        - 0
+        - 50
+        - 0
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 50
+        - 0
+        - 25
+        - 50
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 50
+        - 0
+        - 0
+        - 0
+        - 50
+        - 25
+        - 0
+        - 50
+        - 0
+        - 0
+        - 50
+        - 0
+        - 100
+        - 0
+        - 0
+        - 0
+        sortedPattern:
+        - 50
+        - 0
+        - 0
+        - 0
+        - 50
+        - 25
+        - 0
+        - 50
+        - 0
+        - 0
+        - 50
+        - 0
+        - 100
+        - 0
+        - 0
+        - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 1
+        subdivision: 16
+        pattern:
+        - 0
+        - 5
+        - 10
+        - 15
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 50
+        - 0
+        - 50
+        - 5
+        - 10
+        - 15
+        - 20
+        sortedPattern:
+        - 0
+        - 5
+        - 10
+        - 15
+        - 50
+        - 0
+        - 0
+        - 0
+        - 0
+        - 50
+        - 0
+        - 50
+        - 5
+        - 10
+        - 15
+        - 20
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 0
+        sendSize: 1
+        subdivision: 1
+        pattern:
+        - 0
+        sortedPattern:
         - 0
         pureData: {fileID: 0}
       pureData: {fileID: 0}
