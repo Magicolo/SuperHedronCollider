@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine.UI;
 
+
 public class NetworkController : MonoBehaviour {
 
 	[Disable]public string LocalAddress = "127.0.0.1";
@@ -30,14 +31,18 @@ public class NetworkController : MonoBehaviour {
 	
 	private int nbMessage;
 	public Text outputText;
+	[Disable]public string outputMissed;
 	
 	
 	public MapSettings currentMap;
 	public MapPlayerSettings currentPlayer;
 	
+	public GameObject awesomeGuy;
+	
 	void Awake() {
+		DontDestroyOnLoad(gameObject);
 		NetworkController.instance = this;
-		outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
+		//outputText = GameObject.Find("AwesomeGUY").transform.FindChild("Log").GetComponent<Text>();
 	}
 	
 	void Update(){
@@ -47,7 +52,7 @@ public class NetworkController : MonoBehaviour {
 				StartServer(25565);
 			}
 			if(Input.GetKeyDown(KeyCode.F3)){
-				ConnectToServer();
+				ConnectToLocalServer();
 			}
 		}
 		
@@ -80,7 +85,6 @@ public class NetworkController : MonoBehaviour {
 		newPlayer.GetComponent<NetworkLink>().networkPlayer = p;
 		newPlayer.GetComponent<NetworkLink>().playerId = playerId;
 		
-		networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
 		
 		
 		
@@ -92,7 +96,11 @@ public class NetworkController : MonoBehaviour {
 		}else {
 			currentMap.setUpFor(playerId);
 			log("Another player connected: " + newPlayerView.ToString() + " - " + p.ipAddress);
+			
 		}
+		if(!networkLinks.ContainsKey(p.ToString())){
+		   networkLinks.Add(p.ToString(), newPlayer.GetComponent<NetworkLink>());
+	   	}
 	}
 	
 	
@@ -102,15 +110,45 @@ public class NetworkController : MonoBehaviour {
 	
 	public void StartServer(int port) {
 		serverController.StartServer(port);
+		awesomeGuy.SetActive(true);
 	}
 	
-	public void ConnectToServer() {
-		Network.Connect("127.0.0.1", 25565);
+	public void ConnectToLocalServer() {
+		ConnectToServer("127.0.0.1", 25565);
+	}
+
+	public void ConnectToServer(string serverIp, int port) {
+		Network.Connect(serverIp, port);
+		awesomeGuy.SetActive(true);
+	}
+	
+	public void setCurrentMap(MapSettings mapSettings) {
+		currentMap = mapSettings;
+		if(Network.isServer){
+			currentMap.imPlayer(CurrentPlayerId);
+			currentPlayer = currentMap.players[CurrentPlayerId];
+		}
+	}
+	
+	public void flushMessages(){
+		if(outputMissed.Length > 0){
+			outputText.text += outputMissed;
+			outputMissed = "";
+		}
 	}
 	
 	public void log(string message) {
+		if (outputText == null) {
+			outputMissed += message;
+			return;
+		}
+		
+		if (outputMissed.Length > 0) {
+			flushMessages();
+		}
+		
 		nbMessage++;
-		if(nbMessage > 20){
+		if (nbMessage > 20) {
 			nbMessage--;
 			outputText.text = outputText.text.Substring(2 + outputText.text.IndexOf("\n", System.StringComparison.Ordinal));
 		}
