@@ -9,26 +9,33 @@ ModelImporter:
     100006: Lamp
     100008: //RootNode
     100010: Goal.001
+    100012: Collisions.001
+    100014: Sun
     400000: Camera
     400002: Collisions
     400004: Goal
     400006: Lamp
     400008: //RootNode
     400010: Goal.001
+    400012: Collisions.001
+    400014: Sun
     2300000: Collisions
     2300002: Goal
     2300004: Goal.001
+    2300006: Collisions.001
     3300000: Collisions
     3300002: Goal
     3300004: Goal.001
+    3300006: Collisions.001
     4300000: Goal
     4300002: Collisions
     4300004: Goal.001
+    4300006: Collisions.001
     9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

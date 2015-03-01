@@ -20,18 +20,18 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &110272412
+--- !u!1102 &110238362
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: IcosacontrollerAction_003
+  m_Name: Poop
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400008, guid: f5b45ae24e735934db44d5ada728d023, type: 3}
+  - {fileID: 7400006, guid: 3c5187503ab029445a8b3ab2e4b45ea9, type: 3}
   m_ParentStateMachine: {fileID: 110789216}
-  m_Position: {x: 52, y: 201, z: 0}
+  m_Position: {x: -44, y: 116, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -42,9 +42,9 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110272412}
+  m_DefaultState: {fileID: 110238362}
   m_States:
-  - {fileID: 110272412}
+  - {fileID: 110238362}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions: {}

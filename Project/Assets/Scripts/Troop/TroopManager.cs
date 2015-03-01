@@ -83,6 +83,8 @@ public class TroopManager : MonoBehaviourExtended {
 			playerIdTroopDict[troop.playerId].RemoveTroop(troop);
 		}
 		
+		References.InputManager.selectedTroops.Remove(troop);
+		troop.Selected = false;
 		RemoveTroopFromGroup(troop);
 		hObjectPool.Instance.Despawn(troop.gameObject);
 	}
@@ -115,7 +117,7 @@ public class TroopManager : MonoBehaviourExtended {
 		return GetTroops(playerId).Length;
 	}
 	
-	public static int[] ContainingTroopZones(TroopBase troop, bool includeOwn) {
+	public static int[] ContainingTroopZones(TroopBase troop, bool includeOwn = false) {
 		List<int> zoneIds = new List<int>();
 		
 		foreach (int playerId in playerIdTroopDict.Keys) {
@@ -125,10 +127,6 @@ public class TroopManager : MonoBehaviourExtended {
 		}
 		
 		return zoneIds.ToArray();
-	}
-	
-	public static int[] ContainingTroopZones(TroopBase troop) {
-		return ContainingTroopZones(troop, false);
 	}
 	
 	public static bool TroopZoneContains(int playerId, TroopBase troop) {
@@ -179,7 +177,7 @@ public class TroopManager : MonoBehaviourExtended {
 			foreach (TroopBase otherTroop in GetTroops(playerId)) {
 				float distance = Vector3.Distance(troop.transform.position, otherTroop.transform.position);
 				
-				if (distance <= troop.sightRadius && distance < closestDistance) {
+				if (otherTroop.gameObject.activeInHierarchy && distance <= troop.sightRadius && distance < closestDistance) {
 					closestTroop = otherTroop;
 					closestDistance = distance;
 				}
