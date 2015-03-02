@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameStartingCounter : MonoBehaviour {
 
-	public bool startCounting = false;
+	[Disable]public bool startCounting = false;
 	
 	float time = 5;
 	int nextNumber = 5;

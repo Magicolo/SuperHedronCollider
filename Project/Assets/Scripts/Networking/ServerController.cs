@@ -9,6 +9,8 @@ public class ServerController : MonoBehaviour {
 
 	bool LANOnly = true;
 	
+	public const int DEFAULT_PORT = 60606;
+	
 	[Disable] public bool serverStarted;
 	
 	public NetworkController networkController;
@@ -18,14 +20,15 @@ public class ServerController : MonoBehaviour {
 	public static int nextUnitId;
 	public static int nextBulletId;
 	
+	[Disable] public int sceneIndex = 1;
+	
+	public int readyPlayer = 1;
 	
 	public void StartServer(int port){
 		if(serverStarted) return;
 		
 		int playerId = nextPlayerId++;
 		networkController.clientController.playerId = playerId;
-		networkController.currentMap.imPlayer(playerId);
-		networkController.currentPlayer = networkController.currentMap.players[playerId];
 		
 		bool useNat=false;
 		useNat = LANOnly != true && !Network.HavePublicAddress();
@@ -90,17 +93,25 @@ public class ServerController : MonoBehaviour {
 		
 		NetworkViewID newViewID = Network.AllocateViewID();
 		
+		
 		int playerId = nextPlayerId++;
 		networkView.RPC("ThisIsYourPlayerId", p, playerId);
 		
 		networkView.RPC("JoinPlayer", RPCMode.All, newViewID, p, playerId);
 			
 		networkController.log("Player " + newViewID.ToString() + " connected from " + p.ipAddress + ":" + p.port);
-		if(networkController.networkLinks.Count == networkController.currentMap.players.Length){
+		networkView.RPC("ChangeMap", p, sceneIndex);
+    }
+	
+	[RPC]
+	public void ImReady(){
+		readyPlayer++;
+		if(readyPlayer == networkController.currentMap.players.Length){
 			networkView.RPC("PrepareStartGame", RPCMode.All);
 			GetComponent<GameStartingCounter>().startCounting = true;
 		}
-    }
+	}
+	
 		
 	void OnPlayerDisconnected(NetworkPlayer player) {
 		networkController.playerCount--;

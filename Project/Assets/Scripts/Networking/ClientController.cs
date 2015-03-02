@@ -39,11 +39,22 @@ public class ClientController : MonoBehaviour {
     }
 
 	[RPC]
-	void ThisIsYourPlayerId(int myNewPlayerId, NetworkMessageInfo info){
-		playerId = myNewPlayerId;
-		networkController.currentMap.setUpFor(playerId);
+	void ChangeMap(int sceneIndex, NetworkMessageInfo info){
+		if(Network.isClient) {
+			networkController.log("Changing to map " + sceneIndex);
+			Application.LoadLevel(sceneIndex);
+		}
+		
 	}
 	
+	[RPC]
+	void ThisIsYourPlayerId(int myNewPlayerId, NetworkMessageInfo info){
+		playerId = myNewPlayerId;
+	}
+	
+	public void sendImReady(){
+		networkView.RPC("ImReady",RPCMode.Server);
+	}
 		
 	[RPC]
 	void JoinPlayer(NetworkViewID newPlayerView, NetworkPlayer p, int playerId){
@@ -101,6 +112,7 @@ public class ClientController : MonoBehaviour {
 	
 	[RPC]
 	void UnitDamage(int troopPlayerId, int troopId, float damage, NetworkMessageInfo info){
+		//networkController.log("Unit " + troopId + " of " + troopPlayerId + " is dealted for " + damage);
 		TroopManager.DamageTroop(troopPlayerId, troopId, damage);
 	}
 	

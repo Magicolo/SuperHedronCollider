@@ -8,6 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
-    path: Assets/Scenes/Gyms/KevinGym.unity
-  - enabled: 1
-    path: Assets/Scenes/Gyms/NetworkingTest.unity
+    path: Assets/Scenes/DuelMap.unity
