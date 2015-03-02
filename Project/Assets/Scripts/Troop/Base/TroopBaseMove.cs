@@ -25,7 +25,7 @@ public class TroopBaseMove : State {
 			return;
 		}
 		
-		References.Fow.updateFow = true;
+		References.Fow.UpdateFow = true;
 		NetworkController.instance.clientController.sendUnitPosition(Layer.id, transform.position);
 	}
 }
