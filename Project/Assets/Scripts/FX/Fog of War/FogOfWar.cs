@@ -17,7 +17,7 @@ public class FogOfWar : MonoBehaviour {
 				
 			if (Application.isPlaying) {
 				CreateTexture();
-				updateFow = true;
+				UpdateFow = true;
 			}
 		}
 	}
@@ -33,7 +33,7 @@ public class FogOfWar : MonoBehaviour {
 			
 			if (Application.isPlaying) {
 				CreateTexture();
-				updateFow = true;
+				UpdateFow = true;
 			}
 		}
 	}
@@ -43,7 +43,15 @@ public class FogOfWar : MonoBehaviour {
 	public List<FogAgent> fogAgents;
 	FogAgent[] troopFogAgents = new FogAgent[0];
 	
-	public bool updateFow { get; set; }
+	bool updateFow = true;
+	public bool UpdateFow {
+		get {
+			return updateFow;
+		}
+		set {
+			updateFow = value;
+		}
+	}
 	
 	public float UnitsToPixels {
 		get {
@@ -65,37 +73,18 @@ public class FogOfWar : MonoBehaviour {
 	Texture2D texture;
 	float[,] currentAlphaMap;
 	Color[] currentPixels;
-	float deltaTime;
-	Thread updateThread;
-	
-	void OnEnable() {
-		updateThread = new Thread(new ThreadStart(UpdateFowAsync));
-		updateThread.Start();
-	}
-	
-	void OnDisable() {
-		updateThread.Abort();
-		updateThread = null;
-	}
 	
 	void Awake() {
 		CreateTexture();
 	}
 	
 	void Start() {
-		updateFow = true;
+		StartCoroutine(UpdateRoutine());
 	}
 	
-	void Update() {
-		deltaTime = Time.deltaTime;
-		
-		if (!manualUpdate) {
-			updateFow = true;
-		}
-		
-		UpdateAgents();
-		texture.SetPixels(currentPixels);
-		texture.Apply();
+	void OnDestroy() {
+		texture.Remove();
+		material.mainTexture = Texture2D.blackTexture;
 	}
 	
 	void UpdateAgents() {
@@ -112,24 +101,42 @@ public class FogOfWar : MonoBehaviour {
 		}
 	}
 	
-	void UpdateFowAsync() {
+	IEnumerator UpdateRoutine() {
 		while (true) {
-			if (updateFow) {
-				try {
-					updateFow = false;
-					float[,] alphaMap = new float[width, height];
+			if (!manualUpdate) {
+				UpdateFow = true;
+			}
 		
-					UpdateAlphaMap(alphaMap);
-					UpdateTexture(alphaMap);
+			if (UpdateFow && enabled && gameObject.activeInHierarchy) {
+				UpdateAgents();
 		
-					currentAlphaMap = alphaMap;
+				Thread updateThread = new Thread(new ThreadStart(UpdateFowAsync));
+				updateThread.Start();
+				
+				while (updateThread.ThreadState == ThreadState.Running) {
+					yield return new WaitForSeconds(0);
 				}
-				catch (System.Exception exception) {
-					Logger.LogError(exception);
-				}
+				
+				texture.SetPixels(currentPixels);
+				texture.Apply();
 			}
 			
-			Thread.Sleep((int)(deltaTime * 100));
+			yield return new WaitForSeconds(0);
+		}
+	}
+	
+	void UpdateFowAsync() {
+		try {
+			float[,] alphaMap = new float[width, height];
+		
+			UpdateAlphaMap(alphaMap);
+			UpdateTexture(alphaMap);
+		
+			currentAlphaMap = alphaMap;
+			UpdateFow = false;
+		}
+		catch (System.Exception exception) {
+			Logger.LogError(exception);
 		}
 	}
 	
@@ -162,11 +169,6 @@ public class FogOfWar : MonoBehaviour {
 		if (currentPixels.Length == pixels.Length) {
 			currentPixels = pixels;
 		}
-	}
-	
-	void OnDestroy() {
-		texture.Remove();
-		material.mainTexture = Texture2D.blackTexture;
 	}
 	
 	void ModifyFog(float[,] alphaMap, Vector3 position, float sightRadius, float strength) {
