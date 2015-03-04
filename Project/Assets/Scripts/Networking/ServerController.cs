@@ -106,6 +106,7 @@ public class ServerController : MonoBehaviour {
 	[RPC]
 	public void ImReady(){
 		readyPlayer++;
+		networkController.log("We have " + readyPlayer);
 		if(readyPlayer == networkController.currentMap.players.Length){
 			networkView.RPC("PrepareStartGame", RPCMode.All);
 			GetComponent<GameStartingCounter>().startCounting = true;

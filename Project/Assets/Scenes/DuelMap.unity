@@ -671,6 +671,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11439388, guid: 4fb1e121206436943af23e0fd25dd353, type: 2}
+      propertyPath: fogAgents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 427890, guid: 4fb1e121206436943af23e0fd25dd353, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -947,8 +951,8 @@ MeshFilter:
 --- !u!1 &728872562
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 176458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_PrefabInternal: {fileID: 857916044}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 728872564}
@@ -963,8 +967,9 @@ GameObject:
 --- !u!114 &728872563
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11476458, guid: 9dab433d42d00d740950c9b36ee39ad4,
+    type: 2}
+  m_PrefabInternal: {fileID: 857916044}
   m_GameObject: {fileID: 728872562}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -974,15 +979,59 @@ MonoBehaviour:
 --- !u!4 &728872564
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_PrefabInternal: {fileID: 857916044}
   m_GameObject: {fileID: 728872562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 633.082275, y: 355.818085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
+--- !u!1001 &857916044
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 633.082275
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 355.818085
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_RootGameObject: {fileID: 728872562}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &868598312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1318,7 @@ Transform:
   - {fileID: 1949420745}
   - {fileID: 1745175618}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1275462967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2356,27 +2405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   precision: 2
   filterMode: 0
-  updateFow: 0
-  fogAgents:
-  - transform: {fileID: 0}
-    sightRadius: 40
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 40
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  activated: 1
+  manualUpdate: 0
+  fogAgents: []
 --- !u!23 &2047894309
 Renderer:
   m_ObjectHideFlags: 0
@@ -2428,7 +2458,7 @@ Transform:
   m_GameObject: {fileID: 2047894307}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 68, y: 1, z: 17}
+  m_LocalScale: {x: 72, y: 1, z: 18}
   m_Children: []
   m_Father: {fileID: 1275462966}
   m_RootOrder: 1

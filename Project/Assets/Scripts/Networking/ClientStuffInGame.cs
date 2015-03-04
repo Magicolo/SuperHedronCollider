@@ -8,8 +8,13 @@ public class ClientStuffInGame : MonoBehaviour {
 		
 		var net = NetworkController.instance;
 		if(net.isConnected){
-			net.currentMap.setUpFor(net.clientController.playerId);
+			net.currentMap.imPlayer(net.clientController.playerId);
+			net.currentPlayer = net.currentMap.players[net.clientController.playerId];
+			
+			net.log("I'm ready");
 			net.clientController.sendImReady();
+		}else{
+			net.log("No connected .. What... ClientSuffInGame pas happy");
 		}
 	}
 	
