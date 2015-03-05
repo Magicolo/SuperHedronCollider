@@ -72,6 +72,7 @@ public class TroopSpawner : MonoBehaviour {
 		anim.enabled = false;
 		mr = anim.GetComponentInChildren<SkinnedMeshRenderer>();
 		light.color = curSpawn.lightColour;
+		cooldown = cooldownMax;
 	}
 	
 }
