@@ -75,6 +75,46 @@ NavMeshSettings:
     heightInaccuracy: 10
     tileSizeHint: 0
   m_NavMesh: {fileID: 19400000, guid: 865b1dd8d4b1b3b4fba7babfdc31ec78, type: 2}
+--- !u!1 &39778795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 176458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_PrefabInternal: {fileID: 1857958269}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 39778797}
+  - 114: {fileID: 39778796}
+  m_Layer: 0
+  m_Name: InGameNetworking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &39778796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11476458, guid: 9dab433d42d00d740950c9b36ee39ad4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1857958269}
+  m_GameObject: {fileID: 39778795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c1214daa8cf034caf2b5cda1ebf6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &39778797
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_PrefabInternal: {fileID: 1857958269}
+  m_GameObject: {fileID: 39778795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &50935237
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,12 +324,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1799417550}
-  - {fileID: 1475769395}
   - {fileID: 1246756067}
-  - {fileID: 1018256789}
   - {fileID: 569908393}
-  - {fileID: 868598313}
+  - {fileID: 1475769395}
+  - {fileID: 1018256789}
   - {fileID: 704397371}
+  - {fileID: 868598313}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!64 &202031404
@@ -731,6 +771,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11439388, guid: 4fb1e121206436943af23e0fd25dd353, type: 2}
+      propertyPath: fogAgents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 427890, guid: 4fb1e121206436943af23e0fd25dd353, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -806,7 +850,7 @@ Transform:
   m_Children:
   - {fileID: 885540880}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &648314573
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverStarted: 0
   networkController: {fileID: 682877790}
+  sceneIndex: 1
+  readyPlayer: 1
 --- !u!114 &682877790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,12 +1060,14 @@ MonoBehaviour:
   serverController: {fileID: 682877789}
   clientController: {fileID: 682877788}
   playerCount: 0
-  outputText: {fileID: 0}
+  outputText: {fileID: 807339975}
+  outputMissed: 
   currentMap: {fileID: 401489730}
   currentPlayer:
     cameraStartingLocation: {x: 0, y: 0, z: 0}
     superHedronCollider: {fileID: 0}
     spawnners: []
+  awesomeGuy: {fileID: 2095191473}
 --- !u!4 &682877791
 Transform:
   m_ObjectHideFlags: 0
@@ -1089,7 +1137,7 @@ Transform:
   m_Children:
   - {fileID: 648314574}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!64 &704397372
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1143,7 +1191,7 @@ GameObject:
   - 224: {fileID: 759909535}
   - 222: {fileID: 759909537}
   - 114: {fileID: 759909536}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: CenterScreenMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1212,7 +1260,7 @@ GameObject:
   - 224: {fileID: 807339974}
   - 222: {fileID: 807339976}
   - 114: {fileID: 807339975}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1349,7 @@ Transform:
   m_Children:
   - {fileID: 50935241}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &885540879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1460,7 @@ Transform:
   m_Children:
   - {fileID: 1178425734}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1178425733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1571,7 @@ Transform:
   m_Children:
   - {fileID: 256590837}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1275462965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1702,7 @@ Transform:
   m_Children:
   - {fileID: 1931855807}
   m_Father: {fileID: 202031403}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!1001 &1485167298
 Prefab:
   m_ObjectHideFlags: 0
@@ -2047,8 +2095,7 @@ MonoBehaviour:
     paths: []
     pureData: {fileID: 1624221599}
   editorHelper:
-    selection:
-    - {fileID: 102900000, guid: 74a52e658aad35940a70f56122c20e68, type: 3}
+    selection: []
     repaintDummy: 0
     repaint: 0
     pureDataIcon: {fileID: 2800000, guid: 1f1f8b71fa69e14418bf3e49d9399524, type: 3}
@@ -2224,6 +2271,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1485167298}
   m_GameObject: {fileID: 868598312}
   m_Mesh: {fileID: 4300010, guid: ee8d57edeb1b460488e4fdc7a7b1bd1c, type: 3}
+--- !u!1001 &1857958269
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476458, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9dab433d42d00d740950c9b36ee39ad4, type: 2}
+  m_RootGameObject: {fileID: 39778795}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1923628996
 GameObject:
   m_ObjectHideFlags: 1
@@ -2645,27 +2736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   precision: 2
   filterMode: 0
-  updateFow: 0
-  fogAgents:
-  - transform: {fileID: 0}
-    sightRadius: 40
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 40
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    clearsFog: 1
-  activated: 1
+  manualUpdate: 0
+  fogAgents: []
 --- !u!23 &2047894309
 Renderer:
   m_ObjectHideFlags: 0
@@ -2717,7 +2789,7 @@ Transform:
   m_GameObject: {fileID: 2047894307}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 68, y: 1, z: 17}
+  m_LocalScale: {x: 72, y: 1, z: 18}
   m_Children: []
   m_Father: {fileID: 1275462966}
   m_RootOrder: 1
@@ -2810,13 +2882,13 @@ GameObject:
   - 223: {fileID: 2095191477}
   - 114: {fileID: 2095191476}
   - 114: {fileID: 2095191475}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: AwesomeGUY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2095191474
 RectTransform:
   m_ObjectHideFlags: 0

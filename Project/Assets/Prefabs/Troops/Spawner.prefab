@@ -571,13 +571,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - spawner: {fileID: 0}
+  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
     rate: 2
     lightColour: {r: .148460791, g: .529411793, b: .0272491314, a: .627451003}
-  - spawner: {fileID: 0}
+  - spawner: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
     rate: 2
     lightColour: {r: .027249163, g: .155387133, b: .529411793, a: .627451003}
-  - spawner: {fileID: 0}
+  - spawner: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
     rate: 2
     lightColour: {r: .529411793, g: .027249163, b: .027249163, a: .627451003}
 --- !u!114 &11497024

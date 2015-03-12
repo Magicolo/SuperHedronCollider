@@ -14,7 +14,7 @@ public class MapSettings : MonoBehaviour {
 		players[playerId].setUpMeAsPlayer();
 	}
 	
-	void Awake(){
+	void Start(){
 		NetworkController.instance.setCurrentMap(this);
 	}
 }

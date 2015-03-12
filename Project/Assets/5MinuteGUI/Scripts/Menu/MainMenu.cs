@@ -71,7 +71,6 @@ namespace FMG
 				if(int.TryParse(clientPort.text, out port)){
 					clientStatusFeedback.text = "Connecting ...";
 					NetworkController.instance.ConnectToServer(serverIp,port);
-					Application.LoadLevel(currentMap + 1);
 				}else{
 					clientStatusFeedback.text = "A port number is a number";
 				}

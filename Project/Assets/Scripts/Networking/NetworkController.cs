@@ -49,9 +49,11 @@ public class NetworkController : MonoBehaviour {
 		//Full cheat connect
 		if(!isConnected){
 			if(Input.GetKeyDown(KeyCode.F2)){
+				serverController.sceneIndex = 0;
 				StartServer(25565);
 			}
 			if(Input.GetKeyDown(KeyCode.F3)){
+				serverController.sceneIndex = 0;
 				ConnectToLocalServer();
 			}
 		}
@@ -85,12 +87,7 @@ public class NetworkController : MonoBehaviour {
 		newPlayer.GetComponent<NetworkLink>().networkPlayer = p;
 		newPlayer.GetComponent<NetworkLink>().playerId = playerId;
 		
-		
-		
-		
 		if (p.ipAddress == LocalAddress) {
-			currentMap.imPlayer(playerId);
-			currentPlayer = currentMap.players[playerId];
 			localNetworkPlayer = p;
 			log("Server accepted my connection request, I am real player now: " + newPlayerView.ToString());
 		}else {

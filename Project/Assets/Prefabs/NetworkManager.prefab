@@ -11,13 +11,13 @@ GameObject:
   - 223: {fileID: 22344938}
   - 114: {fileID: 11444930}
   - 114: {fileID: 11444932}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: AwesomeGUY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &144936
 GameObject:
   m_ObjectHideFlags: 1
@@ -28,7 +28,7 @@ GameObject:
   - 224: {fileID: 22444936}
   - 222: {fileID: 22244936}
   - 114: {fileID: 11444934}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 224: {fileID: 22444938}
   - 222: {fileID: 22244938}
   - 114: {fileID: 11444936}
-  m_Layer: 5
+  m_Layer: 29
   m_Name: CenterScreenMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,12 +217,14 @@ MonoBehaviour:
   serverController: {fileID: 11484208}
   clientController: {fileID: 11484210}
   playerCount: 0
-  outputText: {fileID: 0}
+  outputText: {fileID: 11444934}
+  outputMissed: 
   currentMap: {fileID: 0}
   currentPlayer:
     cameraStartingLocation: {x: 0, y: 0, z: 0}
     superHedronCollider: {fileID: 0}
     spawnners: []
+  awesomeGuy: {fileID: 144934}
 --- !u!114 &11484208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,6 +238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverStarted: 0
   networkController: {fileID: 11484206}
+  sceneIndex: 1
+  readyPlayer: 1
 --- !u!114 &11484210
 MonoBehaviour:
   m_ObjectHideFlags: 1
