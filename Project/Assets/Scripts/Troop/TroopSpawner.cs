@@ -10,11 +10,13 @@ public class TroopSpawner : MonoBehaviour {
 	}
 	
 	public SpawnerType[] spawners;
-	private int cur;
+	private int CurrentTroopTypeIdToSpawnInTheSpawnner;
+	
+	public int playerId;
 	
 	public SpawnerType curSpawn {
 		get{
-			return spawners[cur];
+			return spawners[CurrentTroopTypeIdToSpawnInTheSpawnner];
 		}
 	}
 	
@@ -45,6 +47,7 @@ public class TroopSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(playerId != NetworkController.CurrentPlayerId) return;
 		if (cooldown > 0){
 			cooldown -= Time.deltaTime;
 			mr.material.color = Color.Lerp(darkColour, readyColour, (cooldownMax - cooldown) / cooldownMax);
@@ -57,18 +60,23 @@ public class TroopSpawner : MonoBehaviour {
 			if (spawnTimer > curSpawn.rate){
 				anim.Play("Poop", -1, 0);
 				spawnTimer = 0;
+				animObject.GetComponent<TrooperPooper>().Spawn(playerId);
 			}
 		}
 	}
 	
 	void OnMouseDown () {
+		if(playerId != NetworkController.CurrentPlayerId) return;
+		
 		Destroy(animObject);
-		cur ++;
-		if (cur == spawners.Length){
-			cur = 0;
+		CurrentTroopTypeIdToSpawnInTheSpawnner ++;
+		if (CurrentTroopTypeIdToSpawnInTheSpawnner == spawners.Length){
+			CurrentTroopTypeIdToSpawnInTheSpawnner = 0;
 		}
-		animObject = GameObject.Instantiate(curSpawn.spawner, Vector3.zero, Quaternion.identity) as GameObject;
+		animObject = Object.Instantiate(curSpawn.spawner, transform.position, Quaternion.identity) as GameObject;
+		animObject.transform.parent = transform;
 		anim = animObject.GetComponent<Animator>();
+		animObject.GetComponent<TrooperPooper>().type = CurrentTroopTypeIdToSpawnInTheSpawnner;
 		anim.enabled = false;
 		mr = anim.GetComponentInChildren<SkinnedMeshRenderer>();
 		light.color = curSpawn.lightColour;
