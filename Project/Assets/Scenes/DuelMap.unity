@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  troopSpwaner: {fileID: 0}
 --- !u!95 &70153315
 Animator:
   serializedVersion: 3
@@ -211,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  troopSpwaner: {fileID: 0}
 --- !u!95 &143160093
 Animator:
   serializedVersion: 3
@@ -694,6 +692,7 @@ GameObject:
   - 114: {fileID: 349625308}
   - 114: {fileID: 349625311}
   - 114: {fileID: 349625310}
+  - 114: {fileID: 349625313}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -851,8 +850,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7208d05a13589c84fbf2b1d9c12cafe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  callbacks: 1
   layers:
   - {fileID: 349625307}
+--- !u!114 &349625313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11452948, guid: 4fb1e121206436943af23e0fd25dd353,
+    type: 2}
+  m_PrefabInternal: {fileID: 538490686}
+  m_GameObject: {fileID: 349625305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6586d8e41c0870e4fb8e6c17af035631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 349625312}
 --- !u!1 &369197591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,15 +1240,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
-    rate: 2
-    lightColour: {r: .148460791, g: .529411793, b: .0272491314, a: .627451003}
   - spawner: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
     rate: 2
-    lightColour: {r: .027249163, g: .155387133, b: .529411793, a: .627451003}
+    lightColour: {r: 0, g: .751724005, b: 1, a: .627451003}
   - spawner: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
     rate: 2
-    lightColour: {r: .529411793, g: .027249163, b: .027249163, a: .627451003}
+    lightColour: {r: 1, g: 0, b: .434482574, a: .627451003}
+  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    rate: 2
+    lightColour: {r: 1, g: .972413778, b: 0, a: .627451003}
   playerId: 0
 --- !u!1 &663709390
 GameObject:
@@ -1858,6 +1871,54 @@ Prefab:
       propertyPath: playerId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].spawner
+      value: 
+      objectReference: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].spawner
+      value: 
+      objectReference: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].spawner
+      value: 
+      objectReference: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.g
+      value: .751724005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.b
+      value: .434482574
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.g
+      value: .972413778
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
   m_RootGameObject: {fileID: 1608193611}
@@ -2048,7 +2109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  troopSpwaner: {fileID: 0}
 --- !u!95 &1095783573
 Animator:
   serializedVersion: 3
@@ -2294,6 +2354,54 @@ Prefab:
     - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
       propertyPath: playerId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].spawner
+      value: 
+      objectReference: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.g
+      value: .751724005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].spawner
+      value: 
+      objectReference: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.b
+      value: .434482574
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].spawner
+      value: 
+      objectReference: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.g
+      value: .972413778
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
@@ -3237,15 +3345,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
-    rate: 2
-    lightColour: {r: .148460791, g: .529411793, b: .0272491314, a: .627451003}
   - spawner: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
     rate: 2
-    lightColour: {r: .027249163, g: .155387133, b: .529411793, a: .627451003}
+    lightColour: {r: 0, g: .751724005, b: 1, a: .627451003}
   - spawner: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
     rate: 2
-    lightColour: {r: .529411793, g: .027249163, b: .027249163, a: .627451003}
+    lightColour: {r: 1, g: 0, b: .434482574, a: .627451003}
+  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    rate: 2
+    lightColour: {r: 1, g: .972413778, b: 0, a: .627451003}
   playerId: 1
 --- !u!1 &1608237198
 GameObject:
@@ -3353,7 +3461,7 @@ MonoBehaviour:
     pureData: {fileID: 1624221599}
   editorHelper:
     selection:
-    - {fileID: 102900000, guid: 618f857395b3d184bb5c96f8befbe713, type: 3}
+    - {fileID: 589364333}
     repaintDummy: 0
     repaint: 0
     pureDataIcon: {fileID: 2800000, guid: 1f1f8b71fa69e14418bf3e49d9399524, type: 3}
@@ -3554,15 +3662,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
-    rate: 2
-    lightColour: {r: .148460791, g: .529411793, b: .0272491314, a: .627451003}
   - spawner: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
     rate: 2
-    lightColour: {r: .027249163, g: .155387133, b: .529411793, a: .627451003}
+    lightColour: {r: 0, g: .751724005, b: 1, a: .627451003}
   - spawner: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
     rate: 2
-    lightColour: {r: .529411793, g: .027249163, b: .027249163, a: .627451003}
+    lightColour: {r: 1, g: 0, b: .434482574, a: .627451003}
+  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    rate: 2
+    lightColour: {r: 1, g: .972413778, b: 0, a: .627451003}
   playerId: 0
 --- !u!1 &1745175617
 GameObject:
@@ -3940,6 +4048,58 @@ Prefab:
     - target: {fileID: 197008, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
       propertyPath: m_Name
       value: SpawnerP0 - Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].spawner
+      value: 
+      objectReference: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.g
+      value: .751724005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].spawner
+      value: 
+      objectReference: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.b
+      value: .434482574
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].spawner
+      value: 
+      objectReference: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.g
+      value: .972413778
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: playerId
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
@@ -4320,15 +4480,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
-    rate: 2
-    lightColour: {r: .148460791, g: .529411793, b: .0272491314, a: .627451003}
   - spawner: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
     rate: 2
-    lightColour: {r: .027249163, g: .155387133, b: .529411793, a: .627451003}
+    lightColour: {r: 0, g: .751724005, b: 1, a: .627451003}
   - spawner: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
     rate: 2
-    lightColour: {r: .529411793, g: .027249163, b: .027249163, a: .627451003}
+    lightColour: {r: 1, g: 0, b: .434482574, a: .627451003}
+  - spawner: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    rate: 2
+    lightColour: {r: 1, g: .972413778, b: 0, a: .627451003}
   playerId: 1
 --- !u!1 &2063146783
 GameObject:
@@ -4521,6 +4681,58 @@ Prefab:
       propertyPath: m_Name
       value: SpawnerP0 - Up
       objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].spawner
+      value: 
+      objectReference: {fileID: 147550, guid: 0f07362cb4224c9489c754be0a66dca5, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.g
+      value: .751724005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[0].lightColour.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].spawner
+      value: 
+      objectReference: {fileID: 159492, guid: 1e1e14517fb763341bf1c5261cc6527d, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[1].lightColour.b
+      value: .434482574
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].spawner
+      value: 
+      objectReference: {fileID: 158710, guid: c327cbb875efc48438940e62456e000f, type: 2}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.g
+      value: .972413778
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: spawners.Array.data[2].lightColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11497022, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
+      propertyPath: playerId
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f117e2ef948c23a4fb8f8847c89622c6, type: 2}
   m_RootGameObject: {fileID: 589364333}
@@ -4572,7 +4784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  troopSpwaner: {fileID: 0}
 --- !u!95 &2124375129
 Animator:
   serializedVersion: 3
