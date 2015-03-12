@@ -75,6 +75,71 @@ NavMeshSettings:
     heightInaccuracy: 10
     tileSizeHint: 0
   m_NavMesh: {fileID: 19400000, guid: 865b1dd8d4b1b3b4fba7babfdc31ec78, type: 2}
+--- !u!1 &22058658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 22058660}
+  - 114: {fileID: 22058659}
+  m_Layer: 0
+  m_Name: Synth_Up
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22058659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22058658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: Synth_Up
+    path: SFX/Synth_Up
+    samples: 27885
+    frequency: 44100
+    channels: 2
+    length: .632000029
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &22058660
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22058658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 5
 --- !u!1 &32336385
 GameObject:
   m_ObjectHideFlags: 1
@@ -196,6 +261,71 @@ MonoBehaviour:
   hexaTroopPrefab: {fileID: 163964, guid: b6548a82f170a2d4daa4f0d5914e9061, type: 2}
   isoTroopPrefab: {fileID: 133862, guid: bf2c8fb58f67fcf43b9c1894dfdcad59, type: 2}
   tetraTroopPrefab: {fileID: 181632, guid: 162369ec6c16d444bbadc2b32390f559, type: 2}
+--- !u!1 &141877394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 141877396}
+  - 114: {fileID: 141877395}
+  m_Layer: 0
+  m_Name: HitHurt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &141877395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 141877394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: HitHurt
+    path: SFX/HitHurt
+    samples: 5159
+    frequency: 44100
+    channels: 1
+    length: .115999997
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &141877396
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 141877394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 0
 --- !u!1 &144299440
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +446,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &234040802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 234040804}
+  - 114: {fileID: 234040803}
+  m_Layer: 0
+  m_Name: Synth_Chaotic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &234040803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234040802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: Synth_Chaotic
+    path: SFX/Synth_Chaotic
+    samples: 738107
+    frequency: 44100
+    channels: 2
+    length: 16.7369995
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &234040804
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234040802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 4
 --- !u!1 &236234894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1263,174 @@ MonoBehaviour:
       maxDistance: 500
       panLevel: .75
       pureData: {fileID: 459824419}
+    - name: HitHurt
+      path: SFX/HitHurt
+      samples: 5159
+      frequency: 44100
+      channels: 1
+      length: .115999997
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: Jump
+      path: SFX/Jump
+      samples: 15170
+      frequency: 44100
+      channels: 1
+      length: .342999995
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: PickupCoin
+      path: SFX/PickupCoin
+      samples: 15997
+      frequency: 44100
+      channels: 1
+      length: .361999989
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: Powerup
+      path: SFX/Powerup
+      samples: 18517
+      frequency: 44100
+      channels: 1
+      length: .419
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: Synth_Chaotic
+      path: SFX/Synth_Chaotic
+      samples: 738107
+      frequency: 44100
+      channels: 2
+      length: 16.7369995
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: Synth_Up
+      path: SFX/Synth_Up
+      samples: 27885
+      frequency: 44100
+      channels: 2
+      length: .632000029
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
+    - name: speach
+      path: speach
+      samples: 283136
+      frequency: 44100
+      channels: 2
+      length: 6.42000008
+      loadOnAwake: 0
+      output: Master
+      isFixed: 1
+      playRangeStart: 0
+      playRangeEnd: 1
+      volume: 1
+      pitch: 1
+      randomVolume: 0
+      randomPitch: 0
+      fadeIn: 0
+      fadeOut: .00999999978
+      loop: 0
+      dopplerLevel: 1
+      volumeRolloffMode: 0
+      minDistance: 1
+      maxDistance: 500
+      panLevel: .75
+      pureData: {fileID: 459824419}
     pureData: {fileID: 459824419}
   clipManager:
     containerPath: E:\Projects\Unity\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudioclipcontainer.pd
@@ -1096,6 +1459,62 @@ MonoBehaviour:
       channels: 2
       length: .444000006
       pureData: {fileID: 459824419}
+    - name: HitHurt
+      id: 0
+      path: SFX/HitHurt
+      samples: 5159
+      frequency: 44100
+      channels: 1
+      length: .115999997
+      pureData: {fileID: 459824419}
+    - name: Jump
+      id: 0
+      path: SFX/Jump
+      samples: 15170
+      frequency: 44100
+      channels: 1
+      length: .342999995
+      pureData: {fileID: 459824419}
+    - name: PickupCoin
+      id: 0
+      path: SFX/PickupCoin
+      samples: 15997
+      frequency: 44100
+      channels: 1
+      length: .361999989
+      pureData: {fileID: 459824419}
+    - name: Powerup
+      id: 0
+      path: SFX/Powerup
+      samples: 18517
+      frequency: 44100
+      channels: 1
+      length: .419
+      pureData: {fileID: 459824419}
+    - name: Synth_Chaotic
+      id: 0
+      path: SFX/Synth_Chaotic
+      samples: 738107
+      frequency: 44100
+      channels: 2
+      length: 16.7369995
+      pureData: {fileID: 459824419}
+    - name: Synth_Up
+      id: 0
+      path: SFX/Synth_Up
+      samples: 27885
+      frequency: 44100
+      channels: 2
+      length: .632000029
+      pureData: {fileID: 459824419}
+    - name: speach
+      id: 0
+      path: speach
+      samples: 283136
+      frequency: 44100
+      channels: 2
+      length: 6.42000008
+      pureData: {fileID: 459824419}
     pureData: {fileID: 459824419}
   sourceManager:
     containerPath: C:\Users\Kevin\Desktop\Unity\SuperHedronCollider\SuperHedronCollider\Project\Assets\StreamingAssets\Patches\Unity\Internal\uaudiosourcecontainer.pd
@@ -1105,16 +1524,30 @@ MonoBehaviour:
   containerManager: {fileID: 11423906, guid: 995fc41306f70ec45a55a3ffddfe804e, type: 2}
   sequenceManager: {fileID: 11423904, guid: 995fc41306f70ec45a55a3ffddfe804e, type: 2}
   hierarchyManager:
-    setups: []
+    setups:
+    - {fileID: 141877395}
+    - {fileID: 867023604}
+    - {fileID: 573324479}
+    - {fileID: 667704288}
+    - {fileID: 234040803}
+    - {fileID: 22058659}
+    - {fileID: 566127977}
     currentClips: []
     clips: []
     children: []
-    folderStructure: []
-    paths: []
+    folderStructure:
+    - {fileID: 1609883225}
+    paths:
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\speach.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\HitHurt.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\Jump.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\PickupCoin.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\Powerup.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\Synth_Chaotic.wav
+    - Assets/Other Assets/Magicolo/!Examples/PureData/Resources\SFX\Synth_Up.wav
     pureData: {fileID: 459824419}
   editorHelper:
-    selection:
-    - {fileID: 571561853}
+    selection: []
     repaintDummy: 0
     repaint: 0
     pureDataIcon: {fileID: 2800000, guid: 1f1f8b71fa69e14418bf3e49d9399524, type: 3}
@@ -1132,7 +1565,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1609883226}
+  - {fileID: 566127978}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!1 &481935750
@@ -1254,6 +1689,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &566127976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 566127978}
+  - 114: {fileID: 566127977}
+  m_Layer: 0
+  m_Name: speach
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &566127977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 566127976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: speach
+    path: speach
+    samples: 283136
+    frequency: 44100
+    channels: 2
+    length: 6.42000008
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &566127978
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 566127976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 459824420}
+  m_RootOrder: 1
 --- !u!1 &571561853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1815,71 @@ Transform:
   - {fileID: 131321373}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &573324478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 573324480}
+  - 114: {fileID: 573324479}
+  m_Layer: 0
+  m_Name: PickupCoin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &573324479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 573324478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: PickupCoin
+    path: SFX/PickupCoin
+    samples: 15997
+    frequency: 44100
+    channels: 1
+    length: .361999989
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &573324480
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 573324478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 2
 --- !u!1 &609298313
 GameObject:
   m_ObjectHideFlags: 1
@@ -1473,6 +2038,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &667704287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 667704289}
+  - 114: {fileID: 667704288}
+  m_Layer: 0
+  m_Name: Powerup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &667704288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667704287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: Powerup
+    path: SFX/Powerup
+    samples: 18517
+    frequency: 44100
+    channels: 1
+    length: .419
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &667704289
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667704287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 3
 --- !u!1 &682877786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +2116,7 @@ GameObject:
   - 114: {fileID: 682877788}
   - 148: {fileID: 682877787}
   - 114: {fileID: 682877792}
+  - 114: {fileID: 682877793}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1521,7 +2152,7 @@ MonoBehaviour:
   networkController: {fileID: 682877790}
   localNetworkLink: {fileID: 0}
   playerId: 0
-  centerScreenText: {fileID: 0}
+  centerScreenText: {fileID: 1274330822}
   centerScreenTextTimer: 0
 --- !u!114 &682877789
 MonoBehaviour:
@@ -1537,6 +2168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverStarted: 0
   networkController: {fileID: 682877790}
+  sceneIndex: 1
+  readyPlayer: 1
 --- !u!114 &682877790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1557,11 +2190,13 @@ MonoBehaviour:
   clientController: {fileID: 682877788}
   playerCount: 0
   outputText: {fileID: 0}
+  outputMissed: 
   currentMap: {fileID: 0}
   currentPlayer:
     cameraStartingLocation: {x: 0, y: 0, z: 0}
     superHedronCollider: {fileID: 0}
     spawnners: []
+  awesomeGuy: {fileID: 0}
 --- !u!4 &682877791
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,7 +2206,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 768141911}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!114 &682877792
@@ -1587,6 +2223,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consoleOutput: {fileID: 807339975}
+--- !u!114 &682877793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444938, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 682877786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2d513931f7cbd4c9299b0b10c36d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCounting: 0
 --- !u!1 &751479606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +2316,101 @@ MonoBehaviour:
   frequency: 1
   amplitude: .5
   center: .5
+--- !u!1 &768141910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 144934, guid: d7401566b27490b4caee38ef86ad5c8b, type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 768141911}
+  - 223: {fileID: 768141914}
+  - 114: {fileID: 768141913}
+  - 114: {fileID: 768141912}
+  m_Layer: 5
+  m_Name: AwesomeGUY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &768141911
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22444934, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 768141910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1486207799}
+  - {fileID: 1274330824}
+  m_Father: {fileID: 682877791}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &768141912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444932, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 768141910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &768141913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444930, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 768141910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &768141914
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22344938, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 768141910}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &773152039
 GameObject:
   m_ObjectHideFlags: 1
@@ -1811,6 +2555,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &867023603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 867023605}
+  - 114: {fileID: 867023604}
+  m_Layer: 0
+  m_Name: Jump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &867023604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867023603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec1bb90930969648a1e6cc81bcae6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: Jump
+    path: SFX/Jump
+    samples: 15170
+    frequency: 44100
+    channels: 1
+    length: .342999995
+    loadOnAwake: 0
+    output: Master
+    isFixed: 1
+    playRangeStart: 0
+    playRangeEnd: 1
+    volume: 1
+    pitch: 1
+    randomVolume: 0
+    randomPitch: 0
+    fadeIn: 0
+    fadeOut: .00999999978
+    loop: 0
+    dopplerLevel: 1
+    volumeRolloffMode: 0
+    minDistance: 1
+    maxDistance: 500
+    panLevel: .75
+    pureData: {fileID: 459824419}
+  pureData: {fileID: 459824419}
+--- !u!4 &867023605
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867023603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1609883226}
+  m_RootOrder: 1
 --- !u!1 &906539638
 GameObject:
   m_ObjectHideFlags: 1
@@ -2292,6 +3101,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1274330821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 144938, guid: d7401566b27490b4caee38ef86ad5c8b, type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1274330824}
+  - 222: {fileID: 1274330823}
+  - 114: {fileID: 1274330822}
+  m_Layer: 5
+  m_Name: CenterScreenMessage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1274330822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444936, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1274330821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: .213793039, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1274330823
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22244938, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1274330821}
+--- !u!224 &1274330824
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22444938, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1274330821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 768141911}
+  m_RootOrder: 1
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &1276694944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,6 +3405,75 @@ Prefab:
   m_RootGameObject: {fileID: 144299440}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1486207798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 144936, guid: d7401566b27490b4caee38ef86ad5c8b, type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1486207799}
+  - 222: {fileID: 1486207801}
+  - 114: {fileID: 1486207800}
+  m_Layer: 5
+  m_Name: Log
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1486207799
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22444936, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1486207798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 768141911}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 282.690002, y: 0}
+  m_SizeDelta: {x: 556.400024, y: -4}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1486207800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444934, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1486207798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: .462068796, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1486207801
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22244936, guid: d7401566b27490b4caee38ef86ad5c8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1068814348}
+  m_GameObject: {fileID: 1486207798}
 --- !u!1 &1492650454
 GameObject:
   m_ObjectHideFlags: 1
@@ -2816,6 +3763,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &1609883225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1609883226}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1609883226
+Transform:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609883225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 141877396}
+  - {fileID: 867023605}
+  - {fileID: 573324480}
+  - {fileID: 667704289}
+  - {fileID: 234040804}
+  - {fileID: 22058660}
+  m_Father: {fileID: 459824420}
+  m_RootOrder: 0
 --- !u!1 &1623833040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +4128,7 @@ GameObject:
   - 114: {fileID: 1811041004}
   - 114: {fileID: 1811041003}
   - 114: {fileID: 1811041002}
+  - 114: {fileID: 1811041006}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -3179,6 +4160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7208d05a13589c84fbf2b1d9c12cafe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  callbacks: 1
   layers:
   - {fileID: 1811041001}
 --- !u!114 &1811041001
@@ -3306,6 +4288,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: {fileID: 1811041001}
+  machine: {fileID: 1811041000}
+--- !u!114 &1811041006
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811040998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6586d8e41c0870e4fb8e6c17af035631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   machine: {fileID: 1811041000}
 --- !u!1 &1825126411
 GameObject:

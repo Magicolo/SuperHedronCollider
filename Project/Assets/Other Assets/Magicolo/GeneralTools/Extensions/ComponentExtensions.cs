@@ -13,6 +13,10 @@ namespace Magicolo {
 			return component.gameObject.GetOrAddComponent<T>();
 		}
 	
+		public static Component GetOrAddComponent(this Component component, System.Type componentType) {
+			return component.gameObject.GetOrAddComponent(componentType);
+		}
+	
 		public static int GetHierarchyDepth(this Component component) {
 			int depth = 0;
 			Transform currentTransform = component.transform;

@@ -2,3 +2,10 @@
 #X obj 0 0 uaudioclip button 1;
 #X obj 0 0 uaudioclip health 1;
 #X obj 0 0 uaudioclip Hit 1;
+#X obj 0 0 uaudioclip HitHurt;
+#X obj 0 0 uaudioclip Jump;
+#X obj 0 0 uaudioclip PickupCoin;
+#X obj 0 0 uaudioclip Powerup;
+#X obj 0 0 uaudioclip Synth_Chaotic;
+#X obj 0 0 uaudioclip Synth_Up;
+#X obj 0 0 uaudioclip speach;

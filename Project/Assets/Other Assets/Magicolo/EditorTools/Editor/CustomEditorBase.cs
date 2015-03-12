@@ -774,7 +774,11 @@ namespace Magicolo.EditorTools {
 			if (dropArea.Contains(Event.current.mousePosition)) {
 				if (DragAndDrop.objectReferences != null && DragAndDrop.objectReferences.Length > 0) {
 					GameObject gameObject = DragAndDrop.objectReferences[0] as GameObject;
-					T dropTarget = DragAndDrop.objectReferences[0] as T ?? gameObject == null ? default(T) : gameObject.GetComponent(typeof(T)) as T;
+					
+					T dropTarget = typeof(T) == typeof(GameObject) ? gameObject as T : DragAndDrop.objectReferences[0] as T;
+					if (dropTarget == null) {
+						dropTarget = gameObject == null ? default(T) : gameObject.GetComponent(typeof(T)) as T;
+					}
 					
 					if (dropTarget != null) {
 						DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
@@ -786,7 +790,11 @@ namespace Magicolo.EditorTools {
 						
 					foreach (Object droppedElement in DragAndDrop.objectReferences) {
 						GameObject gameObject = droppedElement as GameObject;
-						T dropTarget = DragAndDrop.objectReferences[0] as T ?? gameObject == null ? default(T) : gameObject.GetComponent(typeof(T)) as T;
+
+						T dropTarget = typeof(T) == typeof(GameObject) ? gameObject as T : droppedElement as T;
+						if (dropTarget == null) {
+							dropTarget = gameObject == null ? default(T) : gameObject.GetComponent(typeof(T)) as T;
+						}
 						
 						if (dropTarget != null) {
 							dropCallback(dropTarget);

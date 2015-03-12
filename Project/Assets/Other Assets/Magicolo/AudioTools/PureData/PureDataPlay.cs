@@ -14,5 +14,9 @@ namespace Magicolo.AudioTools {
 		public void PlayContainer(string containerName) {
 			PureData.PlayContainer(containerName);
 		}
+		
+		public void PlaySequence(string sequenceName) {
+			PureData.PlayContainer(sequenceName);
+		}
 	}
 }

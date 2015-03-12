@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11463968}
   - 114: {fileID: 11463966}
   - 114: {fileID: 11463964}
+  - 114: {fileID: 11429260}
   m_Layer: 9
   m_Name: TroopHexa
   m_TagString: Selectable
@@ -145,6 +146,18 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11429260
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6586d8e41c0870e4fb8e6c17af035631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 11463974}
 --- !u!114 &11463964
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -245,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7208d05a13589c84fbf2b1d9c12cafe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  callbacks: 1
   layers:
   - {fileID: 11463972}
 --- !u!114 &11463976
