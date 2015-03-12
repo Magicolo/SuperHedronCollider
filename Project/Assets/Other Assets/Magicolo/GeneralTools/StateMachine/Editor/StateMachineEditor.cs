@@ -14,6 +14,8 @@ namespace Magicolo.GeneralTools {
 		GameObject stateMachineObject;
 		StateLayer[] existingLayers;
 		State[] existingStates;
+		StateMachineCaller[] existingCallers;
+		SerializedProperty callbacksProperty;
 		SerializedProperty layersProperty;
 		StateLayer currentLayer;
 		SerializedProperty currentLayerProperty;
@@ -26,10 +28,46 @@ namespace Magicolo.GeneralTools {
 		
 		Type selectedLayerType;
 		
+		Type[] callbackTypes = { 
+			typeof(StateMachineUpdateCaller), typeof(StateMachineFixedUpdateCaller), typeof(StateMachineLateUpdateCaller),
+			typeof(StateMachineCollisionEnterCaller), typeof(StateMachineCollisionStayCaller), typeof(StateMachineCollisionExitCaller),
+			typeof(StateMachineCollisionEnter2DCaller), typeof(StateMachineCollisionStay2DCaller), typeof(StateMachineCollisionExit2DCaller),
+			typeof(StateMachineTriggerEnterCaller), typeof(StateMachineTriggerStayCaller), typeof(StateMachineTriggerExitCaller),
+			typeof(StateMachineTriggerEnter2DCaller), typeof(StateMachineTriggerStay2DCaller), typeof(StateMachineTriggerExit2DCaller)
+		};
+		
+		string[] callbacks = {
+			"OnUpdate", "OnFixedUpdate", "OnLateUpdate",
+			"CollisionEnter", "CollisionStay", "CollisionExit", 
+			"CollisionEnter2D", "CollisionStay2D", "CollisionExit2D", 
+			"TriggerEnter", "TriggerStay", "TriggerExit", 
+			"TriggerEnter2D", "TriggerStay2D", "TriggerExit2D"
+		};
+		
 		static List<Type> layerTypes;
+		public static List<Type> LayerTypes {
+			get {
+				if (layerTypes == null) {
+					BuildLayerStatesDict();
+				}
+				
+				return layerTypes;
+			}
+		}
+
 		static List<Type> stateTypes;
+		public static List<Type> StateTypes {
+			get {
+				if (stateTypes == null) {
+					BuildLayerStatesDict();
+				}
+				
+				return stateTypes;
+			}
+		}
+		
 		static Dictionary<Type, List<Type>> layerStateDict;
-		static Dictionary<Type, List<Type>> LayerStateDict {
+		public static Dictionary<Type, List<Type>> LayerStateDict {
 			get {
 				if (layerStateDict == null) {
 					BuildLayerStatesDict();
@@ -40,7 +78,7 @@ namespace Magicolo.GeneralTools {
 		}
 				
 		static Dictionary<string, List<string>> layerStateNameDict;
-		static Dictionary<string, List<string>> LayerStateNameDict {
+		public static Dictionary<string, List<string>> LayerStateNameDict {
 			get {
 				if (layerStateDict == null) {
 					BuildLayerStatesDict();
@@ -50,14 +88,29 @@ namespace Magicolo.GeneralTools {
 			}
 		}
 		
-		static Dictionary<Type, string> LayerTypeNameDict;
-
+		static Dictionary<Type, string> layerTypeNameDict;
+		public static Dictionary<Type, string> LayerTypeNameDict {
+			get {
+				if (layerTypeNameDict == null) {
+					BuildLayerStatesDict();
+				}
+				
+				return layerTypeNameDict;
+			}
+		}
+		
 		public override void OnEnable() {
 			base.OnEnable();
 			
 			stateMachine = (StateMachine)target;
 			stateMachineObject = stateMachine.gameObject;
-			HideLayersAndStates();
+			
+			HideMachineComponents();
+			
+			if (stateMachine.GetComponents<StateMachine>().Length > 1) {
+				Logger.LogError("There can be only one state machine (StateMachine) per game object (GameObject). Use layers (StateLayer) instead.");
+				stateMachine.Remove();
+			}
 		}
 		
 		public override void OnDisable() {
@@ -69,7 +122,9 @@ namespace Magicolo.GeneralTools {
 		public override void OnInspectorGUI() {
 			Begin();
 			
-			HideLayersAndStates();
+			HideMachineComponents();
+			ShowAddLayer();
+			ShowCallbacks();
 			ShowLayers();
 			Separator();
 			ShowGenerateButton();
@@ -78,19 +133,81 @@ namespace Magicolo.GeneralTools {
 			End();
 		}
 
-		void HideLayersAndStates() {
+		void HideMachineComponents() {
 			existingLayers = stateMachineObject.GetComponents<StateLayer>();
 			existingStates = stateMachineObject.GetComponents<State>();
+			existingCallers = stateMachine.GetComponents<StateMachineCaller>();
 			
 			Array.ForEach(existingLayers, layer => layer.hideFlags = HideFlags.HideInInspector);
 			Array.ForEach(existingStates, state => state.hideFlags = HideFlags.HideInInspector);
+			Array.ForEach(existingCallers, caller => caller.hideFlags = HideFlags.HideInInspector);
+		}
+
+		void ShowAddLayer() {
+			layersProperty = serializedObject.FindProperty("layers");
+			
+			List<Type> layerTypes = new List<Type>();
+			List<string> layerTypesName = new List<string>{ " " };
+			
+			foreach (Type layerType in LayerStateDict.Keys) {
+				if (layersProperty.TrueForAll<StateLayer>(layer => layer.GetType() != layerType)) {
+					layerTypes.Add(layerType);
+					layerTypesName.Add(LayerTypeNameDict[layerType]);
+				}
+			}
+			
+			EditorGUI.BeginDisabledGroup(Application.isPlaying);
+			EditorGUILayout.BeginHorizontal();
+			
+			EditorGUILayout.LabelField("Add Layer", new GUIStyle("boldLabel"), GUILayout.Width(75));
+			int layerTypeIndex = EditorGUILayout.Popup(layerTypes.IndexOf(selectedLayerType) + 1, layerTypesName.ToArray()) - 1;
+			selectedLayerType = layerTypeIndex == -1 ? null : layerTypes[Mathf.Clamp(layerTypeIndex, 0, layerTypes.Count - 1)];
+			
+			if (selectedLayerType != null) {
+				OnLayerAdded(layersProperty);
+			}
+			
+			EditorGUILayout.EndHorizontal();
+			EditorGUI.EndDisabledGroup();
+		}
+		
+		void ShowCallbacks() {
+			callbacksProperty = serializedObject.FindProperty("callbacks");
+			
+			EditorGUI.BeginDisabledGroup(Application.isPlaying);
+			EditorGUILayout.BeginHorizontal();
+			
+			EditorGUILayout.LabelField("Callbacks", GUILayout.Width(75));
+			int callerMask = EditorGUILayout.MaskField(callbacksProperty.GetValue<int>(), callbacks);
+			callbacksProperty.SetValue(callerMask);
+			
+			EditorGUILayout.EndHorizontal();
+			EditorGUI.EndDisabledGroup();
+			
+			List<StateMachineCaller> callers = new List<StateMachineCaller>();
+			
+			for (int i = 0; i < callbackTypes.Length; i++) {
+				if ((callerMask & 1 << i) != 0) {
+					StateMachineCaller caller = stateMachine.GetOrAddComponent(callbackTypes[i]) as StateMachineCaller;
+					
+					caller.machine = stateMachine;
+					caller.hideFlags = HideFlags.HideInInspector;
+					callers.Add(caller);
+				}
+			}
+			
+			for (int i = existingCallers.Length - 1; i >= 0; i--) {
+				StateMachineCaller caller = existingCallers[i];
+				
+				if (caller != null && !callers.Contains(caller)) {
+					callers.Remove(caller);
+					caller.Remove();
+				}
+			}
 		}
 		
 		void ShowLayers() {
-			layersProperty = serializedObject.FindProperty("layers");
 			CleanUpLayers();
-			
-			ShowAddLayer();
 			
 			if (layersProperty.arraySize > 0) {
 				Separator();
@@ -130,32 +247,6 @@ namespace Magicolo.GeneralTools {
 			
 			layer.Remove();
 			DeleteFromArray(arrayProperty, indexToRemove);
-		}
-		
-		void ShowAddLayer() {
-			List<Type> layerTypes = new List<Type>();
-			List<string> layerTypesName = new List<string>{ " " };
-			
-			foreach (Type layerType in LayerStateDict.Keys) {
-				if (layersProperty.TrueForAll<StateLayer>(layer => layer.GetType() != layerType)) {
-					layerTypes.Add(layerType);
-					layerTypesName.Add(LayerTypeNameDict[layerType]);
-				}
-			}
-			
-			EditorGUI.BeginDisabledGroup(Application.isPlaying);
-			EditorGUILayout.BeginHorizontal();
-			
-			EditorGUILayout.LabelField("Add Layer", new GUIStyle("boldLabel"), GUILayout.Width(75));
-			int layerTypeIndex = EditorGUILayout.Popup(layerTypes.IndexOf(selectedLayerType) + 1, layerTypesName.ToArray()) - 1;
-			selectedLayerType = layerTypeIndex == -1 ? null : layerTypes[Mathf.Clamp(layerTypeIndex, 0, layerTypes.Count - 1)];
-			
-			if (selectedLayerType != null) {
-				OnLayerAdded(layersProperty);
-			}
-			
-			EditorGUILayout.EndHorizontal();
-			EditorGUI.EndDisabledGroup();
 		}
 		
 		void OnLayerAdded(SerializedProperty arrayProperty) {
@@ -309,6 +400,7 @@ namespace Magicolo.GeneralTools {
 		void CleanUp() {
 			StateLayer[] layers = stateMachineObject.GetComponents<StateLayer>();
 			State[] states = stateMachineObject.GetComponents<State>();
+			StateMachineCaller[] callers = stateMachineObject.GetComponents<StateMachineCaller>();
 				
 			foreach (StateLayer layer in layers) {
 				if (layer.machine != stateMachine || layer.machine == null) {
@@ -319,6 +411,12 @@ namespace Magicolo.GeneralTools {
 			foreach (State state in states) {
 				if (state.machine != stateMachine || state.machine == null) {
 					state.Remove();
+				}
+			}
+			
+			foreach (StateMachineCaller caller in callers) {
+				if (caller.machine != stateMachine || caller.machine == null) {
+					caller.Remove();
 				}
 			}
 		}
@@ -346,7 +444,7 @@ namespace Magicolo.GeneralTools {
 			for (int i = 0; i < components.Length; i++) {
 				Component component = components[i];
 				
-				if (component as State != null || component as StateLayer != null) {
+				if (component as State != null || component as StateLayer != null || component as StateMachineCaller != null) {
 					firstStateOrLayerIndex = firstStateOrLayerIndex == 0 ? i : firstStateOrLayerIndex;
 				}
 				else if (firstStateOrLayerIndex > 0) {
@@ -356,7 +454,7 @@ namespace Magicolo.GeneralTools {
 				}
 			}
 		}
-
+		
 		GUIStyle GetStateStyle() {
 			GUIStyle style = new GUIStyle("foldout");
 			style.fontStyle = FontStyle.Bold;
@@ -421,7 +519,7 @@ namespace Magicolo.GeneralTools {
 			stateTypes = new List<Type>();
 			layerStateDict = new Dictionary<Type, List<Type>>();
 			layerStateNameDict = new Dictionary<string, List<string>>();
-			LayerTypeNameDict = new Dictionary<Type, string>();
+			layerTypeNameDict = new Dictionary<Type, string>();
 			
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			foreach (Assembly assembly in assemblies) {
@@ -442,7 +540,7 @@ namespace Magicolo.GeneralTools {
 				string layerTypeName = FormatLayerType(layerType);
 				layerStateDict[layerType] = new List<Type>();
 				layerStateNameDict[layerTypeName] = new List<string>();
-				LayerTypeNameDict[layerType] = layerTypeName;
+				layerTypeNameDict[layerType] = layerTypeName;
 				
 				foreach (Type stateType in stateTypes) {
 					if (stateType.Name.Split('.').Last().StartsWith(layerTypePrefix)) {

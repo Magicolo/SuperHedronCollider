@@ -77,10 +77,14 @@ namespace Magicolo {
 		}
 	
 		public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component {
-			T component = gameObject.GetComponent<T>();
+			return (T)gameObject.GetOrAddComponent(typeof(T));
+		}
+	
+		public static Component GetOrAddComponent(this GameObject gameObject, Type componentType) {
+			Component component = gameObject.GetComponent(componentType);
 			
 			if (component == null) {
-				component = gameObject.AddComponent<T>();
+				component = gameObject.AddComponent(componentType);
 			}
 			
 			return component;

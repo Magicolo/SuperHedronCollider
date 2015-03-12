@@ -49,7 +49,7 @@ MonoBehaviour:
     - id: 1
       instrumentPatchPath: Instruments/lead.pd
       steps:
-      - patternIndex: 0
+      - patternIndex: 4
       - patternIndex: 4
       - patternIndex: 4
       - patternIndex: 4
@@ -174,10 +174,10 @@ MonoBehaviour:
     - id: 2
       instrumentPatchPath: Instruments/bass.pd
       steps:
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
-      - patternIndex: -1
+      - patternIndex: 2
+      - patternIndex: 2
+      - patternIndex: 2
+      - patternIndex: 2
       patterns:
       - name: 
         sendType: 1
@@ -320,6 +320,77 @@ MonoBehaviour:
         - 0
         - 0
         - 0
+        pureData: {fileID: 0}
+      - name: 
+        sendType: 1
+        sendSize: 2
+        subdivision: 16
+        pattern:
+        - 0
+        - 4
+        - 8
+        - 2
+        - 7
+        - 8
+        - 6
+        - 2
+        - 9
+        - 8
+        - 0
+        - 6
+        - 5
+        - 4
+        - 7
+        - 8
+        - 347
+        - 319
+        - 490
+        - 480
+        - 443
+        - 307
+        - 107
+        - 210
+        - 236
+        - 299
+        - 419
+        - 428
+        - 112
+        - 485
+        - 475
+        - 286
+        sortedPattern:
+        - 0
+        - 347
+        - 4
+        - 319
+        - 8
+        - 490
+        - 2
+        - 480
+        - 7
+        - 443
+        - 8
+        - 307
+        - 6
+        - 107
+        - 2
+        - 210
+        - 9
+        - 236
+        - 8
+        - 299
+        - 0
+        - 419
+        - 6
+        - 428
+        - 5
+        - 112
+        - 4
+        - 485
+        - 7
+        - 475
+        - 8
+        - 286
         pureData: {fileID: 0}
       pureData: {fileID: 0}
     - id: 3

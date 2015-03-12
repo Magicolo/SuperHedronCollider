@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviourExtended {
 	[Button("SetRandomPattern", "SetRandomPattern", NoPrefixLabel = true)] public bool setRandomPattern;
 	void SetRandomPattern() {
 		int sendSize = 2;
-		int subdivision = Random.Range(2, 16);
+		int subdivision = (int)2.Pow(Random.Range(2, 5));
 		float[,] pattern = new float[sendSize, subdivision];
 		
 		for (int row = 0; row < sendSize; row++) {

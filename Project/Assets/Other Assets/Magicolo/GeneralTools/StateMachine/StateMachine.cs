@@ -5,52 +5,44 @@ using Magicolo.GeneralTools;
 
 namespace Magicolo {
 	[AddComponentMenu("Magicolo/State Machine")]
-	public class StateMachine : MonoBehaviourExtended {
-
-		[SerializeField] StateLayer[] layers = new StateLayer[0];
+	public class StateMachine : MonoBehaviour {
+		
+		bool isActive;
+		public bool IsActive {
+			get {
+				return isActive;
+			}
+		}
+		
+		[SerializeField] protected int callbacks = 1;
+		[SerializeField] protected StateLayer[] layers = new StateLayer[0];
 		Dictionary<string, IStateLayer> nameLayerDict;
 		
+		void OnEnable() {
+			isActive = true;
+		}
+		
+		void OnDisable() {
+			isActive = false;
+		}
+		
 		void Awake() {
-			StateMachineManager.AddMachine(this);
 			BuildLayerDict();
 			
-			foreach (StateLayer layer in layers) {
-				layer.OnAwake();
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].OnAwake();
 			}
 		}
-	
-		//		void OnEnable() {
-		//			StateMachineManager.AddMachine(this);
-		//		}
-		//
-		//		void OnDisable() {
-		//			StateMachineManager.RemoveMachine(this);
-		//		}
 		
 		void Start() {
-			foreach (StateLayer layer in layers) {
-				layer.OnStart();
-			}
-		}
-		
-		void OnDestroy() {
-			StateMachineManager.RemoveMachine(this);
-			
-			State[] states = GetComponents<State>();
-			foreach (State state in states) {
-				if (layers.Contains(state.layer)) {
-					Destroy(state);
-				}
-			}
-			
-			foreach (StateLayer layer in layers) {
-				Destroy(layer);
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].OnStart();
 			}
 		}
 		
 		public void OnUpdate() {
-			foreach (StateLayer layer in layers) {
-				layer.OnUpdate();
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].OnUpdate();
 			}
 		}
 	
@@ -66,77 +58,77 @@ namespace Magicolo {
 			}
 		}
 
-//		public void OnCollisionEnter(Collision collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionEnter(collision);
-//			}
-//		}
-//	
-//		public void OnCollisionStay(Collision collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionStay(collision);
-//			}
-//		}
-//
-//		public void OnCollisionExit(Collision collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionExit(collision);
-//			}
-//		}
-//	
-//		public void OnCollisionEnter2D(Collision2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionEnter2D(collision);
-//			}
-//		}
-//	
-//		public void OnCollisionStay2D(Collision2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionStay2D(collision);
-//			}
-//		}
-//
-//		public void OnCollisionExit2D(Collision2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].CollisionExit2D(collision);
-//			}
-//		}
-//	
-//		public void OnTriggerEnter(Collider collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerEnter(collision);
-//			}
-//		}
-//	
-//		public void OnTriggerStay(Collider collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerStay(collision);
-//			}
-//		}
-//
-//		public void OnTriggerExit(Collider collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerExit(collision);
-//			}
-//		}
-//	
-//		public void OnTriggerEnter2D(Collider2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerEnter2D(collision);
-//			}
-//		}
-//	
-//		public void OnTriggerStay2D(Collider2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerStay2D(collision);
-//			}
-//		}
-//
-//		public void OnTriggerExit2D(Collider2D collision) {
-//			for (int i = 0; i < layers.Length; i++) {
-//				layers[i].TriggerExit2D(collision);
-//			}
-//		}
+		public void CollisionEnter(Collision collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionEnter(collision);
+			}
+		}
+	
+		public void CollisionStay(Collision collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionStay(collision);
+			}
+		}
+
+		public void CollisionExit(Collision collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionExit(collision);
+			}
+		}
+	
+		public void CollisionEnter2D(Collision2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionEnter2D(collision);
+			}
+		}
+	
+		public void CollisionStay2D(Collision2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionStay2D(collision);
+			}
+		}
+
+		public void CollisionExit2D(Collision2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].CollisionExit2D(collision);
+			}
+		}
+	
+		public void TriggerEnter(Collider collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerEnter(collision);
+			}
+		}
+	
+		public void TriggerStay(Collider collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerStay(collision);
+			}
+		}
+
+		public void TriggerExit(Collider collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerExit(collision);
+			}
+		}
+	
+		public void TriggerEnter2D(Collider2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerEnter2D(collision);
+			}
+		}
+	
+		public void TriggerStay2D(Collider2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerStay2D(collision);
+			}
+		}
+
+		public void TriggerExit2D(Collider2D collision) {
+			for (int i = 0; i < layers.Length; i++) {
+				layers[i].TriggerExit2D(collision);
+			}
+		}
 
 		public T GetLayer<T>() where T : IStateLayer {
 			return (T)GetLayer(typeof(T).Name);
