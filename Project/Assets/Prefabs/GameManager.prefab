@@ -82,6 +82,7 @@ GameObject:
   - 114: {fileID: 11413588}
   - 114: {fileID: 11413590}
   - 114: {fileID: 11413592}
+  - 114: {fileID: 11452948}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -370,25 +371,7 @@ MonoBehaviour:
   precision: 15
   filterMode: 1
   manualUpdate: 0
-  fogAgents:
-  - transform: {fileID: 0}
-    sightRadius: 40
-    strength: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    strength: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    strength: 1
-  - transform: {fileID: 0}
-    sightRadius: 40
-    strength: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    strength: 1
-  - transform: {fileID: 0}
-    sightRadius: 20
-    strength: 1
+  fogAgents: []
 --- !u!114 &11444450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7208d05a13589c84fbf2b1d9c12cafe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  callbacks: 1
   layers:
   - {fileID: 11413594}
 --- !u!114 &11444452
@@ -504,6 +488,18 @@ MonoBehaviour:
   hexaTroopPrefab: {fileID: 163964, guid: b6548a82f170a2d4daa4f0d5914e9061, type: 2}
   isoTroopPrefab: {fileID: 133862, guid: bf2c8fb58f67fcf43b9c1894dfdcad59, type: 2}
   tetraTroopPrefab: {fileID: 181632, guid: 162369ec6c16d444bbadc2b32390f559, type: 2}
+--- !u!114 &11452948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6586d8e41c0870e4fb8e6c17af035631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine: {fileID: 11444450}
 --- !u!114 &11456794
 MonoBehaviour:
   m_ObjectHideFlags: 1
